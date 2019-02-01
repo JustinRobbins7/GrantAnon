@@ -53,6 +53,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Project Assets\Scripts\Managers\GameManager.cs" />
+     <Compile Include="Assets\Project Assets\Scripts\Managers\MainGameManager.cs" />
+     <Compile Include="Assets\Project Assets\Scripts\Managers\MiniGameManager.cs" />
      <Compile Include="Assets\Project Assets\Scripts\Player\Player.cs" />
      <Compile Include="Assets\Project Assets\Scripts\Player\PlayerController.cs" />
      <Compile Include="Assets\Project Assets\Scripts\Player\PlayerControllerAssigner.cs" />

@@ -97,12 +97,22 @@ public class PlayerControllerAssigner : MonoBehaviour
     void StartLevel()
     {
         int PlayersToSpawn = 0;
+        int[] ControllerNums = new int[4];
+
         for (int i = 0; i < ReadyPlayers.Length; i++)
         {
             if (ReadyPlayers[i])
             {
-                //Spawn Player
                 PlayersToSpawn++;
+
+                for (int j = 0; j < ControllerNums.Length; j++)
+                {
+                    if(ControllerNums[j] == 0)
+                    {
+                        ControllerNums[j] = i + 1;
+                        break;
+                    }
+                }
             }
         }
         Debug.Log("Need to spawn " + PlayersToSpawn.ToString() + " players");
@@ -111,7 +121,7 @@ public class PlayerControllerAssigner : MonoBehaviour
         {
             gameObject.active = false;
 
-            if (i < 1 || i - 1 >= PlayerSpawns.Length)
+            if (i - 1 < 0 || i - 1 >= PlayerSpawns.Length)
             {
                 Debug.Log("ERROR: Players Spawn does not exist for Player " + i.ToString() + "!");
                 return;
@@ -120,8 +130,8 @@ public class PlayerControllerAssigner : MonoBehaviour
             TestPlayerController SpawnedPlayer = null;
             SpawnedPlayer = Instantiate(PlayerPrefab);
 
-            SpawnedPlayer.SetControllerNumber(i);
-            SpawnedPlayer.SetCameraViewport(PlayersToSpawn);
+            SpawnedPlayer.SetControllerNumber(ControllerNums[i - 1]);
+            SpawnedPlayer.SetCameraViewport(i, PlayersToSpawn);
 
             SpawnedPlayer.gameObject.transform.position = PlayerSpawns[i - 1];
         }

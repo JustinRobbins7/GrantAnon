@@ -6,17 +6,21 @@ using UnityEngine.UI;
 public class PlayerControllerAssigner : MonoBehaviour
 {
     public int MaxPlayers = 4;
-    public GameObject ReadyScreen = null;
-    public TestPlayerController PlayerPrefab = null;
+    public GameObject ReadyScreen;
+    public TestPlayerController PlayerPrefab;
 
+    public Vector2[] PlayerSpawns;
     public Text[] SignInTexts;
     private bool[] ActivePlayers;
     private bool[] ReadyPlayers;
-    bool AllPlayersReady = false;
+    bool AllPlayersReady;
+    bool SpawningPlayers;
 
     // Start is called before the first frame update
     void Start()
     {
+        SpawningPlayers = false;
+        AllPlayersReady = false;
         ActivePlayers = new bool[SignInTexts.Length];
         ReadyPlayers = new bool[SignInTexts.Length];
     }
@@ -34,15 +38,16 @@ public class PlayerControllerAssigner : MonoBehaviour
                 {
                     AllPlayersReady = false;
                 }
+            }
 
-                if (AllPlayersReady)
+            if (AllPlayersReady && !SpawningPlayers)
+            {
+                if (Input.GetButtonDown("PAll_Start"))
                 {
-                    if (Input.GetButtonDown("PAll_Start"))
-                    {
-                        StartLevel();
-                    }
-                    //ReadyScreen.active = false;
+                    SpawningPlayers = true;
+                    StartLevel();
                 }
+                //ReadyScreen.active = false;
             }
         }
     }
@@ -83,7 +88,7 @@ public class PlayerControllerAssigner : MonoBehaviour
                 {
                     Debug.Log("Player " + ControllerNum + " Unjoined!");
                     ActivePlayers[index] = false;
-                    SignInTexts[index].text = "Press A to join the game!";
+                    SignInTexts[index].text = "Press X to join the game!";
                 }
             }
         }
@@ -91,12 +96,34 @@ public class PlayerControllerAssigner : MonoBehaviour
 
     void StartLevel()
     {
+        int PlayersToSpawn = 0;
         for (int i = 0; i < ReadyPlayers.Length; i++)
         {
             if (ReadyPlayers[i])
             {
                 //Spawn Player
+                PlayersToSpawn++;
             }
+        }
+        Debug.Log("Need to spawn " + PlayersToSpawn.ToString() + " players");
+
+        for (int i = 1; i <= PlayersToSpawn; i++)
+        {
+            gameObject.active = false;
+
+            if (i < 1 || i - 1 >= PlayerSpawns.Length)
+            {
+                Debug.Log("ERROR: Players Spawn does not exist for Player " + i.ToString() + "!");
+                return;
+            }
+
+            TestPlayerController SpawnedPlayer = null;
+            SpawnedPlayer = Instantiate(PlayerPrefab);
+
+            SpawnedPlayer.SetControllerNumber(i);
+            SpawnedPlayer.SetCameraViewport(PlayersToSpawn);
+
+            SpawnedPlayer.gameObject.transform.position = PlayerSpawns[i - 1];
         }
 
         gameObject.active = false;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TestPlayerController : MonoBehaviour
 {
-    public float cameraSpeed = 10.0f;
+    public float cameraSpeed = 0.1f;
 
     public int controllerNum = 0;
 
@@ -49,12 +49,6 @@ public class TestPlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (controllerNum == 0)
-        {
-            controllerNum = 1;
-        }
-
-        SetControllerNumber(controllerNum);
         rgdbdy2 = GetComponent<Rigidbody2D>();
     }
 
@@ -97,12 +91,12 @@ public class TestPlayerController : MonoBehaviour
 
             if (Input.GetAxis(L2) != -1)
             {
-                Debug.Log("Player " + controllerNum.ToString() + " - L2: " + Input.GetAxis(L2).ToString());
+               // Debug.Log("Player " + controllerNum.ToString() + " - L2: " + Input.GetAxis(L2).ToString());
             }
 
             if (Input.GetAxis(R2) != -1)
             {
-                Debug.Log("Player " + controllerNum.ToString() + " - R2: " + Input.GetAxis(R2).ToString());
+                //Debug.Log("Player " + controllerNum.ToString() + " - R2: " + Input.GetAxis(R2).ToString());
             }
 
             if (Input.GetAxis(rHorizontalAxis) != 0)
@@ -180,5 +174,56 @@ public class TestPlayerController : MonoBehaviour
         Options = "P" + ControllerNum.ToString() + "_Options";
         PS = "P" + ControllerNum.ToString() + "_PS";
         Pad = "P" + ControllerNum.ToString() + "_Pad";
+    }
+
+    public void SetCameraViewport(int NumberOfPlayers)
+    {
+        Camera playerCam = gameObject.GetComponentInChildren<Camera>();
+
+        if (playerCam == null)
+        {
+            Debug.Log("ERROR: Player Camera Component Not Found For Player " + controllerNum.ToString() + "!");
+            return;
+        }
+
+        Rect newViewport = new Rect(0,0,0,0);
+        if (NumberOfPlayers > 0 && NumberOfPlayers <= 2)
+        {
+            switch (controllerNum)
+            {
+                case 1:
+                    newViewport = new Rect(0, 0.5f, 1.0f, 0.5f);
+                    break;
+                case 2:
+                    newViewport = new Rect(0, 0, 1.0f, 0.5f);
+                    break;
+                default:
+                    Debug.Log("ERROR: SetViewport - Invalid controller number " + controllerNum.ToString() + " for number of players: " + NumberOfPlayers.ToString());
+                    return;
+            }
+        }
+        else if (NumberOfPlayers > 0 && NumberOfPlayers <= 4)
+        {
+            switch (controllerNum)
+            {
+                case 1:
+                    newViewport = new Rect(0, 0.5f, 0.5f, 0.5f);
+                    break;
+                case 2:
+                    newViewport = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
+                    break;
+                case 3:
+                    newViewport = new Rect(0, 0, 0.5f, 0.5f);
+                    break;
+                case 4:
+                    newViewport = new Rect(0.5f, 0, 0.5f, 0.5f);
+                    break;
+                default:
+                    Debug.Log("ERROR: SetViewport - Invalid controller number " + controllerNum.ToString() + " for number of players: " + NumberOfPlayers.ToString());
+                    return;
+            }
+        }
+
+        playerCam.rect = newViewport;
     }
 }

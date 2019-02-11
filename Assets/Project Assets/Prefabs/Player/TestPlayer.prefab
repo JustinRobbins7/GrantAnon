@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 87648745006986493}
   - component: {fileID: 87648745006986492}
   m_Layer: 0
-  m_Name: Player1
+  m_Name: TestPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2652417242d09e345963dd6a5c553b82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraSpeed: 10
+  cameraSpeed: 0.5
   controllerNum: 1
 --- !u!50 &87648745006986492
 Rigidbody2D:

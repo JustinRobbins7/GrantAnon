@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2652417242d09e345963dd6a5c553b82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraSpeed: 0.5
+  cameraSpeed: 0.25
   controllerNum: 1
 --- !u!50 &87648745006986492
 Rigidbody2D:

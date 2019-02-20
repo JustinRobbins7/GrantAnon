@@ -53,7 +53,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Project Assets\Scripts\Honors - Minigames\SavedLevel.cs" />
+     <Compile Include="Assets\Project Assets\Scripts\Honors - Minigames\SaveNLoad.cs" />
      <Compile Include="Assets\Project Assets\Scripts\Managers\GameManager.cs" />
+     <Compile Include="Assets\Project Assets\Scripts\Managers\LevelManager.cs" />
      <Compile Include="Assets\Project Assets\Scripts\Managers\MainGameManager.cs" />
      <Compile Include="Assets\Project Assets\Scripts\Managers\MiniGameManager.cs" />
      <Compile Include="Assets\Project Assets\Scripts\Player\Player.cs" />

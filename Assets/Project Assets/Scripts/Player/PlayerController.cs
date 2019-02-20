@@ -157,4 +157,59 @@ public class PlayerController : MonoBehaviour
         PS = "P" + ControllerNum.ToString() + "_PS";
         Pad = "P" + ControllerNum.ToString() + "_Pad";
     }
+
+    public void SetCameraViewport(int ViewportID, int NumberOfPlayers)
+    {
+        Camera playerCam = gameObject.GetComponentInChildren<Camera>();
+
+        if (playerCam == null)
+        {
+            Debug.Log("ERROR: SetCameraViewport - Player Camera Component Not Found For Player " + controllerNum.ToString() + "!");
+            return;
+        }
+
+        if (ViewportID < 1 || ViewportID > NumberOfPlayers)
+        {
+            Debug.Log("ERROR: SetCameraViewport - Invalid viewport ID for number of players given. Viewport ID: " + ViewportID.ToString() + " | Number of Players: " + NumberOfPlayers.ToString());
+            return;
+        }
+
+        Rect newViewport = new Rect(0, 0, 0, 0);
+        if (NumberOfPlayers > 0 && NumberOfPlayers <= 2)
+        {
+            switch (ViewportID)
+            {
+                case 1:
+                    newViewport = new Rect(0, 0.5f, 1.0f, 0.5f);
+                    break;
+                case 2:
+                    newViewport = new Rect(0, 0, 1.0f, 0.5f);
+                    break;
+                default:
+                    return;
+            }
+        }
+        else if (NumberOfPlayers > 0 && NumberOfPlayers <= 4)
+        {
+            switch (ViewportID)
+            {
+                case 1:
+                    newViewport = new Rect(0, 0.5f, 0.5f, 0.5f);
+                    break;
+                case 2:
+                    newViewport = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
+                    break;
+                case 3:
+                    newViewport = new Rect(0, 0, 0.5f, 0.5f);
+                    break;
+                case 4:
+                    newViewport = new Rect(0.5f, 0, 0.5f, 0.5f);
+                    break;
+                default:
+                    return;
+            }
+        }
+
+        playerCam.rect = newViewport;
+    }
 }

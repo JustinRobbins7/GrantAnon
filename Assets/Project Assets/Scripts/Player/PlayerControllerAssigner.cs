@@ -7,7 +7,7 @@ public class PlayerControllerAssigner : MonoBehaviour
 {
     public int MaxPlayers = 4;
     public GameObject ReadyScreen;
-    public TestPlayerController PlayerPrefab;
+    public PlayerController PlayerPrefab;
 
     public Vector2[] PlayerSpawns;
     public Text[] SignInTexts;
@@ -127,7 +127,7 @@ public class PlayerControllerAssigner : MonoBehaviour
                 return;
             }
 
-            TestPlayerController SpawnedPlayer = null;
+            PlayerController SpawnedPlayer = null;
             SpawnedPlayer = Instantiate(PlayerPrefab);
 
             SpawnedPlayer.SetControllerNumber(ControllerNums[i - 1]);
@@ -138,4 +138,5 @@ public class PlayerControllerAssigner : MonoBehaviour
 
         gameObject.active = false;
     }
+
 }

@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float cameraSpeed = 1.0f;
-
-    private int controllerNum = 0;
+    [SerializeField] float cameraSpeed = 10f;
+    [SerializeField] int controllerNum;
 
     //Left Stick
     private string horizontalAxis = "";
@@ -44,20 +43,20 @@ public class PlayerController : MonoBehaviour
     private string PS = "";
     private string Pad = "";
 
-    private Rigidbody2D rgdbdy2;
-
     // Start is called before the first frame update
     void Start()
     {
-        rgdbdy2 = GetComponent<Rigidbody2D>();
+        SetControllerNumber(controllerNum);
     }
 
     void FixedUpdate()
     {
         if (controllerNum > 0 && controllerNum < 5)
         {
-            Vector2 movement = new Vector2(Input.GetAxis(horizontalAxis) * cameraSpeed, Input.GetAxis(verticalAxis) * cameraSpeed);
-            rgdbdy2.position = new Vector2(rgdbdy2.position.x + movement.x, rgdbdy2.position.y + movement.y);
+            Vector3 position = transform.position;
+            position.x += Input.GetAxis(horizontalAxis) * cameraSpeed * Time.deltaTime;
+            position.y += Input.GetAxis(verticalAxis) * cameraSpeed * Time.deltaTime;
+            transform.position = position;
 
             if (Input.GetButtonDown(squareButton))
             {

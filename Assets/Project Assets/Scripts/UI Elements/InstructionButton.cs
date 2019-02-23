@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class ExitButton : MonoBehaviour
+public class InstructionButton : MenuButton
 {
     // Start is called before the first frame update
     void Start()
@@ -15,9 +16,9 @@ public class ExitButton : MonoBehaviour
     {
         
     }
-
-    void OnClick()
+    override public void onClick()
     {
-        Application.Quit();
+        //Replace Sample Scene with the instruction Menu scene
+        SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
     }
 }

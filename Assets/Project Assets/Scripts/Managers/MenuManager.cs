@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class TestPlayerController: MonoBehaviour
+public class MenuManager: MonoBehaviour
 {
-    public float cameraSpeed = 10.0f;
-
+    public Image[] menuGameObjs = new Image[3];
+    private MenuButton[] menuScripts;
     public int controllerNum = 0;
+
+    //button
+    private int buttonSelector;
 
     //Left Stick
     private string horizontalAxis = "";
@@ -49,6 +53,29 @@ public class TestPlayerController: MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        menuScripts = new MenuButton[menuGameObjs.Length];
+        for(int i=0; i<menuGameObjs.Length; i++)
+        {
+
+            if (menuGameObjs[i].GetComponent(typeof(StartButton)))
+            {
+                menuScripts[i] = menuGameObjs[i].GetComponent<StartButton>();
+            }else if (menuGameObjs[i].GetComponent(typeof(InstructionButton)))
+            {
+                menuScripts[i] = menuGameObjs[i].GetComponent<InstructionButton>();
+            }else if (menuGameObjs[i].GetComponent(typeof(ExitButton)))
+            {
+                menuScripts[i] = menuGameObjs[i].GetComponent<ExitButton>();
+            }
+            else
+            {
+                menuScripts[i] = null;
+            }
+            
+        }
+
+        buttonSelector = 0;
+        highlightButton(-1);
         if (controllerNum == 0)
         {
             controllerNum = 1;
@@ -62,48 +89,15 @@ public class TestPlayerController: MonoBehaviour
     {
         if (controllerNum > 0 && controllerNum < 5)
         {
-            Vector2 movement = new Vector2(Input.GetAxis(horizontalAxis) * cameraSpeed, Input.GetAxis(verticalAxis) * cameraSpeed);
-            rgdbdy2.position = new Vector2(rgdbdy2.position.x + movement.x, rgdbdy2.position.y + movement.y);
+            Vector2 movement = new Vector2(Input.GetAxis(horizontalAxis), Input.GetAxis(verticalAxis));
+            //rgdbdy2.position = new Vector2(rgdbdy2.position.x + movement.x, rgdbdy2.position.y + movement.y);
 
-            if (Input.GetButtonDown(squareButton))
-            {
-                Debug.Log("Button Pressed: " + squareButton);
-            }
 
             if (Input.GetButtonDown(xButton))
             {
                 Debug.Log("Button Pressed: " + xButton);
             }
 
-            if (Input.GetButtonDown(circleButton))
-            {
-                Debug.Log("Button Pressed: " + circleButton);
-            }
-
-            if (Input.GetButtonDown(triangleButton))
-            {
-                Debug.Log("Button Pressed: " + triangleButton);
-            }
-
-            if (Input.GetButtonDown(L1))
-            {
-                Debug.Log("Button Pressed: " + L1);
-            }
-
-            if (Input.GetButtonDown(R1))
-            {
-                Debug.Log("Button Pressed: " + R1);
-            }
-
-            if (Input.GetAxis(L2) != -1)
-            {
-                Debug.Log("Player " + controllerNum.ToString() + " - L2: " + Input.GetAxis(L2).ToString());
-            }
-
-            if (Input.GetAxis(R2) != -1)
-            {
-                Debug.Log("Player " + controllerNum.ToString() + " - R2: " + Input.GetAxis(R2).ToString());
-            }
 
             if (Input.GetAxis(rHorizontalAxis) != 0)
             {
@@ -113,12 +107,38 @@ public class TestPlayerController: MonoBehaviour
             if (Input.GetAxis(rVerticalAxis) != 0)
             {
                 Debug.Log("rVerticalAxis: " + Input.GetAxis(rVerticalAxis).ToString());
+                if (Input.GetAxis(rVerticalAxis) > 0)
+                {
+                    selectButton(1);
+                }else if(Input.GetAxis(rVerticalAxis) < 0)
+                {
+                    selectButton(-1);
+                }
+                
             }
-         
+            if (Input.GetAxis(horizontalAxis) != 0)
+            {
+                Debug.Log("horizontalAxis: " + Input.GetAxis(rHorizontalAxis).ToString());
+            }
+
+            if (Input.GetAxis(verticalAxis) != 0)
+            {
+                Debug.Log("verticalAxis: " + Input.GetAxis(verticalAxis).ToString());
+                if (Input.GetAxis(verticalAxis) > 0)
+                {
+                    selectButton(1);
+                }
+                else if (Input.GetAxis(verticalAxis) < 0)
+                {
+                    selectButton(-1);
+                }
+            }
+
 
             if (Input.GetAxis(DPadX) != 0)
             {
                 Debug.Log("DPadX: " + Input.GetAxis(DPadX).ToString());
+                selectButton((int)Input.GetAxis(DPadX));
             }
 
             if (Input.GetAxis(DPadY) != 0)
@@ -126,34 +146,21 @@ public class TestPlayerController: MonoBehaviour
                 Debug.Log("DPadY: " + Input.GetAxis(DPadY).ToString());
             }
 
-            if (Input.GetButtonDown(L3))
-            {
-                Debug.Log("Button Pressed: " + L3);
-            }
-
-            if (Input.GetButtonDown(R3))
-            {
-                Debug.Log("Button Pressed: " + R3);
-            }
-
-            if (Input.GetButtonDown(Share))
-            {
-                Debug.Log("Button Pressed: " + Share);
-            }
+            
 
             if (Input.GetButtonDown(Options))
             {
-                Debug.Log("Button Pressed: " + Options);
+               
             }
 
             if (Input.GetButtonDown(PS))
             {
-                Debug.Log("Button Pressed: " + PS);
+               
             }
 
             if (Input.GetButtonDown(Pad))
             {
-                Debug.Log("Button Pressed: " + Pad);
+               
             }
         }
     }
@@ -181,5 +188,40 @@ public class TestPlayerController: MonoBehaviour
         Options = "P" + ControllerNum.ToString() + "_Options";
         PS = "P" + ControllerNum.ToString() + "_PS";
         Pad = "P" + ControllerNum.ToString() + "_Pad";
+    }
+
+    public void highlightButton(int deselect)
+    {
+        //deselect the old button
+        //if deselect =-1 it means it doesn't need to be 
+        if (deselect != -1)
+        {
+            if (menuScripts[deselect] != null)
+            {
+                menuScripts[deselect].onUnselect();
+            }
+        }
+        //select the new button
+        if (menuScripts[buttonSelector] != null)
+        {
+            menuScripts[buttonSelector].onSelect();
+        }
+    }
+    public void selectButton(int i)
+    {
+        //for moving up or down
+        if( i== 1 || i == -1)
+        {
+            int current = buttonSelector;
+            buttonSelector = buttonSelector - i;
+            if(buttonSelector < 0)
+            {
+                buttonSelector = menuGameObjs.Length-1;
+            }else if(buttonSelector >= menuGameObjs.Length)
+            {
+                buttonSelector = 0;
+            }
+            highlightButton(current);
+        }
     }
 }

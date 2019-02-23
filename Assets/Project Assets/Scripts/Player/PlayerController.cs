@@ -132,6 +132,7 @@ public class PlayerController : MonoBehaviour
 
                     // Initialize the line renderer
                     gameObject.GetComponent<CircleDraw>().InitializeLineRenderer();
+                    gameObject.GetComponent<CircleDraw>().UpdateCircleDraw();
                 } else {
                     gameObject.GetComponent<CircleDraw>().DestroyLineRenderer();
                 }

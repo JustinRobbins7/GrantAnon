@@ -9,7 +9,7 @@ public class CircleDraw : MonoBehaviour {
     LineRenderer lineRenderer;
 
     public void UpdateCircleDraw() {
-        if (lineRenderer != null) {
+        if (HasLineRenderer()) {
             Vector3 pos;
             float theta = 0f;
             for (int i = 0; i < size; i++) {
@@ -28,6 +28,10 @@ public class CircleDraw : MonoBehaviour {
 
     public void SetRadius(float radius) {
         this.radius = radius;
+    }
+
+    public bool HasLineRenderer() {
+        return this.lineRenderer != null;
     }
 
     public void InitializeLineRenderer() {

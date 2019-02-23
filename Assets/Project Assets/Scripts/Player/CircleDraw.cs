@@ -20,6 +20,8 @@ public class CircleDraw : MonoBehaviour {
                 y += gameObject.transform.position.y;
                 pos = new Vector3(x, y, 0);
                 lineRenderer.SetPosition(i, pos);
+
+                lineRenderer.alignment = LineAlignment.TransformZ;
             }
         }
     }

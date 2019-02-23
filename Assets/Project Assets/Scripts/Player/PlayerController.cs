@@ -132,6 +132,8 @@ public class PlayerController : MonoBehaviour
 
                     // Initialize the line renderer
                     gameObject.GetComponent<CircleDraw>().InitializeLineRenderer();
+                } else {
+                    gameObject.GetComponent<CircleDraw>().DestroyLineRenderer();
                 }
                 isSelecting = !isSelecting;
             }
@@ -186,8 +188,11 @@ public class PlayerController : MonoBehaviour
             return false;
         }
 
+        Vector3 adjustedCameraPos = this.gameObject.transform.position;
+        adjustedCameraPos.z = 0;
+
         // Return true if the distance between the selectableObject and the camera is less than the radius
-        return Vector3.Distance(gameObject.transform.position, this.gameObject.transform.position) < radius;
+        return Vector3.Distance(gameObject.transform.position, adjustedCameraPos) < radius;
     }
 
     private void SetCircleDrawRadius(float radius) {

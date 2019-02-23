@@ -7,6 +7,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float cameraSpeed = 10f;
     [SerializeField] int controllerNum;
 
+    // Variables for drawing the unit selection circle
+    private bool isSelecting = false;
+    private float _radius = 2f;
+    public float radius {
+        get {
+            return _radius;
+        } set {
+            _radius = value;
+            SetCircleDrawRadius(value);
+        }
+    }
+
     //Left Stick
     private string horizontalAxis = "";
     private string verticalAxis = "";
@@ -47,16 +59,16 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         SetControllerNumber(controllerNum);
+        SetCircleDrawRadius(radius);
     }
 
     void FixedUpdate()
     {
         if (controllerNum > 0 && controllerNum < 5)
         {
-            Vector3 position = transform.position;
-            position.x += Input.GetAxis(horizontalAxis) * cameraSpeed * Time.deltaTime;
-            position.y += Input.GetAxis(verticalAxis) * cameraSpeed * Time.deltaTime;
-            transform.position = position;
+            if (Input.GetAxis(horizontalAxis) != 0 || Input.GetAxis(verticalAxis) != 0) {
+                updateCameraLocation();
+            }
 
             if (Input.GetButtonDown(squareButton))
             {
@@ -108,6 +120,20 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetButtonDown(L3))
             {
+                // If you are not currently in the selection phase (and want to switch to it), then deactivate all selectable gameObjects for the player first
+                if (!isSelecting) {
+                    Transform parentTransform = gameObject.transform.parent; // Get the parent of the transform related to this camera
+
+                    foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>()) {
+                        if (selectableObject.transform.IsChildOf(parentTransform)) { // Ensure that unit is in same group as this camera
+                            selectableObject.setIsSelected(false);
+                        }
+                    }
+
+                    // Initialize the line renderer
+                    gameObject.GetComponent<CircleDraw>().InitializeLineRenderer();
+                }
+                isSelecting = !isSelecting;
             }
 
             if (Input.GetButtonDown(R3))
@@ -129,7 +155,43 @@ public class PlayerController : MonoBehaviour
             if (Input.GetButtonDown(Pad))
             {
             }
+
+            UpdateSelectionCircle();
         }
+    }
+
+    private void updateCameraLocation() {
+        Vector3 position = transform.position;
+        position.x += Input.GetAxis(horizontalAxis) * cameraSpeed * Time.deltaTime;
+        position.y += Input.GetAxis(verticalAxis) * cameraSpeed * Time.deltaTime;
+        transform.position = position;
+
+        gameObject.GetComponent<CircleDraw>().UpdateCircleDraw();
+    }
+
+    private void UpdateSelectionCircle() {
+        Transform parentTransform = gameObject.transform.parent;
+
+        if (isSelecting) {
+            foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>()) {
+                if (selectableObject.transform.IsChildOf(parentTransform) && IsWithinBounds(selectableObject.gameObject)) {
+                    selectableObject.setIsSelected(true);
+                }
+            }
+        }
+    }
+
+    private bool IsWithinBounds(GameObject gameObject) {
+        if (!isSelecting) {
+            return false;
+        }
+
+        // Return true if the distance between the selectableObject and the camera is less than the radius
+        return Vector3.Distance(gameObject.transform.position, this.gameObject.transform.position) < radius;
+    }
+
+    private void SetCircleDrawRadius(float radius) {
+        gameObject.GetComponent<CircleDraw>().SetRadius(radius);
     }
 
     public void SetControllerNumber(int ControllerNum)

@@ -119,7 +119,6 @@ public class PlayerControllerAssigner : MonoBehaviour
 
         for (int i = 1; i <= PlayersToSpawn; i++)
         {
-            gameObject.active = false;
 
             if (i - 1 < 0 || i - 1 >= PlayerSpawns.Length)
             {
@@ -136,7 +135,7 @@ public class PlayerControllerAssigner : MonoBehaviour
             SpawnedPlayer.gameObject.transform.position = PlayerSpawns[i - 1];
         }
 
-        gameObject.active = false;
+        gameObject.SetActive(false);
     }
 
 }

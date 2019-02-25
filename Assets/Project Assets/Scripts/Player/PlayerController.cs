@@ -4,9 +4,20 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float cameraSpeed = 1.0f;
+    [SerializeField] float cameraSpeed = 10f;
+    [SerializeField] int controllerNum;
 
-    private int controllerNum = 0;
+    // Variables for drawing the unit selection circle
+    private bool isSelecting = false;
+    private float _radius = 2f;
+    public float radius {
+        get {
+            return _radius;
+        } set {
+            _radius = value;
+            SetCircleDrawRadius(value);
+        }
+    }
 
     //Left Stick
     private string horizontalAxis = "";
@@ -44,20 +55,20 @@ public class PlayerController : MonoBehaviour
     private string PS = "";
     private string Pad = "";
 
-    private Rigidbody2D rgdbdy2;
-
     // Start is called before the first frame update
     void Start()
     {
-        rgdbdy2 = GetComponent<Rigidbody2D>();
+        SetControllerNumber(controllerNum);
+        SetCircleDrawRadius(radius);
     }
 
     void FixedUpdate()
     {
         if (controllerNum > 0 && controllerNum < 5)
         {
-            Vector2 movement = new Vector2(Input.GetAxis(horizontalAxis) * cameraSpeed, Input.GetAxis(verticalAxis) * cameraSpeed);
-            rgdbdy2.position = new Vector2(rgdbdy2.position.x + movement.x, rgdbdy2.position.y + movement.y);
+            if (Input.GetAxis(horizontalAxis) != 0 || Input.GetAxis(verticalAxis) != 0) {
+                updateCameraLocation();
+            }
 
             if (Input.GetButtonDown(squareButton))
             {
@@ -109,6 +120,23 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetButtonDown(L3))
             {
+                // If you are not currently in the selection phase (and want to switch to it), then deactivate all selectable gameObjects for the player first
+                if (!isSelecting) {
+                    Transform parentTransform = gameObject.transform.parent; // Get the parent of the transform related to this camera
+
+                    foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>()) {
+                        if (selectableObject.transform.IsChildOf(parentTransform)) { // Ensure that unit is in same group as this camera
+                            selectableObject.setIsSelected(false);
+                        }
+                    }
+
+                    // Initialize the line renderer
+                    gameObject.GetComponent<CircleDraw>().InitializeLineRenderer();
+                    gameObject.GetComponent<CircleDraw>().UpdateCircleDraw();
+                } else {
+                    gameObject.GetComponent<CircleDraw>().DestroyLineRenderer();
+                }
+                isSelecting = !isSelecting;
             }
 
             if (Input.GetButtonDown(R3))
@@ -130,7 +158,46 @@ public class PlayerController : MonoBehaviour
             if (Input.GetButtonDown(Pad))
             {
             }
+
+            UpdateSelectionCircle();
         }
+    }
+
+    private void updateCameraLocation() {
+        Vector3 position = transform.position;
+        position.x += Input.GetAxis(horizontalAxis) * cameraSpeed * Time.deltaTime;
+        position.y += Input.GetAxis(verticalAxis) * cameraSpeed * Time.deltaTime;
+        transform.position = position;
+
+        gameObject.GetComponent<CircleDraw>().UpdateCircleDraw();
+    }
+
+    private void UpdateSelectionCircle() {
+        Transform parentTransform = gameObject.transform.parent;
+
+        if (isSelecting) {
+            foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>()) {
+                if (selectableObject.transform.IsChildOf(parentTransform) && IsWithinBounds(selectableObject.gameObject)) {
+                    selectableObject.setIsSelected(true);
+                }
+            }
+        }
+    }
+
+    private bool IsWithinBounds(GameObject gameObject) {
+        if (!isSelecting) {
+            return false;
+        }
+
+        Vector3 adjustedCameraPos = this.gameObject.transform.position;
+        adjustedCameraPos.z = 0;
+
+        // Return true if the distance between the selectableObject and the camera is less than the radius
+        return Vector3.Distance(gameObject.transform.position, adjustedCameraPos) < radius;
+    }
+
+    private void SetCircleDrawRadius(float radius) {
+        gameObject.GetComponent<CircleDraw>().SetRadius(radius);
     }
 
     public void SetControllerNumber(int ControllerNum)

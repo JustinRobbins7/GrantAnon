@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MenuManager: MonoBehaviour
+public class MenuManager : MonoBehaviour
 {
     public Image[] menuGameObjs = new Image[3];
     private MenuButton[] menuScripts;
     public int controllerNum = 0;
+
+    public float waitTime;
+    private float timer;
 
     //button
     private int buttonSelector;
@@ -53,17 +56,20 @@ public class MenuManager: MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        timer = waitTime;
         menuScripts = new MenuButton[menuGameObjs.Length];
-        for(int i=0; i<menuGameObjs.Length; i++)
+        for (int i = 0; i < menuGameObjs.Length; i++)
         {
 
             if (menuGameObjs[i].GetComponent(typeof(StartButton)))
             {
                 menuScripts[i] = menuGameObjs[i].GetComponent<StartButton>();
-            }else if (menuGameObjs[i].GetComponent(typeof(InstructionButton)))
+            }
+            else if (menuGameObjs[i].GetComponent(typeof(InstructionButton)))
             {
                 menuScripts[i] = menuGameObjs[i].GetComponent<InstructionButton>();
-            }else if (menuGameObjs[i].GetComponent(typeof(ExitButton)))
+            }
+            else if (menuGameObjs[i].GetComponent(typeof(ExitButton)))
             {
                 menuScripts[i] = menuGameObjs[i].GetComponent<ExitButton>();
             }
@@ -71,7 +77,7 @@ public class MenuManager: MonoBehaviour
             {
                 menuScripts[i] = null;
             }
-            
+
         }
 
         buttonSelector = 0;
@@ -87,82 +93,61 @@ public class MenuManager: MonoBehaviour
 
     void FixedUpdate()
     {
+
+        //check to see if enough time has passed to read input...
+        timer -= Time.deltaTime;
         if (controllerNum > 0 && controllerNum < 5)
         {
             Vector2 movement = new Vector2(Input.GetAxis(horizontalAxis), Input.GetAxis(verticalAxis));
             //rgdbdy2.position = new Vector2(rgdbdy2.position.x + movement.x, rgdbdy2.position.y + movement.y);
-
-
+            
             if (Input.GetButtonDown(xButton))
             {
-                Debug.Log("Button Pressed: " + xButton);
+                menuScripts[buttonSelector].onClick();
             }
-
-
-            if (Input.GetAxis(rHorizontalAxis) != 0)
-            {
-                Debug.Log("rHorizontalAxis: " + Input.GetAxis(rHorizontalAxis).ToString());
-            }
-
             if (Input.GetAxis(rVerticalAxis) != 0)
             {
-                Debug.Log("rVerticalAxis: " + Input.GetAxis(rVerticalAxis).ToString());
-                if (Input.GetAxis(rVerticalAxis) > 0)
+                if (timer <= 0)
                 {
-                    selectButton(1);
-                }else if(Input.GetAxis(rVerticalAxis) < 0)
-                {
-                    selectButton(-1);
-                }
-                
-            }
-            if (Input.GetAxis(horizontalAxis) != 0)
-            {
-                Debug.Log("horizontalAxis: " + Input.GetAxis(rHorizontalAxis).ToString());
-            }
+                    timer = waitTime;
+                    if (Input.GetAxis(rVerticalAxis) > 0)
+                    {
 
+                        selectButton(1);
+                    }
+                    else if (Input.GetAxis(rVerticalAxis) < 0)
+                    {
+                        selectButton(-1);
+                    }
+                }
+
+            }
             if (Input.GetAxis(verticalAxis) != 0)
             {
-                Debug.Log("verticalAxis: " + Input.GetAxis(verticalAxis).ToString());
-                if (Input.GetAxis(verticalAxis) > 0)
+                if (timer <= 0)
                 {
-                    selectButton(1);
-                }
-                else if (Input.GetAxis(verticalAxis) < 0)
-                {
-                    selectButton(-1);
+                    timer = waitTime;
+                    if (Input.GetAxis(verticalAxis) > 0)
+                    {
+                        selectButton(1);
+                    }
+                    else if (Input.GetAxis(verticalAxis) < 0)
+                    {
+                        selectButton(-1);
+                    }
                 }
             }
-
-
             if (Input.GetAxis(DPadX) != 0)
             {
-                Debug.Log("DPadX: " + Input.GetAxis(DPadX).ToString());
-                selectButton((int)Input.GetAxis(DPadX));
-            }
+                if (timer <= 0)
+                {
+                    timer = waitTime;
+                    selectButton((int)Input.GetAxis(DPadX));
+                }
 
-            if (Input.GetAxis(DPadY) != 0)
-            {
-                Debug.Log("DPadY: " + Input.GetAxis(DPadY).ToString());
-            }
-
-            
-
-            if (Input.GetButtonDown(Options))
-            {
-               
-            }
-
-            if (Input.GetButtonDown(PS))
-            {
-               
-            }
-
-            if (Input.GetButtonDown(Pad))
-            {
-               
             }
         }
+
     }
 
     public void SetControllerNumber(int ControllerNum)
@@ -210,14 +195,15 @@ public class MenuManager: MonoBehaviour
     public void selectButton(int i)
     {
         //for moving up or down
-        if( i== 1 || i == -1)
+        if (i == 1 || i == -1)
         {
             int current = buttonSelector;
             buttonSelector = buttonSelector - i;
-            if(buttonSelector < 0)
+            if (buttonSelector < 0)
             {
-                buttonSelector = menuGameObjs.Length-1;
-            }else if(buttonSelector >= menuGameObjs.Length)
+                buttonSelector = menuGameObjs.Length - 1;
+            }
+            else if (buttonSelector >= menuGameObjs.Length)
             {
                 buttonSelector = 0;
             }

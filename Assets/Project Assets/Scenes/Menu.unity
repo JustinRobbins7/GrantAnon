@@ -231,6 +231,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   controllerNum: 0
+  waitTime: 2
 --- !u!1 &800903272
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,6 +516,7 @@ MonoBehaviour:
   - {fileID: 1686279707}
   - {fileID: 1455242891}
   controllerNum: 0
+  waitTime: 0.16
 --- !u!4 &1420995289
 Transform:
   m_ObjectHideFlags: 0

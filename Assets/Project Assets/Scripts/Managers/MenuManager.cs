@@ -137,12 +137,12 @@ public class MenuManager : MonoBehaviour
                     }
                 }
             }
-            if (Input.GetAxis(DPadX) != 0)
+            if (Input.GetAxis(DPadY) != 0)
             {
                 if (timer <= 0)
                 {
                     timer = waitTime;
-                    selectButton((int)Input.GetAxis(DPadX));
+                    selectButton((int)Input.GetAxis(DPadY));
                 }
 
             }

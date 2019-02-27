@@ -7,7 +7,7 @@ public class PlayerControllerAssigner : MonoBehaviour
 {
     public int MaxPlayers = 4;
     public GameObject ReadyScreen;
-    public TestPlayerController PlayerPrefab;
+    public PlayerController PlayerPrefab;
 
     public Vector2[] PlayerSpawns;
     public Text[] SignInTexts;
@@ -119,7 +119,6 @@ public class PlayerControllerAssigner : MonoBehaviour
 
         for (int i = 1; i <= PlayersToSpawn; i++)
         {
-            gameObject.active = false;
 
             if (i - 1 < 0 || i - 1 >= PlayerSpawns.Length)
             {
@@ -127,7 +126,7 @@ public class PlayerControllerAssigner : MonoBehaviour
                 return;
             }
 
-            TestPlayerController SpawnedPlayer = null;
+            PlayerController SpawnedPlayer = null;
             SpawnedPlayer = Instantiate(PlayerPrefab);
 
             SpawnedPlayer.SetControllerNumber(ControllerNums[i - 1]);
@@ -136,6 +135,7 @@ public class PlayerControllerAssigner : MonoBehaviour
             SpawnedPlayer.gameObject.transform.position = PlayerSpawns[i - 1];
         }
 
-        gameObject.active = false;
+        gameObject.SetActive(false);
     }
+
 }

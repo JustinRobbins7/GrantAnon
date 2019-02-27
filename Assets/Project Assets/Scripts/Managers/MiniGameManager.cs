@@ -15,4 +15,14 @@ public class MiniGameManager : GameManager
     {
         
     }
+
+    public override void StartLevel()
+    {
+
+    }
+
+    public override void StartLevelAfterLoad()
+    {
+
+    }
 }

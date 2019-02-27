@@ -2,24 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public abstract class GameManager : MonoBehaviour
 {
-    public PlayerController[] Players = null;
+    public abstract void StartLevel();
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void SpawnPlayers()
-    {
-
-    }
+    public abstract void StartLevelAfterLoad();
 }

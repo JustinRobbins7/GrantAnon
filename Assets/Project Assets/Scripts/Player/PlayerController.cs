@@ -73,6 +73,19 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetButtonDown(squareButton))
             {
+                // If you are not currently in the selection phase (and want to switch to it), then deactivate all selectable gameObjects for the player first
+                if (!isSelecting) {
+                    foreach (var selectableObject in GetSelectableObjects()) {
+                        selectableObject.GetComponent<SelectableUnitComponent>().setIsSelected(false);
+                    }
+
+                    // Initialize the line renderer
+                    gameObject.GetComponent<CircleDraw>().InitializeLineRenderer();
+                    gameObject.GetComponent<CircleDraw>().UpdateCircleDraw();
+                } else {
+                    gameObject.GetComponent<CircleDraw>().DestroyLineRenderer();
+                }
+                isSelecting = !isSelecting;
             }
 
             if (Input.GetButtonDown(xButton))
@@ -121,23 +134,6 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetButtonDown(L3))
             {
-                // If you are not currently in the selection phase (and want to switch to it), then deactivate all selectable gameObjects for the player first
-                if (!isSelecting) {
-                    Transform parentTransform = gameObject.transform.parent; // Get the parent of the transform related to this camera
-
-                    foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>()) {
-                        if (selectableObject.transform.IsChildOf(parentTransform)) { // Ensure that unit is in same group as this camera
-                            selectableObject.setIsSelected(false);
-                        }
-                    }
-
-                    // Initialize the line renderer
-                    gameObject.GetComponent<CircleDraw>().InitializeLineRenderer();
-                    gameObject.GetComponent<CircleDraw>().UpdateCircleDraw();
-                } else {
-                    gameObject.GetComponent<CircleDraw>().DestroyLineRenderer();
-                }
-                isSelecting = !isSelecting;
             }
 
             if (Input.GetButtonDown(R3))
@@ -174,12 +170,10 @@ public class PlayerController : MonoBehaviour
     }
 
     private void UpdateSelectionCircle() {
-        Transform parentTransform = gameObject.transform.parent;
-
         if (isSelecting) {
-            foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>()) {
-                if (selectableObject.transform.IsChildOf(parentTransform) && IsWithinBounds(selectableObject.gameObject)) {
-                    selectableObject.setIsSelected(true);
+            foreach (var selectableObject in GetSelectableObjects()) {
+                if (IsWithinBounds(selectableObject.gameObject)) {
+                    selectableObject.GetComponent<SelectableUnitComponent>().setIsSelected(true);
                 }
             }
         }
@@ -199,6 +193,19 @@ public class PlayerController : MonoBehaviour
 
     private void SetCircleDrawRadius(float radius) {
         gameObject.GetComponent<CircleDraw>().SetRadius(radius);
+    }
+
+    private List<GameObject> GetSelectableObjects() {
+        List<GameObject> selectableObjects = new List<GameObject>();
+        Transform parentTransform = gameObject.transform.parent; // Get the parent of the transform related to this camera
+
+        foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>()) {
+            if (selectableObject.transform.IsChildOf(parentTransform)) {
+                selectableObjects.Add(selectableObject.gameObject);
+            }
+        }
+
+        return selectableObjects;
     }
 
     public void SetControllerNumber(int ControllerNum)

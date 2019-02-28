@@ -61,7 +61,7 @@ public class MenuManager : MonoBehaviour
         for (int i = 0; i < menuGameObjs.Length; i++)
         {
 
-            if (menuGameObjs[i].GetComponent(typeof(StartButton)))
+            if (menuGameObjs[i].GetComponent<StartButton>())
             {
                 menuScripts[i] = menuGameObjs[i].GetComponent<StartButton>();
             }

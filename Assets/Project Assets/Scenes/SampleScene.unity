@@ -350,7 +350,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxPlayers: 4
   ReadyScreen: {fileID: 357140851}
-  PlayerPrefab: {fileID: 4179599440181065496, guid: abc51bf7c69fd8b41a80be854e46b42b,
+  PlayerGroup: {fileID: 4318176936715191750, guid: 146477cf17706fc43926cd8b0e57fdae,
     type: 3}
   PlayerSpawns:
   - {x: -1, y: 1}
@@ -369,6 +369,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 357140852}
     m_Modifications:
+    - target: {fileID: 7049202046969221247, guid: 909b842d3b634234ca26ad32d8e9dc49,
+        type: 3}
+      propertyPath: m_Name
+      value: SignInBox2
+      objectReference: {fileID: 0}
     - target: {fileID: 4060194117841255445, guid: 909b842d3b634234ca26ad32d8e9dc49,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -479,11 +484,6 @@ PrefabInstance:
       propertyPath: m_Text
       value: Press X to join the game!
       objectReference: {fileID: 0}
-    - target: {fileID: 7049202046969221247, guid: 909b842d3b634234ca26ad32d8e9dc49,
-        type: 3}
-      propertyPath: m_Name
-      value: SignInBox2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 909b842d3b634234ca26ad32d8e9dc49, type: 3}
 --- !u!1001 &1441924978
@@ -493,6 +493,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 357140852}
     m_Modifications:
+    - target: {fileID: 7049202046969221247, guid: 909b842d3b634234ca26ad32d8e9dc49,
+        type: 3}
+      propertyPath: m_Name
+      value: SignInBox4
+      objectReference: {fileID: 0}
     - target: {fileID: 4060194117841255445, guid: 909b842d3b634234ca26ad32d8e9dc49,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -608,11 +613,6 @@ PrefabInstance:
       propertyPath: m_Text
       value: Press X to join the game!
       objectReference: {fileID: 0}
-    - target: {fileID: 7049202046969221247, guid: 909b842d3b634234ca26ad32d8e9dc49,
-        type: 3}
-      propertyPath: m_Name
-      value: SignInBox4
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 909b842d3b634234ca26ad32d8e9dc49, type: 3}
 --- !u!224 &1441924979 stripped
@@ -652,6 +652,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 357140852}
     m_Modifications:
+    - target: {fileID: 7049202046969221247, guid: 909b842d3b634234ca26ad32d8e9dc49,
+        type: 3}
+      propertyPath: m_Name
+      value: SignInBox3
+      objectReference: {fileID: 0}
     - target: {fileID: 4060194117841255445, guid: 909b842d3b634234ca26ad32d8e9dc49,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -767,11 +772,6 @@ PrefabInstance:
       propertyPath: m_Text
       value: Press X to join the game!
       objectReference: {fileID: 0}
-    - target: {fileID: 7049202046969221247, guid: 909b842d3b634234ca26ad32d8e9dc49,
-        type: 3}
-      propertyPath: m_Name
-      value: SignInBox3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 909b842d3b634234ca26ad32d8e9dc49, type: 3}
 --- !u!224 &1617681324 stripped
@@ -817,6 +817,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 357140852}
     m_Modifications:
+    - target: {fileID: 7049202046969221247, guid: 909b842d3b634234ca26ad32d8e9dc49,
+        type: 3}
+      propertyPath: m_Name
+      value: SignInBox1
+      objectReference: {fileID: 0}
     - target: {fileID: 4060194117841255445, guid: 909b842d3b634234ca26ad32d8e9dc49,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -926,11 +931,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: Press X to join the game!
-      objectReference: {fileID: 0}
-    - target: {fileID: 7049202046969221247, guid: 909b842d3b634234ca26ad32d8e9dc49,
-        type: 3}
-      propertyPath: m_Name
-      value: SignInBox1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 909b842d3b634234ca26ad32d8e9dc49, type: 3}

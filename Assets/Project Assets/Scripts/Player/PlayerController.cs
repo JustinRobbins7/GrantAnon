@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] float cameraSpeed = 10f;
     [SerializeField] int controllerNum;
+    //[SerializeField] GameObject[] Units = null;
 
     // Variables for drawing the unit selection circle
     private bool isSelecting = false;

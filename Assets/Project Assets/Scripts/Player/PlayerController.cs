@@ -10,15 +10,7 @@ public class PlayerController : MonoBehaviour
 
     // Variables for drawing the unit selection circle
     private bool isSelecting = false;
-    private float _radius = 2f;
-    public float radius {
-        get {
-            return _radius;
-        } set {
-            _radius = value;
-            SetCircleDrawRadius(value);
-        }
-    }
+    private float radius = 2f;
 
     //Left Stick
     private string horizontalAxis = "";
@@ -60,7 +52,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         SetControllerNumber(controllerNum);
-        SetCircleDrawRadius(radius);
     }
 
     void FixedUpdate()
@@ -80,10 +71,9 @@ public class PlayerController : MonoBehaviour
                     }
 
                     // Initialize the line renderer
-                    gameObject.GetComponent<CircleDraw>().InitializeLineRenderer();
-                    gameObject.GetComponent<CircleDraw>().UpdateCircleDraw();
+                    gameObject.CreateCircleDraw(radius);
                 } else {
-                    gameObject.GetComponent<CircleDraw>().DestroyLineRenderer();
+                    gameObject.DestroyCircleDraw();
                 }
                 isSelecting = !isSelecting;
             }
@@ -166,7 +156,7 @@ public class PlayerController : MonoBehaviour
         position.y += Input.GetAxis(verticalAxis) * cameraSpeed * Time.deltaTime;
         transform.position = position;
 
-        gameObject.GetComponent<CircleDraw>().UpdateCircleDraw();
+        gameObject.UpdateCircleDraw(radius);
     }
 
     private void UpdateSelectionCircle() {
@@ -189,10 +179,6 @@ public class PlayerController : MonoBehaviour
 
         // Return true if the distance between the selectableObject and the camera is less than the radius
         return Vector3.Distance(gameObject.transform.position, adjustedCameraPos) < radius;
-    }
-
-    private void SetCircleDrawRadius(float radius) {
-        gameObject.GetComponent<CircleDraw>().SetRadius(radius);
     }
 
     private List<GameObject> GetSelectableObjects() {

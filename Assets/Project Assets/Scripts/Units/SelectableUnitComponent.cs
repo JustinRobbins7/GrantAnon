@@ -16,18 +16,13 @@ public class SelectableUnitComponent : MonoBehaviour
         if (this.isSelected) {
             
             // TODO: Hide gameObject that shows that unit is selected
-            gameObject.GetComponent<CircleDraw>().DestroyLineRenderer();
+            gameObject.DestroyCircleDraw();
 
             this.isSelected = false;
 
         } else {
-            Debug.Log("Called");
             // TODO: Show gameObject that shows that unit is selected
-            gameObject.GetComponent<CircleDraw>().SetRadius(radius);
-            if (!gameObject.GetComponent<CircleDraw>().HasLineRenderer()) {
-                gameObject.GetComponent<CircleDraw>().InitializeLineRenderer();
-                gameObject.GetComponent<CircleDraw>().UpdateCircleDraw();
-            }
+            gameObject.CreateCircleDraw(radius);
 
             this.isSelected = true;
         }

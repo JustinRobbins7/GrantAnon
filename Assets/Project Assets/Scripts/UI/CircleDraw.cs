@@ -21,7 +21,7 @@ public class CircleDraw : MonoBehaviour {
                 pos = new Vector3(x, y, 0);
                 lineRenderer.SetPosition(i, pos);
 
-                lineRenderer.alignment = LineAlignment.TransformZ;
+                lineRenderer.sortingLayerName = "Foreground";
             }
         }
     }

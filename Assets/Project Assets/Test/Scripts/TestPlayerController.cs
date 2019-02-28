@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestPlayerController : MonoBehaviour
+public class TestPlayerController: MonoBehaviour
 {
     public float cameraSpeed = 0.1f;
 
@@ -108,6 +108,7 @@ public class TestPlayerController : MonoBehaviour
             {
                 Debug.Log("rVerticalAxis: " + Input.GetAxis(rVerticalAxis).ToString());
             }
+         
 
             if (Input.GetAxis(DPadX) != 0)
             {

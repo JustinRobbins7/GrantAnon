@@ -7,7 +7,7 @@ public class SelectableUnitComponent : MonoBehaviour
     private bool isSelected = false;
     private float radius = .5f;
 
-    public void setIsSelected(bool isSelected) {
+    public void SetIsSelected(bool isSelected) {
         // If no change then don't update
         if (this.isSelected == isSelected) {
             return;

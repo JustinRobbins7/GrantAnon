@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
                 // If you are not currently in the selection phase (and want to switch to it), then deactivate all selectable gameObjects for the player first
                 if (!isSelecting) {
                     foreach (var selectableObject in GetSelectableObjects()) {
-                        selectableObject.GetComponent<SelectableUnitComponent>().setIsSelected(false);
+                        selectableObject.GetComponent<SelectableUnitComponent>().SetIsSelected(false);
                     }
 
                     // Initialize the line renderer
@@ -163,7 +163,7 @@ public class PlayerController : MonoBehaviour
         if (isSelecting) {
             foreach (var selectableObject in GetSelectableObjects()) {
                 if (IsWithinBounds(selectableObject.gameObject)) {
-                    selectableObject.GetComponent<SelectableUnitComponent>().setIsSelected(true);
+                    selectableObject.GetComponent<SelectableUnitComponent>().SetIsSelected(true);
                 }
             }
         }

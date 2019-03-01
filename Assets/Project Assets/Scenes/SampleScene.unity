@@ -350,7 +350,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxPlayers: 4
   ReadyScreen: {fileID: 357140851}
-  PlayerGroup: {fileID: 4318176936715191750, guid: 146477cf17706fc43926cd8b0e57fdae,
+  PlayerGroup: {fileID: 4773437339407868953, guid: 94eb13bdb51d56448a5506272444111c,
     type: 3}
   PlayerSpawns:
   - {x: -1, y: 1}

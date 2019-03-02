@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SelectableUnitComponent : MonoBehaviour
 {
+    public int OwningControllerNum = 0;
+
     private bool isSelected = false;
     private float radius = .5f;
 

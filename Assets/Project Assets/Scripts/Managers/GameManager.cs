@@ -4,7 +4,9 @@ using UnityEngine;
 
 public abstract class GameManager : MonoBehaviour
 {
-    public abstract void StartLevel();
+    [HideInInspector] public int PlayerCount;
 
-    public abstract void StartLevelAfterLoad();
+    public abstract void StartLevel(int startPlayerCount);
+
+    public abstract void StartLevelAfterLoad(int startPlayerCount);
 }

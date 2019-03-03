@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class MainGameManager : GameManager
 {
-    public PlayerController[] Players = null;
-    public int[] PlayerScores;
-    public float grantInterval;
+    [SerializeField] float grantInterval;
+    [SerializeField] Grant grantPrefab;
 
     public static MainGameManager instance = null;
 
+    PlayerController[] Players = null;
+    int[] PlayerScores;
     float grantTimer;
     bool runLevel;
     bool spawnedGrant;
@@ -69,15 +70,16 @@ public class MainGameManager : GameManager
         spawnedGrant = false;
     }
 
-    public override void StartLevel()
+    public override void StartLevel(int startPlayerCount)
     {
+        PlayerCount = startPlayerCount;
         grantTimer = 0.0f;
 
         spawnedGrant = false;
         runLevel = true;
     }
 
-    public override void StartLevelAfterLoad()
+    public override void StartLevelAfterLoad(int startPlayerCount)
     {
 
     }

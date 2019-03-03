@@ -240,9 +240,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb470079c366fa640801f4c2e1a39589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Players: []
-  PlayerScores: 
+  PlayerCount: 0
   grantInterval: 1000
+  grantPrefab: {fileID: 2593498519958060845, guid: 99f819c5537c2f94ea9ffcd10e3e2139,
+    type: 3}
 --- !u!4 &298649337
 Transform:
   m_ObjectHideFlags: 0
@@ -369,6 +370,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 357140852}
     m_Modifications:
+    - target: {fileID: 7049202046969221247, guid: 909b842d3b634234ca26ad32d8e9dc49,
+        type: 3}
+      propertyPath: m_Name
+      value: SignInBox2
+      objectReference: {fileID: 0}
     - target: {fileID: 4060194117841255445, guid: 909b842d3b634234ca26ad32d8e9dc49,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -479,11 +485,6 @@ PrefabInstance:
       propertyPath: m_Text
       value: Press X to join the game!
       objectReference: {fileID: 0}
-    - target: {fileID: 7049202046969221247, guid: 909b842d3b634234ca26ad32d8e9dc49,
-        type: 3}
-      propertyPath: m_Name
-      value: SignInBox2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 909b842d3b634234ca26ad32d8e9dc49, type: 3}
 --- !u!1001 &1441924978
@@ -493,6 +494,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 357140852}
     m_Modifications:
+    - target: {fileID: 7049202046969221247, guid: 909b842d3b634234ca26ad32d8e9dc49,
+        type: 3}
+      propertyPath: m_Name
+      value: SignInBox4
+      objectReference: {fileID: 0}
     - target: {fileID: 4060194117841255445, guid: 909b842d3b634234ca26ad32d8e9dc49,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -608,11 +614,6 @@ PrefabInstance:
       propertyPath: m_Text
       value: Press X to join the game!
       objectReference: {fileID: 0}
-    - target: {fileID: 7049202046969221247, guid: 909b842d3b634234ca26ad32d8e9dc49,
-        type: 3}
-      propertyPath: m_Name
-      value: SignInBox4
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 909b842d3b634234ca26ad32d8e9dc49, type: 3}
 --- !u!224 &1441924979 stripped
@@ -652,6 +653,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 357140852}
     m_Modifications:
+    - target: {fileID: 7049202046969221247, guid: 909b842d3b634234ca26ad32d8e9dc49,
+        type: 3}
+      propertyPath: m_Name
+      value: SignInBox3
+      objectReference: {fileID: 0}
     - target: {fileID: 4060194117841255445, guid: 909b842d3b634234ca26ad32d8e9dc49,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -767,11 +773,6 @@ PrefabInstance:
       propertyPath: m_Text
       value: Press X to join the game!
       objectReference: {fileID: 0}
-    - target: {fileID: 7049202046969221247, guid: 909b842d3b634234ca26ad32d8e9dc49,
-        type: 3}
-      propertyPath: m_Name
-      value: SignInBox3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 909b842d3b634234ca26ad32d8e9dc49, type: 3}
 --- !u!224 &1617681324 stripped
@@ -817,6 +818,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 357140852}
     m_Modifications:
+    - target: {fileID: 7049202046969221247, guid: 909b842d3b634234ca26ad32d8e9dc49,
+        type: 3}
+      propertyPath: m_Name
+      value: SignInBox1
+      objectReference: {fileID: 0}
     - target: {fileID: 4060194117841255445, guid: 909b842d3b634234ca26ad32d8e9dc49,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -926,11 +932,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: Press X to join the game!
-      objectReference: {fileID: 0}
-    - target: {fileID: 7049202046969221247, guid: 909b842d3b634234ca26ad32d8e9dc49,
-        type: 3}
-      propertyPath: m_Name
-      value: SignInBox1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 909b842d3b634234ca26ad32d8e9dc49, type: 3}

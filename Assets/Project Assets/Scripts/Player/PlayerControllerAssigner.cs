@@ -140,6 +140,10 @@ public class PlayerControllerAssigner : MonoBehaviour
             PlayerUnitRoot.name = "Player " + ControllerNums[i - 1].ToString() + " Units";
             SpawnedPlayer.UnitRoot = PlayerUnitRoot;
 
+            GameObject PlayerBuildingRoot = new GameObject();
+            PlayerBuildingRoot.name = "Player " + ControllerNums[i - 1].ToString() + " Buildings";
+            SpawnedPlayer.BuildingRoot = PlayerBuildingRoot;
+
             /*
             GameObject SpawnedGroup = null;
             SpawnedGroup = Instantiate(PlayerGroup);
@@ -167,6 +171,11 @@ public class PlayerControllerAssigner : MonoBehaviour
                 }
             }
             */
+
+            if (MainGameManager.instance != null)
+            {
+                MainGameManager.instance.PlayerCount = PlayersToSpawn;
+            }
             
         }
 

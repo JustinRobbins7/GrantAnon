@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MiniGameManager : GameManager
+public class Building : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -14,15 +14,5 @@ public class MiniGameManager : GameManager
     void Update()
     {
         
-    }
-
-    public override void StartLevel(int startPlayerCount)
-    {
-
-    }
-
-    public override void StartLevelAfterLoad(int startPlayerCount)
-    {
-
     }
 }

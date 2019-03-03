@@ -7,8 +7,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float cameraSpeed = 10f;
     [SerializeField] int controllerNum;
     [SerializeField] GameObject PlayerUnit = null;
+    [SerializeField] GameObject BuildingOne = null;
 
-    public GameObject UnitRoot = null;
+    [HideInInspector] public GameObject BuildingRoot = null;
+    [HideInInspector] public GameObject UnitRoot = null;
+    
 
     // Variables for drawing the unit selection circle
     private bool isSelecting = false;
@@ -75,17 +78,27 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetButtonDown(squareButton))
             {
+                if (BuildingRoot != null && BuildingOne != null)
+                {
+                    GameObject SpawnedBuilding = Instantiate(BuildingOne);
+                    SpawnedBuilding.transform.parent = BuildingRoot.transform;
+                    SpawnedBuilding.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0);
+                    SpawnedBuilding.layer = SortingLayer.GetLayerValueFromName("Foreground");
+                }
             }
 
             if (Input.GetButtonDown(xButton))
             {
-                GameObject SpawnedUnit = Instantiate(PlayerUnit);
-                SpawnedUnit.transform.parent = UnitRoot.transform;
-                SpawnedUnit.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0);
-                SpawnedUnit.layer = SortingLayer.GetLayerValueFromName("Characters");
-                if (SpawnedUnit.GetComponent<SelectableUnitComponent>())
+                if (UnitRoot != null && PlayerUnit != null)
                 {
-                    SpawnedUnit.GetComponent<SelectableUnitComponent>().OwningControllerNum = controllerNum;
+                    GameObject SpawnedUnit = Instantiate(PlayerUnit);
+                    SpawnedUnit.transform.parent = UnitRoot.transform;
+                    SpawnedUnit.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0);
+                    SpawnedUnit.layer = SortingLayer.GetLayerValueFromName("Characters");
+                    if (SpawnedUnit.GetComponent<SelectableUnitComponent>())
+                    {
+                        SpawnedUnit.GetComponent<SelectableUnitComponent>().OwningControllerNum = controllerNum;
+                    }
                 }
             }
 

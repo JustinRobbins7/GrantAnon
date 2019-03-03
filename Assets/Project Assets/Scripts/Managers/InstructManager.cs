@@ -223,7 +223,7 @@ public class InstructManager : MonoBehaviour
             indicatorScripts[0].onSelect();
         }
         //set right indicator   
-        if (canvasSelector >= menuGameObjs.Length) //this means we have no ability to go to the right
+        if (canvasSelector+1 >= menuGameObjs.Length) //this means we have no ability to go to the right
         {
             indicatorScripts[1].onUnselect();
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class InstructManager : MonoBehaviour
 {
@@ -102,8 +103,9 @@ public class InstructManager : MonoBehaviour
             Vector2 movement = new Vector2(Input.GetAxis(horizontalAxis), Input.GetAxis(verticalAxis));
             //rgdbdy2.position = new Vector2(rgdbdy2.position.x + movement.x, rgdbdy2.position.y + movement.y);
 
-            if (Input.GetButtonDown(xButton))
+            if (Input.GetButtonDown(circleButton))
             {
+                SceneManager.LoadScene("Menu", LoadSceneMode.Single);
             }
             if (Input.GetAxis(rHorizontalAxis) != 0)
             {

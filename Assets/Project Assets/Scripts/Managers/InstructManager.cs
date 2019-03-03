@@ -194,7 +194,7 @@ public class InstructManager : MonoBehaviour
         if (i == 1 || i == -1)
         {
             int current = canvasSelector;
-            canvasSelector = canvasSelector - i;
+            canvasSelector = canvasSelector + i;
             if (canvasSelector < 0)
             {
                 //we want nothing to happen....

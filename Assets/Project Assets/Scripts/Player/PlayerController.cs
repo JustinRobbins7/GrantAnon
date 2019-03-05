@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
 
     [HideInInspector] public GameObject BuildingRoot = null;
     [HideInInspector] public GameObject UnitRoot = null;
-    
+    [HideInInspector] public int money;
 
     // Variables for drawing the unit selection circle
     private bool isSelecting = false;
@@ -66,6 +66,8 @@ public class PlayerController : MonoBehaviour
     {
         SetControllerNumber(controllerNum);
         SetCircleDrawRadius(radius);
+
+        money = 0;
     }
 
     void FixedUpdate()
@@ -84,6 +86,15 @@ public class PlayerController : MonoBehaviour
                     SpawnedBuilding.transform.parent = BuildingRoot.transform;
                     SpawnedBuilding.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0);
                     SpawnedBuilding.layer = SortingLayer.GetLayerValueFromName("Foreground");
+                    if (SpawnedBuilding.GetComponent<IncomeBuilding>())
+                    {
+                       // Debug.Log("Controller Number: " + controllerNum.ToString());
+                        SpawnedBuilding.GetComponent<IncomeBuilding>().OwningPlayerNum = controllerNum;
+                    }
+                    else
+                    {
+                        //Debug.Log("Could not find IncomeBuilding Component!");
+                    }
                 }
             }
 

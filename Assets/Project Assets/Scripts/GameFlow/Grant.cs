@@ -27,7 +27,7 @@ public class Grant : MonoBehaviour
         for(int i = 0; i < CapturingTeams.Length; i++)
         {
             //Check if any units are capturing
-            if(CapturingTeams[i] != 0)
+            if(CapturingTeams[i] > 0)
             {
                 //If there are, check if anyone else is doing so
                 if (NumCapturing == 0)
@@ -45,24 +45,42 @@ public class Grant : MonoBehaviour
         //If multiple people capturing, do nothing
         if (!MultipleCapturing)
         {
-            //See if capturing player was the same as last check
-            if (CurrentTimerOwner == NumCapturing)
+            // Check if no one is capturing grant
+            if (NumCapturing > 0)
             {
-                Countdown -= Time.deltaTime;
-
-                if (Countdown <= 0.0f)
+                //See if capturing player was the same as last check
+                if (CurrentTimerOwner == NumCapturing)
                 {
-                    //Claim Grant
+                    //Count down timer
+                    Countdown -= Time.deltaTime;
+
+                    if (Countdown <= 0.0f)
+                    {
+                        //Claim Grant
+                        MainGameManager.instance.ScoreGrant(CurrentTimerOwner);
+                        Destroy(gameObject);
+                    }
+
+                }
+                else
+                {
+                    //Set new timer owner and start countdown
+                    Countdown = CaptureTime;
+                    Countdown -= Time.deltaTime;
+                    CurrentTimerOwner = NumCapturing;
                 }
             }
             else
             {
-                //Set new timer owner and start countdown
-                Countdown = CaptureTime;
-                Countdown -= Time.deltaTime;
-                CurrentTimerOwner = NumCapturing;
+                //Reset Timer
+                if (Countdown != CaptureTime)
+                {
+                    Countdown = CaptureTime;
+                }
             }
         }
+
+        //Debug.Log("Countdown: " + Countdown.ToString());
     }
 
     void OnTriggerEnter(Collider other)

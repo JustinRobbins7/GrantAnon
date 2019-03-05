@@ -97,3 +97,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraSpeed: 10
   controllerNum: 1
+  PlayerUnit: {fileID: 0}
+  BuildingOne: {fileID: 0}
+  BuildingRoot: {fileID: 0}
+  UnitRoot: {fileID: 0}

@@ -5,7 +5,8 @@ using UnityEngine;
 public class MainGameManager : GameManager
 {
     [SerializeField] float grantInterval;
-    [SerializeField] Grant grantPrefab;
+    [SerializeField] GameObject grantPrefab;
+    [SerializeField] Vector2 grantSpawnLocation;
 
     public static MainGameManager instance = null;
 
@@ -56,6 +57,10 @@ public class MainGameManager : GameManager
     public void SpawnGrant()
     {
         Debug.Log("Spawning grant!");
+        GameObject grantObject = Instantiate(grantPrefab);
+        grantObject.transform.position = grantSpawnLocation;
+        grantObject.layer = SortingLayer.GetLayerValueFromName("Foreground");
+
         spawnedGrant = true;
     }
 
@@ -77,6 +82,26 @@ public class MainGameManager : GameManager
 
         spawnedGrant = false;
         runLevel = true;
+    } 
+
+    public void InitPlayerArray(int playerCount)
+    {
+        Players = new PlayerController[playerCount];
+    }
+
+    public void InsertPlayer(int playerIndex, PlayerController newPlayer)
+    {
+        Players[playerIndex] = newPlayer;
+    }
+
+    public void AddPlayerIncome(int earningPlayer, int moneyEarned)
+    {
+        int playerIndex = earningPlayer - 1;
+        if (playerIndex <= 0 && playerIndex < Players.Length)
+        {
+           //Debug.Log("PlayerIndex: " + playerIndex.ToString());
+            Players[playerIndex].money += moneyEarned;
+        }
     }
 
     public override void StartLevelAfterLoad(int startPlayerCount)

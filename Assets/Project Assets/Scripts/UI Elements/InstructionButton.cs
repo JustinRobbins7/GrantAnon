@@ -16,6 +16,10 @@ public class InstructionButton : MenuButton
     {
         
     }
+
+    /**
+     * Loads instruction menu when clicked
+     */
     override public void onClick()
     {
         //Replace Sample Scene with the instruction Menu scene

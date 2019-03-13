@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    /**
+     * Main player script, manages which input axes this player reads from 
+     * and performs defined behaviors based on those axes inputs.
+     */
     [SerializeField] float cameraSpeed = 10f;
     [SerializeField] int controllerNum;
     [SerializeField] GameObject PlayerUnit = null;
@@ -62,6 +66,10 @@ public class PlayerController : MonoBehaviour
     private string Pad = "";
 
     // Start is called before the first frame update
+    /**
+     * Sets initial information for circle draw radius and sets unusable controller num to avoid crashes.
+     * Actual number set in PlayerControllerAssigner
+     */
     void Start()
     {
         SetControllerNumber(controllerNum);
@@ -70,14 +78,23 @@ public class PlayerController : MonoBehaviour
         money = 0;
     }
 
+    /**
+     * Reads controller axes to perform a number of actions.
+     */
     void FixedUpdate()
     {
         if (controllerNum > 0 && controllerNum < 5)
         {
+            /**
+             * Moves camera
+             */
             if (Input.GetAxis(horizontalAxis) != 0 || Input.GetAxis(verticalAxis) != 0) {
                 updateCameraLocation();
             }
 
+            /**
+             * Spawns building, placing it under this player's control
+             */
             if (Input.GetButtonDown(squareButton))
             {
                 if (BuildingRoot != null && BuildingOne != null)
@@ -98,6 +115,9 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
+            /**
+             * Spawns unit, placing it under this player's control
+             */
             if (Input.GetButtonDown(xButton))
             {
                 if (UnitRoot != null && PlayerUnit != null)
@@ -153,6 +173,9 @@ public class PlayerController : MonoBehaviour
             {
             }
 
+            /**
+             * Draws a selection circle to select units
+             */
             if (Input.GetButtonDown(L3))
             {
                 // If you are not currently in the selection phase (and want to switch to it), then deactivate all selectable gameObjects for the player first
@@ -198,7 +221,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void updateCameraLocation() {
+    /**
+     * Moves camerabased on this gameobject's location.
+     */
+    private void updateCameraLocation()
+    {
         Vector3 position = transform.position;
         position.x += Input.GetAxis(horizontalAxis) * cameraSpeed * Time.deltaTime;
         position.y += Input.GetAxis(verticalAxis) * cameraSpeed * Time.deltaTime;
@@ -207,6 +234,9 @@ public class PlayerController : MonoBehaviour
         gameObject.GetComponent<CircleDraw>().UpdateCircleDraw();
     }
 
+    /**
+     * Moves drawn circle on this gameobject's location.
+     */
     private void UpdateSelectionCircle() {
         Transform parentTransform = gameObject.transform.parent;
 
@@ -219,6 +249,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /**
+     * Checks if selectable object is within bounds of the drawn circle
+     */
     private bool IsWithinBounds(GameObject gameObject) {
         if (!isSelecting) {
             return false;
@@ -231,10 +264,16 @@ public class PlayerController : MonoBehaviour
         return Vector3.Distance(gameObject.transform.position, adjustedCameraPos) < radius;
     }
 
+    /**
+     * SEts radius of selection circle
+     */
     private void SetCircleDrawRadius(float radius) {
         gameObject.GetComponent<CircleDraw>().SetRadius(radius);
     }
 
+    /**
+     * Sets which axes this controller reads from.
+     */
     public void SetControllerNumber(int ControllerNum)
     {
         controllerNum = ControllerNum;
@@ -260,6 +299,12 @@ public class PlayerController : MonoBehaviour
         Pad = "P" + ControllerNum.ToString() + "_Pad";
     }
 
+    /**
+     * Defines which section of the screen this player's camera occupies, 
+     * partitioning the screen into sections based on the total number of players.
+     * This method sets the camera location on screen based on the player number and
+     * total number of playeres given.
+     */
     public void SetCameraViewport(int ViewportID, int NumberOfPlayers)
     {
         Camera playerCam = gameObject.GetComponentInChildren<Camera>();

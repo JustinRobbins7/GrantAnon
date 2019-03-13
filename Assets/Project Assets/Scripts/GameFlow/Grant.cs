@@ -19,6 +19,12 @@ public class Grant : MonoBehaviour
     }
 
     // Update is called once per frame
+    /**
+     * Grant checks every time fixed update is called whether or not the grant has been claimed yet.
+     * This is determined by an array that holds ints indicating how many units a player has near the grant.
+     * If there is only one player with units nearby, they begin claiming the grant. This timer is paused if
+     * there are other players' units in the area and reset if another player is alone with the grant.
+     */
     void FixedUpdate()
     {
         int NumCapturing = 0;
@@ -83,6 +89,10 @@ public class Grant : MonoBehaviour
         //Debug.Log("Countdown: " + Countdown.ToString());
     }
 
+    /**
+     * When a Unit comes within range of the grant's collision box, it is added to that players' unit count.
+     */
+    //When Unit collides with grant, add it to the unit counts for its owning player
     void OnTriggerEnter(Collider other)
     {
         SelectableUnitComponent unit = other.GetComponent<SelectableUnitComponent>();
@@ -92,6 +102,10 @@ public class Grant : MonoBehaviour
         }
     }
 
+    /**
+     * When a Unit leaves the range of the grant's collision box, it is subtracted from that players' unit count.
+     */
+    //When Unit leaves grant's collision box, remove it from its player's unit count
     void OnTriggerExit(Collider other)
     {
         SelectableUnitComponent unit = other.GetComponent<SelectableUnitComponent>();

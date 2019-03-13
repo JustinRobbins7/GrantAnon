@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class SelectableUnitComponent : MonoBehaviour
 {
+    /**
+     * Allows owning gameobject to be selected, and calls circle draw methods to
+     * indicate that the object is selected.
+     */
+
     public int OwningControllerNum = 0;
 
     private bool isSelected = false;

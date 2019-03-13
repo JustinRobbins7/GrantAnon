@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class MainUIManager : MonoBehaviour
 {
+    /**
+     * Proto-manager for the main game UI, display the amount of money a player currently has.
+     */
     [SerializeField] PlayerController OwningPlayer = null;
     public Text MoneyDisplay = null;
 

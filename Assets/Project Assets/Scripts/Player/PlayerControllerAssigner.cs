@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class PlayerControllerAssigner : MonoBehaviour
 {
+    /**
+     * Manages the player signin menu, assigns player numbers, spawns them, and begins the level.
+     */
     public int MaxPlayers = 4;
     public GameObject ReadyScreen;
 
@@ -27,6 +30,11 @@ public class PlayerControllerAssigner : MonoBehaviour
         ReadyPlayers = new bool[SignInTexts.Length];
     }
 
+    /**
+     * Inital UI has players join the game, then ready up. 
+     * If the start button is pressed when all joined players 
+     * are ready, the assigner calls start level.
+     */
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -54,6 +62,9 @@ public class PlayerControllerAssigner : MonoBehaviour
         }
     }
 
+    /**
+     * Checks each controllers' axes to detect if they are joining the game, readying up, or signing out.
+     */
     void CheckPlayerInput(int ControllerNum)
     {
         int index = ControllerNum - 1;
@@ -96,6 +107,12 @@ public class PlayerControllerAssigner : MonoBehaviour
         }
     }
 
+    /**
+     * Counts the readied up players, then spawns that many players, 
+     * initializing them as it does so with their respective controller ID.
+     * When done, calls the GameManager's StartLevel method to begin the game then 
+     * deactivates itself.
+     */
     void StartLevel()
     {
         int PlayersToSpawn = 0;

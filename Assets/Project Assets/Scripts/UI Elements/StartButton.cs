@@ -16,6 +16,10 @@ public class StartButton : MenuButton
     {
         
     }
+
+    /**
+     * Loads new level
+     */
     override public void onClick()
     {
         //replace sample scene with the game

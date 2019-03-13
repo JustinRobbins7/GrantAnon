@@ -3,11 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CircleDraw : MonoBehaviour {
+
+    /**
+     * Allows circles to be drawn on the owning gameobjects, updating them
+     * based on the object's position, allowing the radius to be modified, and managing
+     * the line renderer used to do so.
+     */
+
     float theta_scale = 0.01f;        //Set lower to add more points
     int size; //Total number of points in circle
     float radius;
     LineRenderer lineRenderer;
 
+    
     public void UpdateCircleDraw() {
         if (HasLineRenderer()) {
             Vector3 pos;

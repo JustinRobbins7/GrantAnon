@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -6,6 +7,7 @@ using UnityEngine.Tilemaps;
 public class AStarGrid : MonoBehaviour
 {
     Node[,] grid;
+    string[] tilePrecedence = { "Obstacles", "LavaHazards", "Grass" };
 
     public void Start() {
         CreateGrid();
@@ -33,8 +35,8 @@ public class AStarGrid : MonoBehaviour
             if (size.x < tilemap.size.x) {
                 size.x = tilemap.size.x;
             }
-            if (size.y < tilemap.size.y) {
-                size.y = tilemap.size.y;
+            if (size.y < tilemap.size.y - 1) {
+                size.y = tilemap.size.y - 1;
             }
         }
 
@@ -48,8 +50,16 @@ public class AStarGrid : MonoBehaviour
                     if (tilemap.HasTile(new Vector3Int(col + origin.x, row + origin.y, 0))) {
                         if (grid[col, row] == null) {
                             grid[col, row] = new Node(tilemap.CellToWorld(new Vector3Int(col + origin.x, row + origin.y, 0)), tilemap.name);
-                        } else if (grid[col, row].type == "Grass") {
-                            grid[col, row] = new Node(tilemap.CellToWorld(new Vector3Int(col + origin.x, row + origin.y, 0)), tilemap.name);
+                        } else {
+                            /* Ensure that highest tile with highest precedence is shown in the list */
+                            int gridPrecIndex = Array.FindIndex(tilePrecedence, tileName => tileName.Equals(grid[col, row].type, StringComparison.Ordinal));
+                            int tilemapPrecIndex = Array.FindIndex(tilePrecedence, tileName => tileName.Equals(tilemap.name, StringComparison.Ordinal));
+
+                            // Debug.Log("gridPrecIndex: " + gridPrecIndex + " | tilemapPrecIndex: " + tilemapPrecIndex + " | type: " + grid[col, row].type + " | name: " + tilemap.name);
+
+                            if (gridPrecIndex > tilemapPrecIndex) {
+                                grid[col, row].type = tilemap.name;
+                            }
                         }
                     }
                 }
@@ -58,7 +68,7 @@ public class AStarGrid : MonoBehaviour
 
         for (int col = 0; col < size.x; col++) {
             for (int row = 0; row < size.y; row++) {
-                // Debug.Log(grid[col, row].type);
+                Debug.Log("Col: " + col + " | Row: " + row + " | Type: " + grid[col, row].type);
             }
         }
     }

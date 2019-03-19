@@ -6,7 +6,12 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] float cameraSpeed = 10f;
     [SerializeField] int controllerNum;
-    //[SerializeField] GameObject[] Units = null;
+    [SerializeField] GameObject PlayerUnit = null;
+    [SerializeField] GameObject BuildingOne = null;
+
+    [HideInInspector] public GameObject BuildingRoot = null;
+    [HideInInspector] public GameObject UnitRoot = null;
+    [HideInInspector] public int money;
 
     // Variables for drawing the unit selection circle
     private bool isSelecting = false;
@@ -25,7 +30,7 @@ public class PlayerController : MonoBehaviour
     private string xButton = "";
     private string circleButton = "";
     private string triangleButton = "";
-    
+
     //L1 & R1
     private string L1 = "";
     private string R1 = "";
@@ -52,6 +57,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         SetControllerNumber(controllerNum);
+
+        money = 0;
     }
 
     void FixedUpdate()
@@ -64,22 +71,37 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetButtonDown(squareButton))
             {
-                // If you are not currently in the selection phase (and want to switch to it), then deactivate all selectable gameObjects for the player first
-                if (!isSelecting) {
-                    foreach (var selectableObject in GetSelectableObjects()) {
-                        selectableObject.GetComponent<SelectableUnitComponent>().SetIsSelected(false);
+                if (BuildingRoot != null && BuildingOne != null)
+                {
+                    GameObject SpawnedBuilding = Instantiate(BuildingOne);
+                    SpawnedBuilding.transform.parent = BuildingRoot.transform;
+                    SpawnedBuilding.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0);
+                    SpawnedBuilding.layer = SortingLayer.GetLayerValueFromName("Foreground");
+                    if (SpawnedBuilding.GetComponent<IncomeBuilding>())
+                    {
+                       // Debug.Log("Controller Number: " + controllerNum.ToString());
+                        SpawnedBuilding.GetComponent<IncomeBuilding>().OwningPlayerNum = controllerNum;
                     }
-
-                    // Initialize the line renderer
-                    gameObject.CreateCircleDraw(radius);
-                } else {
-                    gameObject.DestroyCircleDraw();
+                    else
+                    {
+                        //Debug.Log("Could not find IncomeBuilding Component!");
+                    }
                 }
-                isSelecting = !isSelecting;
             }
 
             if (Input.GetButtonDown(xButton))
             {
+                if (UnitRoot != null && PlayerUnit != null)
+                {
+                    GameObject SpawnedUnit = Instantiate(PlayerUnit);
+                    SpawnedUnit.transform.parent = UnitRoot.transform;
+                    SpawnedUnit.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0);
+                    SpawnedUnit.layer = SortingLayer.GetLayerValueFromName("Characters");
+                    if (SpawnedUnit.GetComponent<SelectableUnitComponent>())
+                    {
+                        SpawnedUnit.GetComponent<SelectableUnitComponent>().OwningControllerNum = controllerNum;
+                    }
+                }
             }
 
             if (Input.GetButtonDown(circleButton))
@@ -124,6 +146,18 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetButtonDown(L3))
             {
+              // If you are not currently in the selection phase (and want to switch to it), then deactivate all selectable gameObjects for the player first
+              if (!isSelecting) {
+                  foreach (var selectableObject in GetSelectableObjects()) {
+                      selectableObject.GetComponent<SelectableUnitComponent>().SetIsSelected(false);
+                  }
+
+                  // Initialize the line renderer
+                  gameObject.CreateCircleDraw(radius);
+              } else {
+                  gameObject.DestroyCircleDraw();
+              }
+              isSelecting = !isSelecting;
             }
 
             if (Input.GetButtonDown(R3))
@@ -162,7 +196,7 @@ public class PlayerController : MonoBehaviour
     private void UpdateSelectionCircle() {
         if (isSelecting) {
             foreach (var selectableObject in GetSelectableObjects()) {
-                if (IsWithinBounds(selectableObject.gameObject)) {
+                if (selectableObject.OwningControllerNum == controllerNum && IsWithinBounds(selectableObject.gameObject)) {
                     selectableObject.GetComponent<SelectableUnitComponent>().SetIsSelected(true);
                 }
             }

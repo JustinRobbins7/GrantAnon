@@ -8,10 +8,10 @@ public class PlayerControllerAssigner : MonoBehaviour
     public int MaxPlayers = 4;
     public GameObject ReadyScreen;
 
-    //public PlayerController PlayerPrefab;
-    public GameObject PlayerGroup;
+    public PlayerController PlayerPrefab;
+    //public GameObject PlayerGroup;
 
-    public Vector2[] PlayerSpawns;
+    public Vector3[] PlayerSpawns;
     public Text[] SignInTexts;
     private bool[] ActivePlayers;
     private bool[] ReadyPlayers;
@@ -119,16 +119,16 @@ public class PlayerControllerAssigner : MonoBehaviour
         }
         Debug.Log("Need to spawn " + PlayersToSpawn.ToString() + " players");
 
+        MainGameManager.instance.InitPlayerArray(PlayersToSpawn);
+
         for (int i = 1; i <= PlayersToSpawn; i++)
         {
-
             if (i - 1 < 0 || i - 1 >= PlayerSpawns.Length)
             {
                 Debug.Log("ERROR: Players Spawn does not exist for Player " + i.ToString() + "!");
                 return;
             }
-
-            /*
+            
             PlayerController SpawnedPlayer = null;
             SpawnedPlayer = Instantiate(PlayerPrefab);
 
@@ -136,9 +136,18 @@ public class PlayerControllerAssigner : MonoBehaviour
             SpawnedPlayer.SetCameraViewport(i, PlayersToSpawn);
 
             SpawnedPlayer.gameObject.transform.position = PlayerSpawns[i - 1];
-            */
 
-            
+            GameObject PlayerUnitRoot = new GameObject();
+            PlayerUnitRoot.name = "Player " + ControllerNums[i - 1].ToString() + " Units";
+            SpawnedPlayer.UnitRoot = PlayerUnitRoot;
+
+            GameObject PlayerBuildingRoot = new GameObject();
+            PlayerBuildingRoot.name = "Player " + ControllerNums[i - 1].ToString() + " Buildings";
+            SpawnedPlayer.BuildingRoot = PlayerBuildingRoot;
+
+            MainGameManager.instance.InsertPlayer(i - 1, SpawnedPlayer);
+
+            /*
             GameObject SpawnedGroup = null;
             SpawnedGroup = Instantiate(PlayerGroup);
             SpawnedGroup.gameObject.transform.position = PlayerSpawns[i - 1];
@@ -164,8 +173,12 @@ public class PlayerControllerAssigner : MonoBehaviour
                     Debug.Log("Could not find Player Controller!");
                 }
             }
-            
-            
+            */
+        }
+
+        if (MainGameManager.instance != null)
+        {
+            MainGameManager.instance.StartLevel(PlayersToSpawn);
         }
 
         gameObject.SetActive(false);

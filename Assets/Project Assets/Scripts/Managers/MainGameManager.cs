@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class MainGameManager : GameManager
 {
-    public PlayerController[] Players = null;
-    public int[] PlayerScores;
-    public float grantInterval;
+    [SerializeField] float grantInterval;
+    [SerializeField] GameObject grantPrefab;
+    [SerializeField] Vector2 grantSpawnLocation;
 
     public static MainGameManager instance = null;
 
+    PlayerController[] Players = null;
+    int[] PlayerScores;
     float grantTimer;
     bool runLevel;
     bool spawnedGrant;
@@ -55,6 +57,10 @@ public class MainGameManager : GameManager
     public void SpawnGrant()
     {
         Debug.Log("Spawning grant!");
+        GameObject grantObject = Instantiate(grantPrefab);
+        grantObject.transform.position = grantSpawnLocation;
+        grantObject.layer = SortingLayer.GetLayerValueFromName("Foreground");
+
         spawnedGrant = true;
     }
 
@@ -69,15 +75,36 @@ public class MainGameManager : GameManager
         spawnedGrant = false;
     }
 
-    public override void StartLevel()
+    public override void StartLevel(int startPlayerCount)
     {
+        PlayerCount = startPlayerCount;
         grantTimer = 0.0f;
 
         spawnedGrant = false;
         runLevel = true;
+    } 
+
+    public void InitPlayerArray(int playerCount)
+    {
+        Players = new PlayerController[playerCount];
     }
 
-    public override void StartLevelAfterLoad()
+    public void InsertPlayer(int playerIndex, PlayerController newPlayer)
+    {
+        Players[playerIndex] = newPlayer;
+    }
+
+    public void AddPlayerIncome(int earningPlayer, int moneyEarned)
+    {
+        int playerIndex = earningPlayer - 1;
+        if (playerIndex <= 0 && playerIndex < Players.Length)
+        {
+           //Debug.Log("PlayerIndex: " + playerIndex.ToString());
+            Players[playerIndex].money += moneyEarned;
+        }
+    }
+
+    public override void StartLevelAfterLoad(int startPlayerCount)
     {
 
     }

@@ -119,7 +119,10 @@ public class PlayerControllerAssigner : MonoBehaviour
         }
         Debug.Log("Need to spawn " + PlayersToSpawn.ToString() + " players");
 
-        MainGameManager.instance.InitPlayerArray(PlayersToSpawn);
+        if (MainGameManager.instance != null)
+        {
+            MainGameManager.instance.InitPlayerArray(PlayersToSpawn);
+        }
 
         for (int i = 1; i <= PlayersToSpawn; i++)
         {
@@ -145,7 +148,10 @@ public class PlayerControllerAssigner : MonoBehaviour
             PlayerBuildingRoot.name = "Player " + ControllerNums[i - 1].ToString() + " Buildings";
             SpawnedPlayer.BuildingRoot = PlayerBuildingRoot;
 
-            MainGameManager.instance.InsertPlayer(i - 1, SpawnedPlayer);
+            if (MainGameManager.instance != null)
+            {
+                MainGameManager.instance.InsertPlayer(i - 1, SpawnedPlayer);
+            }
 
             /*
             GameObject SpawnedGroup = null;

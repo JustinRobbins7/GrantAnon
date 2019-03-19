@@ -63,9 +63,15 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        MainGameInputCheck();
+    }
+
+    private void MainGameInputCheck()
+    {
         if (controllerNum > 0 && controllerNum < 5)
         {
-            if (Input.GetAxis(horizontalAxis) != 0 || Input.GetAxis(verticalAxis) != 0) {
+            if (Input.GetAxis(horizontalAxis) != 0 || Input.GetAxis(verticalAxis) != 0)
+            {
                 updateCameraLocation();
             }
 
@@ -79,7 +85,7 @@ public class PlayerController : MonoBehaviour
                     SpawnedBuilding.layer = SortingLayer.GetLayerValueFromName("Foreground");
                     if (SpawnedBuilding.GetComponent<IncomeBuilding>())
                     {
-                       // Debug.Log("Controller Number: " + controllerNum.ToString());
+                        // Debug.Log("Controller Number: " + controllerNum.ToString());
                         SpawnedBuilding.GetComponent<IncomeBuilding>().OwningPlayerNum = controllerNum;
                     }
                     else
@@ -106,8 +112,10 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetButtonDown(circleButton))
             {
-                foreach (var selectableObject in FindObjectsOfType<Unit>()) {
-                    if (selectableObject.OwningControllerNum == controllerNum && selectableObject.IsSelected()) { // Ensure that unit is in same group as this camera
+                foreach (var selectableObject in FindObjectsOfType<Unit>())
+                {
+                    if (selectableObject.OwningControllerNum == controllerNum && selectableObject.IsSelected())
+                    { // Ensure that unit is in same group as this camera
                         selectableObject.GetComponent<Unit>().Move(transform.position);
                     }
                 }
@@ -151,20 +159,25 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetButtonDown(L3))
             {
-              // If you are not currently in the selection phase (and want to switch to it), then deactivate all selectable gameObjects for the player first
-              if (!isSelecting) {
-                  foreach (var selectableObject in FindObjectsOfType<Unit>()) {
-                        if (selectableObject.OwningControllerNum == controllerNum) { // Ensure that unit is in same group as this camera
+                // If you are not currently in the selection phase (and want to switch to it), then deactivate all selectable gameObjects for the player first
+                if (!isSelecting)
+                {
+                    foreach (var selectableObject in FindObjectsOfType<Unit>())
+                    {
+                        if (selectableObject.OwningControllerNum == controllerNum)
+                        { // Ensure that unit is in same group as this camera
                             selectableObject.SetSelected(false);
                         }
                     }
 
-                  // Initialize the line renderer
-                  gameObject.CreateCircleDraw(radius);
-              } else {
-                  gameObject.DestroyCircleDraw();
-              }
-              isSelecting = !isSelecting;
+                    // Initialize the line renderer
+                    gameObject.CreateCircleDraw(radius);
+                }
+                else
+                {
+                    gameObject.DestroyCircleDraw();
+                }
+                isSelecting = !isSelecting;
             }
 
             if (Input.GetButtonDown(R3))
@@ -189,7 +202,7 @@ public class PlayerController : MonoBehaviour
 
             UpdateSelectionCircle();
         }
-    }
+    } 
 
     private void updateCameraLocation() {
         Vector3 position = transform.position;

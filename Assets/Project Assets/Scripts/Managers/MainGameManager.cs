@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class MainGameManager : GameManager
 {
-    [SerializeField] float grantInterval;
-    [SerializeField] GameObject grantPrefab;
-    [SerializeField] Vector2 grantSpawnLocation;
+    [SerializeField] protected float grantInterval;
+    [SerializeField] protected GameObject grantPrefab;
+    [SerializeField] protected Vector2 grantSpawnLocation;
 
     public static MainGameManager instance = null;
 
-    PlayerController[] Players = null;
-    int[] PlayerScores;
-    float grantTimer;
-    bool runLevel;
-    bool spawnedGrant;
+    protected PlayerController[] Players = null;
+    protected int[] PlayerScores;
+    protected float grantTimer;
+    protected bool runLevel;
+    protected bool spawnedGrant;
 
     void Awake()
     {
@@ -102,10 +102,5 @@ public class MainGameManager : GameManager
            //Debug.Log("PlayerIndex: " + playerIndex.ToString());
             Players[playerIndex].money += moneyEarned;
         }
-    }
-
-    public override void StartLevelAfterLoad(int startPlayerCount)
-    {
-
     }
 }

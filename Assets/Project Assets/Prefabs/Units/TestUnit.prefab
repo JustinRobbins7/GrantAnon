@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 7255119618380831494}
   - component: {fileID: 7255119618380831497}
   - component: {fileID: 7255119618380831496}
-  - component: {fileID: 5580392648889586285}
   - component: {fileID: 5167900294410738038}
-  - component: {fileID: 247751164444325657}
+  - component: {fileID: 7884401749712480329}
   m_Layer: 0
   m_Name: TestUnit
   m_TagString: Untagged
@@ -104,19 +103,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5580392648889586285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7255119618380831499}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e058e4e2f73f89c43a36bfa0b9da9f7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OwningControllerNum: 0
 --- !u!58 &5167900294410738038
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -133,7 +119,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.32
---- !u!114 &247751164444325657
+--- !u!114 &7884401749712480329
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,3 +131,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24625221eaf96094388d2d675885c4e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OwningControllerNum: 0
+  movementSpeed: 5

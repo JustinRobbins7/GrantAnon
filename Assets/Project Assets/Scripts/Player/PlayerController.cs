@@ -97,18 +97,18 @@ public class PlayerController : MonoBehaviour
                     SpawnedUnit.transform.parent = UnitRoot.transform;
                     SpawnedUnit.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0);
                     SpawnedUnit.layer = SortingLayer.GetLayerValueFromName("Characters");
-                    if (SpawnedUnit.GetComponent<SelectableUnitComponent>())
+                    if (SpawnedUnit.GetComponent<Unit>())
                     {
-                        SpawnedUnit.GetComponent<SelectableUnitComponent>().OwningControllerNum = controllerNum;
+                        SpawnedUnit.GetComponent<Unit>().OwningControllerNum = controllerNum;
                     }
                 }
             }
 
             if (Input.GetButtonDown(circleButton))
             {
-                foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>()) {
-                    if (selectableObject.OwningControllerNum == controllerNum && selectableObject.GetIsSelected()) { // Ensure that unit is in same group as this camera
-                        selectableObject.GetComponent<MovableUnit>().Move(transform.position);
+                foreach (var selectableObject in FindObjectsOfType<Unit>()) {
+                    if (selectableObject.OwningControllerNum == controllerNum && selectableObject.IsSelected()) { // Ensure that unit is in same group as this camera
+                        selectableObject.GetComponent<Unit>().Move(transform.position);
                     }
                 }
             }
@@ -153,9 +153,9 @@ public class PlayerController : MonoBehaviour
             {
               // If you are not currently in the selection phase (and want to switch to it), then deactivate all selectable gameObjects for the player first
               if (!isSelecting) {
-                  foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>()) {
+                  foreach (var selectableObject in FindObjectsOfType<Unit>()) {
                         if (selectableObject.OwningControllerNum == controllerNum) { // Ensure that unit is in same group as this camera
-                            selectableObject.SetIsSelected(false);
+                            selectableObject.SetSelected(false);
                         }
                     }
 
@@ -202,9 +202,9 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateSelectionCircle() {
         if (isSelecting) {
-            foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>()) {
-                if (selectableObject.GetComponent<SelectableUnitComponent>().OwningControllerNum == controllerNum && IsWithinBounds(selectableObject.gameObject)) {
-                    selectableObject.GetComponent<SelectableUnitComponent>().SetIsSelected(true);
+            foreach (var selectableObject in FindObjectsOfType<Unit>()) {
+                if (selectableObject.GetComponent<Unit>().OwningControllerNum == controllerNum && IsWithinBounds(selectableObject.gameObject)) {
+                    selectableObject.GetComponent<Unit>().SetSelected(true);
                 }
             }
         }

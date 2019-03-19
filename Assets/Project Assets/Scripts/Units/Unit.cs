@@ -3,10 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovableUnit : MonoBehaviour, IMoveable
+public class Unit : MonoBehaviour, IMoveable, ISelectable
 {
+    public int OwningControllerNum = 0;
+
     private List<Node> path = new List<Node>();
-    [SerializeField] float movementSpeed = 50f;
+    [SerializeField] float movementSpeed = 5f;
+
+    private bool selected = false;
+    private float radius = .5f;
 
     void Update() {
         UpdateMovement();
@@ -18,6 +23,8 @@ public class MovableUnit : MonoBehaviour, IMoveable
 
     private void UpdateMovement() {
         if (path != null && path.Count > 0) {
+            gameObject.UpdateCircleDraw(radius);
+
             Vector2 targetPos = FindObjectOfType<AStarGrid>().NodeToWorldPosition(path[0]);
             Vector2 currPos = transform.position;
 
@@ -33,5 +40,30 @@ public class MovableUnit : MonoBehaviour, IMoveable
             Vector2 direction = (targetPos - currPos).normalized;
             GetComponent<Rigidbody2D>().MovePosition(currPos + direction * movementSpeed * Time.deltaTime);
         }
+    }
+
+    public void SetSelected(bool selected) {
+        // If no change then don't update
+        if (this.selected == selected) {
+            return;
+        }
+
+        if (this.selected) {
+
+            // TODO: Hide gameObject that shows that unit is selected
+            gameObject.DestroyCircleDraw();
+
+            this.selected = false;
+
+        } else {
+            // TODO: Show gameObject that shows that unit is selected
+            gameObject.CreateCircleDraw(radius);
+
+            this.selected = true;
+        }
+    }
+
+    public bool IsSelected() {
+        return selected;
     }
 }

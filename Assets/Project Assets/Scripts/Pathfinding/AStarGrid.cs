@@ -55,20 +55,12 @@ public class AStarGrid : MonoBehaviour
                             int gridPrecIndex = Array.FindIndex(tilePrecedence, tileName => tileName.Equals(grid[col, row].type, StringComparison.Ordinal));
                             int tilemapPrecIndex = Array.FindIndex(tilePrecedence, tileName => tileName.Equals(tilemap.name, StringComparison.Ordinal));
 
-                            // Debug.Log("gridPrecIndex: " + gridPrecIndex + " | tilemapPrecIndex: " + tilemapPrecIndex + " | type: " + grid[col, row].type + " | name: " + tilemap.name);
-
                             if (gridPrecIndex > tilemapPrecIndex) {
                                 grid[col, row].type = tilemap.name;
                             }
                         }
                     }
                 }
-            }
-        }
-
-        for (int col = 0; col < size.x; col++) {
-            for (int row = 0; row < size.y; row++) {
-                Debug.Log("Col: " + col + " | Row: " + row + " | Type: " + grid[col, row].type);
             }
         }
     }

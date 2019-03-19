@@ -12,6 +12,7 @@ public class AStarGrid : MonoBehaviour
     // The origin and size of the grid
     Vector2Int origin = new Vector2Int(0, 0);
     Vector2Int size = new Vector2Int(0, 0);
+    Vector2 tileExtents = new Vector2(0.732f, 0.47f);
 
     public void Start() {
         CreateGrid();
@@ -86,9 +87,29 @@ public class AStarGrid : MonoBehaviour
         return neighbors;
     }
 
-    public Node NodeFromWorldPoint(Vector2 worldPosition) {
-        int x = Mathf.RoundToInt(worldPosition.x - origin.x);
-        int y = Mathf.RoundToInt(worldPosition.y - origin.y);
+    public Vector2 TileToWorld(Vector2 tilePos) {
+        Vector2 worldPos;
+
+        worldPos.x = tileExtents.x * (tilePos.x - tilePos.y) * .5f;
+        worldPos.y = tileExtents.y * (tilePos.x + tilePos.y) * .5f;
+
+        return worldPos;
+    }
+
+    public Vector2 WorldToTile(Vector2 worldPos) {
+        Vector2 tilePos;
+
+        tilePos.x = (worldPos.x / tileExtents.x + worldPos.y / tileExtents.y);
+        tilePos.y = (worldPos.y / tileExtents.y - worldPos.x / tileExtents.x);
+
+        return tilePos;
+    }
+
+    public Node NodeFromWorldPoint(Vector2 worldPos) {
+        Vector2 tilePos = WorldToTile(worldPos);
+
+        int x = Mathf.RoundToInt(tilePos.x - origin.x);
+        int y = Mathf.RoundToInt(tilePos.y - origin.y);
 
         if (x < 0) {
             x = 0;

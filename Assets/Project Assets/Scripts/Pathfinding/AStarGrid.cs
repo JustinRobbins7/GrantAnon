@@ -9,6 +9,10 @@ public class AStarGrid : MonoBehaviour
     Node[,] grid;
     string[] tilePrecedence = { "Obstacles", "LavaHazards", "Grass" };
 
+    // The origin and size of the grid
+    Vector2Int origin = new Vector2Int(0, 0);
+    Vector2Int size = new Vector2Int(0, 0);
+
     public void Start() {
         CreateGrid();
     }
@@ -16,10 +20,6 @@ public class AStarGrid : MonoBehaviour
     public void CreateGrid() {
         GameObject levelGrid = GameObject.Find("LevelGrid");
         Tilemap[] tilemaps = levelGrid.GetComponentsInChildren<Tilemap>();
-
-        // The origin and size of the grid
-        Vector2Int origin = new Vector2Int(0, 0);
-        Vector2Int size = new Vector2Int(0, 0);
 
         // Iterate through each tilemap to find the origin and size of the grid
         foreach (var tilemap in tilemaps) {
@@ -51,7 +51,7 @@ public class AStarGrid : MonoBehaviour
                         if (grid[col, row] == null) {
                             grid[col, row] = new Node(tilemap.CellToWorld(new Vector3Int(col + origin.x, row + origin.y, 0)), tilemap.name);
                         } else {
-                            /* Ensure that highest tile with highest precedence is shown in the list */
+                            /* Ensure that the highest priority tile is set in the list */
                             int gridPrecIndex = Array.FindIndex(tilePrecedence, tileName => tileName.Equals(grid[col, row].type, StringComparison.Ordinal));
                             int tilemapPrecIndex = Array.FindIndex(tilePrecedence, tileName => tileName.Equals(tilemap.name, StringComparison.Ordinal));
 
@@ -63,5 +63,28 @@ public class AStarGrid : MonoBehaviour
                 }
             }
         }
+    }
+
+    public Node NodeFromWorldPoint(Vector2 worldPosition) {
+        int x = Mathf.RoundToInt(worldPosition.x - origin.x);
+        int y = Mathf.RoundToInt(worldPosition.y - origin.y);
+
+        if (x < 0) {
+            x = 0;
+        } else if (x > size.x -1) {
+            x = size.x - 1;
+        }
+
+        if (y < 0) {
+            y = 0;
+        } else if (y > size.y - 1) {
+            y = size.y - 1;
+        }
+
+        return grid[x, y];
+    }
+
+    public bool GridInitialized() {
+        return grid != null;
     }
 }

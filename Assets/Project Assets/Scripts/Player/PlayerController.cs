@@ -15,15 +15,7 @@ public class PlayerController : MonoBehaviour
 
     // Variables for drawing the unit selection circle
     private bool isSelecting = false;
-    private float _radius = 2f;
-    public float radius {
-        get {
-            return _radius;
-        } set {
-            _radius = value;
-            SetCircleDrawRadius(value);
-        }
-    }
+    private float radius = 2f;
 
     //Left Stick
     private string horizontalAxis = "";
@@ -38,7 +30,7 @@ public class PlayerController : MonoBehaviour
     private string xButton = "";
     private string circleButton = "";
     private string triangleButton = "";
-    
+
     //L1 & R1
     private string L1 = "";
     private string R1 = "";
@@ -65,7 +57,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         SetControllerNumber(controllerNum);
-        SetCircleDrawRadius(radius);
 
         money = 0;
     }
@@ -106,15 +97,20 @@ public class PlayerController : MonoBehaviour
                     SpawnedUnit.transform.parent = UnitRoot.transform;
                     SpawnedUnit.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0);
                     SpawnedUnit.layer = SortingLayer.GetLayerValueFromName("Characters");
-                    if (SpawnedUnit.GetComponent<SelectableUnitComponent>())
+                    if (SpawnedUnit.GetComponent<Unit>())
                     {
-                        SpawnedUnit.GetComponent<SelectableUnitComponent>().OwningControllerNum = controllerNum;
+                        SpawnedUnit.GetComponent<Unit>().OwningControllerNum = controllerNum;
                     }
                 }
             }
 
             if (Input.GetButtonDown(circleButton))
             {
+                foreach (var selectableObject in FindObjectsOfType<Unit>()) {
+                    if (selectableObject.OwningControllerNum == controllerNum && selectableObject.IsSelected()) { // Ensure that unit is in same group as this camera
+                        selectableObject.GetComponent<Unit>().Move(transform.position);
+                    }
+                }
             }
 
             if (Input.GetButtonDown(triangleButton))
@@ -155,23 +151,20 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetButtonDown(L3))
             {
-                // If you are not currently in the selection phase (and want to switch to it), then deactivate all selectable gameObjects for the player first
-                if (!isSelecting) {
-                    //Transform parentTransform = gameObject.transform.parent; // Get the parent of the transform related to this camera
-
-                    foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>()) {
+              // If you are not currently in the selection phase (and want to switch to it), then deactivate all selectable gameObjects for the player first
+              if (!isSelecting) {
+                  foreach (var selectableObject in FindObjectsOfType<Unit>()) {
                         if (selectableObject.OwningControllerNum == controllerNum) { // Ensure that unit is in same group as this camera
-                            selectableObject.setIsSelected(false);
+                            selectableObject.SetSelected(false);
                         }
                     }
 
-                    // Initialize the line renderer
-                    gameObject.GetComponent<CircleDraw>().InitializeLineRenderer();
-                    gameObject.GetComponent<CircleDraw>().UpdateCircleDraw();
-                } else {
-                    gameObject.GetComponent<CircleDraw>().DestroyLineRenderer();
-                }
-                isSelecting = !isSelecting;
+                  // Initialize the line renderer
+                  gameObject.CreateCircleDraw(radius);
+              } else {
+                  gameObject.DestroyCircleDraw();
+              }
+              isSelecting = !isSelecting;
             }
 
             if (Input.GetButtonDown(R3))
@@ -204,16 +197,14 @@ public class PlayerController : MonoBehaviour
         position.y += Input.GetAxis(verticalAxis) * cameraSpeed * Time.deltaTime;
         transform.position = position;
 
-        gameObject.GetComponent<CircleDraw>().UpdateCircleDraw();
+        gameObject.UpdateCircleDraw(radius);
     }
 
     private void UpdateSelectionCircle() {
-        Transform parentTransform = gameObject.transform.parent;
-
         if (isSelecting) {
-            foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>()) {
-                if (selectableObject.OwningControllerNum == controllerNum && IsWithinBounds(selectableObject.gameObject)) {
-                    selectableObject.setIsSelected(true);
+            foreach (var selectableObject in FindObjectsOfType<Unit>()) {
+                if (selectableObject.GetComponent<Unit>().OwningControllerNum == controllerNum && IsWithinBounds(selectableObject.gameObject)) {
+                    selectableObject.GetComponent<Unit>().SetSelected(true);
                 }
             }
         }
@@ -229,10 +220,6 @@ public class PlayerController : MonoBehaviour
 
         // Return true if the distance between the selectableObject and the camera is less than the radius
         return Vector3.Distance(gameObject.transform.position, adjustedCameraPos) < radius;
-    }
-
-    private void SetCircleDrawRadius(float radius) {
-        gameObject.GetComponent<CircleDraw>().SetRadius(radius);
     }
 
     public void SetControllerNumber(int ControllerNum)

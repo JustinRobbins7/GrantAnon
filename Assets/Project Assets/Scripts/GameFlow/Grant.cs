@@ -85,7 +85,7 @@ public class Grant : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        SelectableUnitComponent unit = other.GetComponent<SelectableUnitComponent>();
+        Unit unit = other.GetComponent<Unit>();
         if (unit != null)
         {
             CapturingTeams[unit.OwningControllerNum - 1]++;
@@ -94,7 +94,7 @@ public class Grant : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        SelectableUnitComponent unit = other.GetComponent<SelectableUnitComponent>();
+        Unit unit = other.GetComponent<Unit>();
         if (unit != null)
         {
             CapturingTeams[unit.OwningControllerNum - 1]--;

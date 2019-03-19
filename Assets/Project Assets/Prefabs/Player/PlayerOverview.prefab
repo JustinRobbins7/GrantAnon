@@ -86,7 +86,6 @@ GameObject:
   - component: {fileID: 3434331096662592793}
   - component: {fileID: 2934905983520087594}
   - component: {fileID: 5954452570718844504}
-  - component: {fileID: 6509244024797412573}
   m_Layer: 0
   m_Name: PlayerOverview
   m_TagString: MainCamera
@@ -180,18 +179,6 @@ MonoBehaviour:
   BuildingRoot: {fileID: 0}
   UnitRoot: {fileID: 0}
   money: 0
---- !u!114 &6509244024797412573
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4857483719195344923}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f5ee16ea3374934f891f97b4c67716c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5092029130416560696
 GameObject:
   m_ObjectHideFlags: 0

@@ -49,7 +49,7 @@ public class AStarGrid : MonoBehaviour
                     // Iterate through each row, column, and tilemap type to assign the correct tile type to node and the correct position
                     if (tilemap.HasTile(new Vector3Int(col + origin.x, row + origin.y, 0))) {
                         if (grid[col, row] == null) {
-                            grid[col, row] = new Node(tilemap.CellToWorld(new Vector3Int(col + origin.x, row + origin.y, 0)), tilemap.name);
+                            grid[col, row] = new Node(tilemap.CellToWorld(new Vector3Int(col + origin.x, row + origin.y, 0)), tilemap.name, col, row);
                         } else {
                             /* Ensure that the highest priority tile is set in the list */
                             int gridPrecIndex = Array.FindIndex(tilePrecedence, tileName => tileName.Equals(grid[col, row].type, StringComparison.Ordinal));
@@ -63,6 +63,27 @@ public class AStarGrid : MonoBehaviour
                 }
             }
         }
+    }
+
+    public List<Node> GetNeighbors(Node node) {
+        List<Node> neighbors = new List<Node>();
+
+        for (int col = -1; col <= 1; col++) {
+            for (int row = -1; row <= 1; row++) {
+                if (col == 0 && row == 0) {
+                    continue;
+                }
+
+                int checkCol = node.gridCol + col;
+                int checkRow = node.gridRow + row;
+
+                if (checkCol >= 0 && checkCol < size.x && checkRow >= 0 && checkCol < size.y) {
+                    neighbors.Add(grid[checkCol, checkRow]);
+                }
+            }
+        }
+
+        return neighbors;
     }
 
     public Node NodeFromWorldPoint(Vector2 worldPosition) {

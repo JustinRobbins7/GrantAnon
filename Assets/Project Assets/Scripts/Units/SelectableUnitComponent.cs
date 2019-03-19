@@ -29,4 +29,8 @@ public class SelectableUnitComponent : MonoBehaviour
             this.isSelected = true;
         }
     }
+
+    public bool GetIsSelected() {
+        return isSelected;
+    }
 }

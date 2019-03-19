@@ -29288,6 +29288,8 @@ MonoBehaviour:
   grantPrefab: {fileID: 235358727748765205, guid: 99f819c5537c2f94ea9ffcd10e3e2139,
     type: 3}
   grantSpawnLocation: {x: 0, y: 0}
+  minigameInterval: 0
+  minigameCamera: {fileID: 0}
 --- !u!4 &2103447876
 Transform:
   m_ObjectHideFlags: 0

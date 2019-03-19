@@ -1,7 +1,43 @@
 fileFormatVersion: 2
 guid: 46cfa159cf8c48140b4a1a6790cd80e7
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_0
+    21300002: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_1
+    21300004: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_2
+    21300006: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_3
+    21300008: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_4
+    21300010: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_5
+    21300012: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_6
+    21300014: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_7
+    21300016: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_8
+    21300018: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_9
+    21300020: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_10
+    21300022: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_11
+    21300024: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_12
+    21300026: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_13
+    21300028: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_14
+    21300030: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_15
+    21300032: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_16
+    21300034: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_17
+    21300036: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_18
+    21300038: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_19
+    21300040: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_20
+    21300042: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_21
+    21300044: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_22
+    21300046: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_23
+    21300048: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_24
+    21300050: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_25
+    21300052: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_26
+    21300054: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_27
+    21300056: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_28
+    21300058: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_29
+    21300060: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_30
+    21300062: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_31
+    21300064: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_32
+    21300066: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_33
+    21300068: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_34
+    21300070: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_35
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -40,7 +76,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -69,9 +105,740 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6400405e1960f6940ba21cbb3982bad4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_1
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 7000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4322817c98335841b41dd3aa99282e5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_2
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 7000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed76489b8ab6a2448a27fe23b3a036e0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_3
+      rect:
+        serializedVersion: 2
+        x: 2700
+        y: 7000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b02dde391edefa64c905f6cbd8d112d8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 6000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d32f7d54fd422554180c56953668b06a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_5
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 6000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe94997f0d12fe044baf88513b86bfdd
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_6
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 6000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41af74b196c710b49a492b60dd350c68
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_7
+      rect:
+        serializedVersion: 2
+        x: 2700
+        y: 6000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8279ba0384812c40ad58267f19c16f1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_8
+      rect:
+        serializedVersion: 2
+        x: 3600
+        y: 6000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59987156f0463904f9f8829707ac4b70
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 881f98d9505c2d540a1da1b1a7d16188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_10
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 5000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5f94a98584ebc04da6d45ea4138ee08
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_11
+      rect:
+        serializedVersion: 2
+        x: 1785
+        y: 5000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d90bc35071cd774aa1aa4bea8d46028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_12
+      rect:
+        serializedVersion: 2
+        x: 2700
+        y: 5000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5587380e1b453f4a81b25dd1442d2c2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6b7b2c38ec278748a7a509db203c08d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_14
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 4000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16d7d99ea832ee14faaadcdf6cbf5a9e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_15
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 4000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e883dd810328894e9403b1da3b02591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_16
+      rect:
+        serializedVersion: 2
+        x: 2700
+        y: 4000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 552544e7c11b4f7419aa4807326d8ffe
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_17
+      rect:
+        serializedVersion: 2
+        x: 3600
+        y: 4000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac7cb901413142048a97d25fa9a972c4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0db9f4291aa57194bb32fef32b48d899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_19
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 3000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8cd4483b003341043976407ae05158fc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_20
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 3000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60e08b36e6e308c408b8d36679507ddd
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_21
+      rect:
+        serializedVersion: 2
+        x: 2700
+        y: 3000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db84c2af91ce29b4d925e6fb9eae8b04
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_22
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20bbf29dc0294b14d8cfdc1f6357c7ae
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_23
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 2000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1bd699ee6fa16b4fbd76d9a6cd43cce
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_24
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 2000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a6861f2f21966346903bd05a3c3a3d1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_25
+      rect:
+        serializedVersion: 2
+        x: 2700
+        y: 2000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3fd2fdfcebe2504f9e93047f1d0697b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_26
+      rect:
+        serializedVersion: 2
+        x: 3600
+        y: 2000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 491a67622fbe4d84ea42391a380e3a67
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_27
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8ee3bb1b4e89de44bd52ccc5a4726d4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_28
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 1000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 511b822eca91ba740be4519b97cb0966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_29
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 1000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8040c938202478444824b105730fd73d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_30
+      rect:
+        serializedVersion: 2
+        x: 2700
+        y: 1000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29ff9bcc6f484264e9e1da244c163f0e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_31
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 348ae39e1abb6624993795e7d2c78a8d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_32
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 0
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 680f65bc6bf0df84ca1d515b1668bce5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_33
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 0
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef9f6b04e3c260a4e984eb50427ad587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_34
+      rect:
+        serializedVersion: 2
+        x: 2700
+        y: 0
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64d955796571ce447acc836a0b15a379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sweeper_WH_900x1000_BlueBounce_BlueSweep_GreenBounce_GreenSweep_YellowBounce_YellowSweep_RedBounce_RedSweep_35
+      rect:
+        serializedVersion: 2
+        x: 3600
+        y: 0
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 633882d96b56cbc4d979fd5431ef5529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

@@ -1,7 +1,33 @@
 fileFormatVersion: 2
 guid: f7af45ba715260441b41a0335ce5eb96
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_0
+    21300002: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_1
+    21300004: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_2
+    21300006: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_3
+    21300008: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_4
+    21300010: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_5
+    21300012: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_6
+    21300014: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_7
+    21300016: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_8
+    21300018: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_9
+    21300020: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_10
+    21300022: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_11
+    21300024: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_12
+    21300026: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_13
+    21300028: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_14
+    21300030: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_15
+    21300032: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_16
+    21300034: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_17
+    21300036: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_18
+    21300038: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_19
+    21300040: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_20
+    21300042: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_21
+    21300044: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_22
+    21300046: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_23
+    21300048: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_24
+    21300050: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_25
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -82,7 +108,527 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e01044d8e442e5246b374eaed243f088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_1
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 5000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c67bce1d67bcd8498ed3d6981cb9f74
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_2
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 5000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bd3868484cca76498f0a533dbac95b3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_3
+      rect:
+        serializedVersion: 2
+        x: 2700
+        y: 5000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 965407870fa44744ca4b165bf7315f0e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_4
+      rect:
+        serializedVersion: 2
+        x: 3600
+        y: 5000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1f8cb3993c0727428325df33e4cd815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58c031cc5520f6947a5983d0291925e4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_6
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 4000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e129345bcebc86a43a6434b5627d2a48
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_7
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 4000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed83c51925d1eef40a57cbf013d5e8fe
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_8
+      rect:
+        serializedVersion: 2
+        x: 2700
+        y: 4000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 330e61b5298336c418d1cbfcc47972bf
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_9
+      rect:
+        serializedVersion: 2
+        x: 3600
+        y: 4000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9f1ae89128bd4845b0ee6d4b4f8172e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e70ba2b0e6cb404eb1a0619a6dc5232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_11
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 3000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6895cd1b463c8b4397361f016e4f188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_12
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 3000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51f0f0e166b62004f9e01e3a1f9f72f1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_13
+      rect:
+        serializedVersion: 2
+        x: 2700
+        y: 3000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6142079cfa513144aa86f8208060ff5f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_14
+      rect:
+        serializedVersion: 2
+        x: 3600
+        y: 3000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26d6c24f498c40d4496dcf7ae1ead68c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 681fe09b8a4f25f40b32dc8e7823619a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_16
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 2000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1046b88d9a8719543943f90e4414e7d1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_17
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 2000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0256369be182e714a837b7c5f7ceb573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_18
+      rect:
+        serializedVersion: 2
+        x: 2700
+        y: 2000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 318426876992b35489ba979c3a1a6d38
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_19
+      rect:
+        serializedVersion: 2
+        x: 3600
+        y: 2000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d02c5c59408894c47bca55d7a93f3f72
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8b9e5ccaf3a5fa479635c97b7aceeaf
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_21
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 1000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fde139095237e044494f6014ad12d607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_22
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 1000
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb315360ead0add4e9931c27af3b5f69
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_23
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca97966bbf18720478c5ec928808291f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_24
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 0
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c24af8faa9e6b540848de896cf78f49
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BiomeleeHeroUnit_WH_900x1000_WalkF_WalkB_AttackF_AttackB_IdleF_IdleB_25
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 0
+        width: 900
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9e6f36cbe2e33148835f5e99ecce808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

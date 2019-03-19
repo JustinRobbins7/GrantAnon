@@ -1,7 +1,32 @@
 fileFormatVersion: 2
 guid: d965753837b05d94ca0de3819c980886
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_0
+    21300002: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_1
+    21300004: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_2
+    21300006: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_3
+    21300008: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_4
+    21300010: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_5
+    21300012: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_6
+    21300014: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_7
+    21300016: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_8
+    21300018: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_9
+    21300020: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_10
+    21300022: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_11
+    21300024: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_12
+    21300026: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_13
+    21300028: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_14
+    21300030: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_15
+    21300032: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_16
+    21300034: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_17
+    21300036: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_18
+    21300038: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_19
+    21300040: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_20
+    21300042: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_21
+    21300044: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_22
+    21300046: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_23
+    21300048: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_24
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -40,7 +65,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -69,9 +94,520 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63c3ff482ff865442a35bba741c3cd6d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 699a0a88609e5094d8466bf5ba15b603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_2
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58d0047540e0de64cbe55db86e480299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_3
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d5e4500dad2f124680ee92beffea707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_4
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8003ceeec41382489c81c05d9bf5140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70f78a8ae8f385d408b19d9295565ec2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_6
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bfac25006ec1914db457dd652872a77
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_7
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99413ea2a8f0dc641b8c9251187ccabf
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_8
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f018864c92ee874bb533c157b9b52f9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_9
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0063a51e5f7d0a43b0274dbef371f7c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1af680cc08a89294e99aeef2e14d3ba7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_11
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 485bfffd3cd3f844da81a917a8ae7743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_12
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f99a92108451e647a9d3d6d8501ff19
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_13
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8dea6cc60faaa614780fb290000a1c95
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_14
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 078182af186a51d41b0eb0e359c55331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bab09871627a4904eb0b4c9edf63cdd4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_16
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23329a08d8c597e4b929d23807aa721b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_17
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ce3fbe3ca02e1c4d921309415b722a1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_18
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a26e2719a782cf84db96abb0e8139150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_19
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eff0dbf01f0c07648b18be03e568d2a4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b06ff2f4d8b38fd47a6d056b32fc7677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_21
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b3a3dec71139e94ba3e4c5aaa162240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_22
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81c312bd5c756b249a3b5cbee1fea91f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_23
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8f1e8b30a689814788f85ab14a67218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Potions_WH_200x200_PinkPotion_OrangePotion_BrownPotion_GreenPotion_BluePotion_24
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d67f1d64104c2dc4c9413e9b3528c0de
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

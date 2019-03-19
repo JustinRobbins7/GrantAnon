@@ -33,4 +33,8 @@ public class SelectableUnitComponent : MonoBehaviour
     public bool GetIsSelected() {
         return isSelected;
     }
+
+    public float GetRadius() {
+
+    }
 }

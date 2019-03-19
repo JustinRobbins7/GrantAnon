@@ -105,15 +105,24 @@ public class AStarGrid : MonoBehaviour
         return tilePos;
     }
 
-    public Node NodeFromWorldPoint(Vector2 worldPos) {
-        Vector2 tilePos = WorldToTile(worldPos);
+    public Vector2 NodeToWorldPosition(Node node) {
+        int tileX = node.gridCol + origin.x;
+        int tileY = node.gridRow + origin.y;
 
+        return TileToWorld(new Vector2(tileX, tileY));
+    }
+
+    public Node NodeFromGridPosition(Vector2Int gridPos) {
+        return grid[gridPos.x, gridPos.y];
+    }
+
+    public Node NodeFromTilePoint(Vector2 tilePos) {
         int x = Mathf.RoundToInt(tilePos.x - origin.x);
         int y = Mathf.RoundToInt(tilePos.y - origin.y);
 
         if (x < 0) {
             x = 0;
-        } else if (x > size.x -1) {
+        } else if (x > size.x - 1) {
             x = size.x - 1;
         }
 
@@ -123,7 +132,13 @@ public class AStarGrid : MonoBehaviour
             y = size.y - 1;
         }
 
-        return grid[x, y];
+        return NodeFromGridPosition(new Vector2Int(x, y));
+    }
+
+    public Node NodeFromWorldPoint(Vector2 worldPos) {
+        Vector2 tilePos = WorldToTile(worldPos);
+
+        return NodeFromTilePoint(tilePos);
     }
 
     public bool GridInitialized() {

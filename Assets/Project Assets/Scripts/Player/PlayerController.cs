@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour
             {
                 foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>()) {
                     if (selectableObject.OwningControllerNum == controllerNum && selectableObject.GetIsSelected()) { // Ensure that unit is in same group as this camera
-                        Debug.Log(FindObjectOfType<Pathfinding>().FindPath(selectableObject.transform.position, gameObject.transform.position).Count);
+                        selectableObject.GetComponent<MovableUnit>().Move(transform.position);
                     }
                 }
             }

@@ -148,9 +148,11 @@ public class PlayerController : MonoBehaviour
             {
               // If you are not currently in the selection phase (and want to switch to it), then deactivate all selectable gameObjects for the player first
               if (!isSelecting) {
-                  foreach (var selectableObject in GetSelectableObjects()) {
-                      selectableObject.GetComponent<SelectableUnitComponent>().SetIsSelected(false);
-                  }
+                  foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>()) {
+                        if (selectableObject.OwningControllerNum == controllerNum) { // Ensure that unit is in same group as this camera
+                            selectableObject.SetIsSelected(false);
+                        }
+                    }
 
                   // Initialize the line renderer
                   gameObject.CreateCircleDraw(radius);
@@ -195,8 +197,8 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateSelectionCircle() {
         if (isSelecting) {
-            foreach (var selectableObject in GetSelectableObjects()) {
-                if (selectableObject.OwningControllerNum == controllerNum && IsWithinBounds(selectableObject.gameObject)) {
+            foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>()) {
+                if (selectableObject.GetComponent<SelectableUnitComponent>().OwningControllerNum == controllerNum && IsWithinBounds(selectableObject.gameObject)) {
                     selectableObject.GetComponent<SelectableUnitComponent>().SetIsSelected(true);
                 }
             }
@@ -213,19 +215,6 @@ public class PlayerController : MonoBehaviour
 
         // Return true if the distance between the selectableObject and the camera is less than the radius
         return Vector3.Distance(gameObject.transform.position, adjustedCameraPos) < radius;
-    }
-
-    private List<GameObject> GetSelectableObjects() {
-        List<GameObject> selectableObjects = new List<GameObject>();
-        Transform parentTransform = gameObject.transform.parent; // Get the parent of the transform related to this camera
-
-        foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>()) {
-            if (selectableObject.transform.IsChildOf(parentTransform)) {
-                selectableObjects.Add(selectableObject.gameObject);
-            }
-        }
-
-        return selectableObjects;
     }
 
     public void SetControllerNumber(int ControllerNum)

@@ -50,7 +50,7 @@ public class AStarGrid : MonoBehaviour
                     // Iterate through each row, column, and tilemap type to assign the correct tile type to node and the correct position
                     if (tilemap.HasTile(new Vector3Int(col + origin.x, row + origin.y, 0))) {
                         if (grid[col, row] == null) {
-                            grid[col, row] = new Node(tilemap.CellToWorld(new Vector3Int(col + origin.x, row + origin.y, 0)), tilemap.name, col, row);
+                            grid[col, row] = new Node(tilemap.name, col, row);
                         } else {
                             /* Ensure that the highest priority tile is set in the list */
                             int gridPrecIndex = Array.FindIndex(tilePrecedence, tileName => tileName.Equals(grid[col, row].type, StringComparison.Ordinal));

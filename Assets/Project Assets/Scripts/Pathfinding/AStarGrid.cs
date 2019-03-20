@@ -144,4 +144,10 @@ public class AStarGrid : MonoBehaviour
     public bool GridInitialized() {
         return grid != null;
     }
+
+    public int GridSize {
+        get {
+            return size.x * size.y;
+        }
+    }
 }

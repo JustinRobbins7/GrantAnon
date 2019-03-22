@@ -5,13 +5,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] float cameraSpeed = 10f;
-    [SerializeField] int controllerNum;
-    [SerializeField] GameObject PlayerUnit = null;
-    [SerializeField] GameObject BuildingOne = null;
+    private int controllerNum;
 
-    [HideInInspector] public GameObject BuildingRoot = null;
-    [HideInInspector] public GameObject UnitRoot = null;
-    [HideInInspector] public int money;
+    private Player player;
 
     // Variables for drawing the unit selection circle
     private bool isSelecting = false;
@@ -53,12 +49,16 @@ public class PlayerController : MonoBehaviour
     private string PS = "";
     private string Pad = "";
 
+    void Awake() {
+        player = GetComponent<Player>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        SetControllerNumber(controllerNum);
+        SetControllerNumber(player.PlayerNumber);
 
-        money = 0;
+        player.money = 0;
     }
 
     void FixedUpdate()
@@ -71,10 +71,10 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetButtonDown(squareButton))
             {
-                if (BuildingRoot != null && BuildingOne != null)
+                if (player.BuildingRoot != null && player.BuildingOne != null)
                 {
-                    GameObject SpawnedBuilding = Instantiate(BuildingOne);
-                    SpawnedBuilding.transform.parent = BuildingRoot.transform;
+                    GameObject SpawnedBuilding = Instantiate(player.BuildingOne);
+                    SpawnedBuilding.transform.parent = player.BuildingRoot.transform;
                     SpawnedBuilding.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0);
                     SpawnedBuilding.layer = SortingLayer.GetLayerValueFromName("Foreground");
                     if (SpawnedBuilding.GetComponent<IncomeBuilding>())
@@ -91,10 +91,10 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetButtonDown(xButton))
             {
-                if (UnitRoot != null && PlayerUnit != null)
+                if (player.UnitRoot != null && player.PlayerUnit != null)
                 {
-                    GameObject SpawnedUnit = Instantiate(PlayerUnit);
-                    SpawnedUnit.transform.parent = UnitRoot.transform;
+                    GameObject SpawnedUnit = Instantiate(player.PlayerUnit);
+                    SpawnedUnit.transform.parent = player.UnitRoot.transform;
                     SpawnedUnit.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0);
                     SpawnedUnit.layer = SortingLayer.GetLayerValueFromName("Characters");
                     if (SpawnedUnit.GetComponent<Unit>())

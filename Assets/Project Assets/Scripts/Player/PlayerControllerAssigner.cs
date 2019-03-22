@@ -8,8 +8,8 @@ public class PlayerControllerAssigner : MonoBehaviour
     public int MaxPlayers = 4;
     public GameObject ReadyScreen;
 
-    public PlayerController PlayerPrefab;
-    //public GameObject PlayerGroup;
+    public Player aiPlayer;
+    public Player player;
 
     public Vector3[] PlayerSpawns;
     public Text[] SignInTexts;
@@ -17,6 +17,7 @@ public class PlayerControllerAssigner : MonoBehaviour
     private bool[] ReadyPlayers;
     bool AllPlayersReady;
     bool SpawningPlayers;
+    [SerializeField] bool SpawnAI;
 
     // Start is called before the first frame update
     void Start()
@@ -98,15 +99,17 @@ public class PlayerControllerAssigner : MonoBehaviour
 
     void StartLevel()
     {
-        int PlayersToSpawn = 0;
         int[] ControllerNums = new int[4];
+
+        int PlayersToSpawn = SpawnAI ? ControllerNums.Length : 0;
 
         for (int i = 0; i < ReadyPlayers.Length; i++)
         {
             if (ReadyPlayers[i])
             {
-                PlayersToSpawn++;
-
+                if (!SpawnAI) {
+                    PlayersToSpawn++;
+                }
                 for (int j = 0; j < ControllerNums.Length; j++)
                 {
                     if(ControllerNums[j] == 0)
@@ -121,67 +124,44 @@ public class PlayerControllerAssigner : MonoBehaviour
 
         MainGameManager.instance.InitPlayerArray(PlayersToSpawn);
 
-        for (int i = 1; i <= PlayersToSpawn; i++)
+        // Spawn real players
+        for (int i = 0; i < PlayersToSpawn; i++)
         {
-            if (i - 1 < 0 || i - 1 >= PlayerSpawns.Length)
+            if (i < 0 || i >= PlayerSpawns.Length)
             {
                 Debug.Log("ERROR: Players Spawn does not exist for Player " + i.ToString() + "!");
                 return;
             }
-            
-            PlayerController SpawnedPlayer = null;
-            SpawnedPlayer = Instantiate(PlayerPrefab);
 
-            SpawnedPlayer.SetControllerNumber(ControllerNums[i - 1]);
-            SpawnedPlayer.SetCameraViewport(i, PlayersToSpawn);
+            Player SpawnedPlayer;
 
-            SpawnedPlayer.gameObject.transform.position = PlayerSpawns[i - 1];
+            if (IsPlayer(i, ReadyPlayers.Length)) { /* Spawn regular player */
+                SpawnedPlayer = Instantiate(player);
+                SpawnedPlayer.GetComponent<PlayerController>().SetCameraViewport(i, ReadyPlayers.Length);
+            } else { /* Spawn AI player */
+                SpawnedPlayer = Instantiate(aiPlayer);
+            }
+
+            SpawnedPlayer.GetComponent<Player>().PlayerNumber = ControllerNums[i];
 
             GameObject PlayerUnitRoot = new GameObject();
-            PlayerUnitRoot.name = "Player " + ControllerNums[i - 1].ToString() + " Units";
-            SpawnedPlayer.UnitRoot = PlayerUnitRoot;
+            PlayerUnitRoot.name = "Player " + ControllerNums[i].ToString() + " Units";
+            SpawnedPlayer.GetComponent<Player>().UnitRoot = PlayerUnitRoot;
 
             GameObject PlayerBuildingRoot = new GameObject();
-            PlayerBuildingRoot.name = "Player " + ControllerNums[i - 1].ToString() + " Buildings";
-            SpawnedPlayer.BuildingRoot = PlayerBuildingRoot;
+            PlayerBuildingRoot.name = "Player " + ControllerNums[i].ToString() + " Buildings";
+            SpawnedPlayer.GetComponent<Player>().BuildingRoot = PlayerBuildingRoot;
 
-            MainGameManager.instance.InsertPlayer(i - 1, SpawnedPlayer);
-
-            /*
-            GameObject SpawnedGroup = null;
-            SpawnedGroup = Instantiate(PlayerGroup);
-            SpawnedGroup.gameObject.transform.position = PlayerSpawns[i - 1];
-
-            PlayerController SpawnedPlayer = null;
-            SpawnedPlayer = GetComponentInChildren<PlayerController>(true);
-
-            if (SpawnedPlayer != null)
-            {
-                SpawnedPlayer.SetControllerNumber(ControllerNums[i - 1]);
-                SpawnedPlayer.SetCameraViewport(i, PlayersToSpawn);
-            }
-            else
-            {
-                SpawnedPlayer = GetComponent<PlayerController>();
-                if (SpawnedPlayer != null)
-                {
-                    SpawnedPlayer.SetControllerNumber(ControllerNums[i - 1]);
-                    SpawnedPlayer.SetCameraViewport(i, PlayersToSpawn);
-                }
-                else
-                {
-                    Debug.Log("Could not find Player Controller!");
-                }
-            }
-            */
+            MainGameManager.instance.InsertPlayer(i, SpawnedPlayer.GetComponent<Player>());
         }
 
-        if (MainGameManager.instance != null)
-        {
-            MainGameManager.instance.StartLevel(PlayersToSpawn);
-        }
+        MainGameManager.instance.StartLevel(PlayersToSpawn);
 
         gameObject.SetActive(false);
+    }
+
+    bool IsPlayer(int index, int playersToSpawn) {
+        return index < playersToSpawn - 1;
     }
 
 }

@@ -53,14 +53,6 @@ public class PlayerController : MonoBehaviour
         player = GetComponent<Player>();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        SetControllerNumber(player.PlayerNumber);
-
-        player.money = 0;
-    }
-
     void FixedUpdate()
     {
         if (controllerNum > 0 && controllerNum < 5)

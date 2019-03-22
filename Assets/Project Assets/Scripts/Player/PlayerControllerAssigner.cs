@@ -19,6 +19,9 @@ public class PlayerControllerAssigner : MonoBehaviour
     bool SpawningPlayers;
     [SerializeField] bool SpawnAI;
 
+    private int RealPlayers;
+    private int AiPlayers;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -101,15 +104,13 @@ public class PlayerControllerAssigner : MonoBehaviour
     {
         int[] ControllerNums = new int[4];
 
-        int PlayersToSpawn = SpawnAI ? ControllerNums.Length : 0;
+        RealPlayers = 0;
 
         for (int i = 0; i < ReadyPlayers.Length; i++)
         {
             if (ReadyPlayers[i])
             {
-                if (!SpawnAI) {
-                    PlayersToSpawn++;
-                }
+                RealPlayers++;
                 for (int j = 0; j < ControllerNums.Length; j++)
                 {
                     if(ControllerNums[j] == 0)
@@ -120,7 +121,10 @@ public class PlayerControllerAssigner : MonoBehaviour
                 }
             }
         }
-        Debug.Log("Need to spawn " + PlayersToSpawn.ToString() + " players");
+
+        AiPlayers = SpawnAI ? ControllerNums.Length - RealPlayers : 0;
+
+        Debug.Log("Need to spawn " + RealPlayers.ToString() + " players");
 
         MainGameManager.instance.InitPlayerArray(PlayersToSpawn);
 
@@ -135,21 +139,22 @@ public class PlayerControllerAssigner : MonoBehaviour
 
             Player SpawnedPlayer;
 
-            if (IsPlayer(i, ReadyPlayers.Length)) { /* Spawn regular player */
+            if (IsPlayer(i, PlayersToSpawn)) { /* Spawn regular player */
                 SpawnedPlayer = Instantiate(player);
-                SpawnedPlayer.GetComponent<PlayerController>().SetCameraViewport(i, ReadyPlayers.Length);
+                SpawnedPlayer.GetComponent<PlayerController>().SetCameraViewport(i + 1, RealPlayers);
+                SpawnedPlayer.GetComponent<PlayerController>().SetControllerNumber(ControllerNums[i]);
             } else { /* Spawn AI player */
                 SpawnedPlayer = Instantiate(aiPlayer);
             }
 
-            SpawnedPlayer.GetComponent<Player>().PlayerNumber = ControllerNums[i];
+            SpawnedPlayer.GetComponent<Player>().PlayerNumber = i;
 
             GameObject PlayerUnitRoot = new GameObject();
-            PlayerUnitRoot.name = "Player " + ControllerNums[i].ToString() + " Units";
+            PlayerUnitRoot.name = "Player " + (i + 1) + " Units";
             SpawnedPlayer.GetComponent<Player>().UnitRoot = PlayerUnitRoot;
 
             GameObject PlayerBuildingRoot = new GameObject();
-            PlayerBuildingRoot.name = "Player " + ControllerNums[i].ToString() + " Buildings";
+            PlayerBuildingRoot.name = "Player " + (i + 1) + " Buildings";
             SpawnedPlayer.GetComponent<Player>().BuildingRoot = PlayerBuildingRoot;
 
             MainGameManager.instance.InsertPlayer(i, SpawnedPlayer.GetComponent<Player>());
@@ -161,7 +166,13 @@ public class PlayerControllerAssigner : MonoBehaviour
     }
 
     bool IsPlayer(int index, int playersToSpawn) {
-        return index < playersToSpawn - 1;
+        return index < RealPlayers;
+    }
+
+    int PlayersToSpawn {
+        get {
+            return RealPlayers + AiPlayers;
+        }
     }
 
 }

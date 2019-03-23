@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,5 +23,34 @@ public class Player : MonoBehaviour
 
     public void SetPlayerNumber(int PlayerNumber) {
         this.PlayerNumber = PlayerNumber;
+    }
+
+    public void SpawnBuilding(Vector3 location) {
+        if (BuildingRoot != null && BuildingOne != null) {
+            GameObject SpawnedBuilding = Instantiate(BuildingOne);
+            SpawnedBuilding.transform.parent = BuildingRoot.transform;
+            SpawnedBuilding.transform.position = new Vector3(location.x, location.y, 0);
+            SpawnedBuilding.layer = SortingLayer.GetLayerValueFromName("Foreground");
+            if (SpawnedBuilding.GetComponent<IncomeBuilding>()) {
+                SpawnedBuilding.GetComponent<IncomeBuilding>().OwningPlayerNum = PlayerNumber;
+            } else {
+            }
+        }
+    }
+
+    public void SpawnUnit(Vector3 location) {
+        if (UnitRoot != null && PlayerUnit != null) {
+            GameObject SpawnedUnit = Instantiate(PlayerUnit);
+            SpawnedUnit.transform.parent = UnitRoot.transform;
+            SpawnedUnit.transform.position = new Vector3(location.x, location.y, 0);
+            SpawnedUnit.layer = SortingLayer.GetLayerValueFromName("Characters");
+            if (SpawnedUnit.GetComponent<Unit>()) {
+                SpawnedUnit.GetComponent<Unit>().OwningPlayerNum = PlayerNumber;
+            }
+        }
+    }
+
+    public Unit[] GetUnits() {
+        return Array.FindAll(FindObjectsOfType<Unit>(), selectableObject => selectableObject.OwningPlayerNum == PlayerNumber);
     }
 }

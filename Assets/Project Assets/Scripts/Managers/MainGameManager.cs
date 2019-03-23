@@ -96,11 +96,10 @@ public class MainGameManager : GameManager
 
     public void AddPlayerIncome(int earningPlayer, int moneyEarned)
     {
-        int playerIndex = earningPlayer - 1;
-        if (playerIndex <= 0 && playerIndex < Players.Length)
+        if (earningPlayer >= 0 && earningPlayer < Players.Length)
         {
            //Debug.Log("PlayerIndex: " + playerIndex.ToString());
-            Players[playerIndex].money += moneyEarned;
+            Players[earningPlayer].money += moneyEarned;
         }
     }
 

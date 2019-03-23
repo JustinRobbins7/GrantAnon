@@ -1,11 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] float cameraSpeed = 10f;
-    private int controllerNum;
+    public int controllerNum;
 
     private Player player;
 
@@ -63,45 +64,19 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetButtonDown(squareButton))
             {
-                if (player.BuildingRoot != null && player.BuildingOne != null)
-                {
-                    GameObject SpawnedBuilding = Instantiate(player.BuildingOne);
-                    SpawnedBuilding.transform.parent = player.BuildingRoot.transform;
-                    SpawnedBuilding.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0);
-                    SpawnedBuilding.layer = SortingLayer.GetLayerValueFromName("Foreground");
-                    if (SpawnedBuilding.GetComponent<IncomeBuilding>())
-                    {
-                       // Debug.Log("Controller Number: " + controllerNum.ToString());
-                        SpawnedBuilding.GetComponent<IncomeBuilding>().OwningPlayerNum = controllerNum;
-                    }
-                    else
-                    {
-                        //Debug.Log("Could not find IncomeBuilding Component!");
-                    }
-                }
+                player.SpawnBuilding(transform.position);
             }
 
             if (Input.GetButtonDown(xButton))
             {
-                if (player.UnitRoot != null && player.PlayerUnit != null)
-                {
-                    GameObject SpawnedUnit = Instantiate(player.PlayerUnit);
-                    SpawnedUnit.transform.parent = player.UnitRoot.transform;
-                    SpawnedUnit.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0);
-                    SpawnedUnit.layer = SortingLayer.GetLayerValueFromName("Characters");
-                    if (SpawnedUnit.GetComponent<Unit>())
-                    {
-                        SpawnedUnit.GetComponent<Unit>().OwningControllerNum = controllerNum;
-                    }
-                }
+                player.SpawnUnit(transform.position);
             }
 
             if (Input.GetButtonDown(circleButton))
             {
-                foreach (var selectableObject in FindObjectsOfType<Unit>()) {
-                    if (selectableObject.OwningControllerNum == controllerNum && selectableObject.IsSelected()) { // Ensure that unit is in same group as this camera
-                        selectableObject.GetComponent<Unit>().Move(transform.position);
-                    }
+                Unit[] selectedUnits = Array.FindAll(player.GetUnits(), unit => unit.IsSelected());
+                foreach (var unit in selectedUnits) {
+                    unit.Move(transform.position);
                 }
             }
 
@@ -145,11 +120,9 @@ public class PlayerController : MonoBehaviour
             {
               // If you are not currently in the selection phase (and want to switch to it), then deactivate all selectable gameObjects for the player first
               if (!isSelecting) {
-                  foreach (var selectableObject in FindObjectsOfType<Unit>()) {
-                        if (selectableObject.OwningControllerNum == controllerNum) { // Ensure that unit is in same group as this camera
-                            selectableObject.SetSelected(false);
-                        }
-                    }
+                  foreach (var unit in player.GetUnits()) {
+                    unit.SetSelected(false);
+                  }
 
                   // Initialize the line renderer
                   gameObject.CreateCircleDraw(radius);
@@ -195,8 +168,9 @@ public class PlayerController : MonoBehaviour
     private void UpdateSelectionCircle() {
         if (isSelecting) {
             foreach (var selectableObject in FindObjectsOfType<Unit>()) {
-                if (selectableObject.GetComponent<Unit>().OwningControllerNum == controllerNum && IsWithinBounds(selectableObject.gameObject)) {
-                    selectableObject.GetComponent<Unit>().SetSelected(true);
+                Unit[] unitsInBounds = Array.FindAll(player.GetUnits(), unit => IsWithinBounds(unit.gameObject));
+                foreach (var unit in unitsInBounds) {
+                    unit.SetSelected(true);
                 }
             }
         }

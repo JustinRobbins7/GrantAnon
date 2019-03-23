@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour, IMoveable, ISelectable
 {
-    public int OwningControllerNum = 0;
+    public int OwningPlayerNum = 0;
 
     Vector2[] path;
     [SerializeField] float movementSpeed = 5f;

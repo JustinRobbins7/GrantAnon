@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class MainUIManager : MonoBehaviour
 {
-    [SerializeField] PlayerController OwningPlayer = null;
+    [SerializeField] Player OwningPlayer = null;
     public Text MoneyDisplay = null;
 
     void FixedUpdate()

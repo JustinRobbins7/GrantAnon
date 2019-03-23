@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     [HideInInspector] public GameObject BuildingRoot = null;
     [HideInInspector] public GameObject UnitRoot = null;
     [HideInInspector] public int money;
+    [HideInInspector] public Vector2 baseLocation;
 
     // Start is called before the first frame update
     void Start()
@@ -31,10 +32,7 @@ public class Player : MonoBehaviour
             SpawnedBuilding.transform.parent = BuildingRoot.transform;
             SpawnedBuilding.transform.position = new Vector3(location.x, location.y, 0);
             SpawnedBuilding.layer = SortingLayer.GetLayerValueFromName("Foreground");
-            if (SpawnedBuilding.GetComponent<IncomeBuilding>()) {
-                SpawnedBuilding.GetComponent<IncomeBuilding>().OwningPlayerNum = PlayerNumber;
-            } else {
-            }
+            SpawnedBuilding.GetComponent<IncomeBuilding>().OwningPlayerNum = PlayerNumber;
         }
     }
 
@@ -44,13 +42,20 @@ public class Player : MonoBehaviour
             SpawnedUnit.transform.parent = UnitRoot.transform;
             SpawnedUnit.transform.position = new Vector3(location.x, location.y, 0);
             SpawnedUnit.layer = SortingLayer.GetLayerValueFromName("Characters");
-            if (SpawnedUnit.GetComponent<Unit>()) {
-                SpawnedUnit.GetComponent<Unit>().OwningPlayerNum = PlayerNumber;
-            }
+            SpawnedUnit.GetComponent<Unit>().OwningPlayerNum = PlayerNumber;
         }
     }
 
     public Unit[] GetUnits() {
         return Array.FindAll(FindObjectsOfType<Unit>(), selectableObject => selectableObject.OwningPlayerNum == PlayerNumber);
+    }
+
+    public void SetBaseLocation(Vector2 baseLocation) {
+        this.baseLocation = baseLocation;
+        SpawnMainBase();
+    }
+
+    public void SpawnMainBase() {
+        // Method that will spawn the main base once that is ready
     }
 }

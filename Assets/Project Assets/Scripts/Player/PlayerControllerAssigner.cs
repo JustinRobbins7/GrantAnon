@@ -19,8 +19,19 @@ public class PlayerControllerAssigner : MonoBehaviour
     bool SpawningPlayers;
     [SerializeField] bool SpawnAI;
 
+    AStarGrid grid;
+    Vector2Int[] spawnTiles = {
+        new Vector2Int(3, -3),
+        new Vector2Int(-3, -3),
+        new Vector2Int(3, 3),
+        new Vector2Int(-3, 3)};
+
     private int RealPlayers;
     private int AiPlayers;
+
+    void Awake() {
+        grid = FindObjectOfType<AStarGrid>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -157,6 +168,8 @@ public class PlayerControllerAssigner : MonoBehaviour
             PlayerBuildingRoot.name = "Player " + (i + 1) + " Buildings";
             SpawnedPlayer.GetComponent<Player>().BuildingRoot = PlayerBuildingRoot;
 
+            SpawnedPlayer.GetComponent<Player>().SetBaseLocation(ConvertSpawnTileToCoords(spawnTiles[i]));
+
             MainGameManager.instance.InsertPlayer(i, SpawnedPlayer.GetComponent<Player>());
         }
 
@@ -175,4 +188,14 @@ public class PlayerControllerAssigner : MonoBehaviour
         }
     }
 
+    Vector2 ConvertSpawnTileToCoords(Vector2Int tile) {
+        if (tile.x < 0) {
+            tile.x = grid.GridSizeVector.x + tile.x;
+        }
+        if (tile.y < 0) {
+            tile.y = grid.GridSizeVector.y + tile.y;
+        }
+
+        return grid.Vector2FromGridPosition(tile);
+    }
 }

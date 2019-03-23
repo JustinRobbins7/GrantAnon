@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class AStarGrid : MonoBehaviour
-{
+public class AStarGrid : MonoBehaviour {
     Node[,] grid;
     string[] tilePrecedence = { "Obstacles", "LavaHazards", "Grass" };
 
@@ -87,6 +86,10 @@ public class AStarGrid : MonoBehaviour
         return neighbors;
     }
 
+    public Vector2 Vector2FromGridPosition(Vector2Int gridPos) {
+        return NodeToWorldPosition(grid[gridPos.x, gridPos.y]);
+    }
+
     public Vector2 TileToWorld(Vector2 tilePos) {
         Vector2 worldPos;
 
@@ -143,6 +146,12 @@ public class AStarGrid : MonoBehaviour
 
     public bool GridInitialized() {
         return grid != null;
+    }
+
+    public Vector2Int GridSizeVector {
+        get {
+            return size;
+        }
     }
 
     public int GridSize {

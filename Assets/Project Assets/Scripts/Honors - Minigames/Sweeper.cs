@@ -5,8 +5,9 @@ using UnityEngine;
 public class Sweeper : MonoBehaviour
 {
     public float speed;
-    int carriedPotions;
-    int controllerNum;
+    [SerializeField] int carriedPotions;
+    [SerializeField] int controllerNum;
+    [SerializeField] int playerNum;
 
     //Left Stick
     private string horizontalAxis = "";
@@ -55,24 +56,39 @@ public class Sweeper : MonoBehaviour
     {
         if (Input.GetAxis(horizontalAxis) != 0 || Input.GetAxis(verticalAxis) != 0)
         {
-            
+            //Debug.Log("Input Detected!");
             Vector3 sweeperPos = transform.position;
             sweeperPos.x += Input.GetAxis(horizontalAxis) * Time.deltaTime * speed;
             sweeperPos.y += Input.GetAxis(verticalAxis) * Time.deltaTime * speed;
             transform.position = sweeperPos;
-            
         }
     }
 
-    public void ResetSweeper(Vector3 startingPos)
+    void OnTriggerStay2D(Collider2D other)
+    {
+        //Debug.Log("Overlap Detected!");
+        if (other.gameObject.GetComponent<Potion>() != null)
+        {
+            //Debug.Log("Potion Overlap Detected!");
+
+            //if (Input.GetButtonDown(xButton))
+            //{
+                carriedPotions++;
+                Destroy(other.gameObject);
+            //}
+        }
+    }
+
+    public void InitSweeper(Vector3 startingPos)
     {
         carriedPotions = 0;
         transform.position = startingPos;
     }
 
-    public void SetControllerNumber(int ControllerNum)
+    public void SetControllerNumber(int PlayerNum, int ControllerNum)
     {
         controllerNum = ControllerNum;
+        playerNum = PlayerNum;
         horizontalAxis = "P" + ControllerNum.ToString() + "_Horizontal";
         verticalAxis = "P" + ControllerNum.ToString() + "_Vertical";
         squareButton = "P" + ControllerNum.ToString() + "_Sq";
@@ -93,5 +109,15 @@ public class Sweeper : MonoBehaviour
         Options = "P" + ControllerNum.ToString() + "_Options";
         PS = "P" + ControllerNum.ToString() + "_PS";
         Pad = "P" + ControllerNum.ToString() + "_Pad";
+    }
+
+    public int GetControllerNum()
+    {
+        return controllerNum;
+    }
+
+    public int GetPlayerNum()
+    {
+        return playerNum;
     }
 }

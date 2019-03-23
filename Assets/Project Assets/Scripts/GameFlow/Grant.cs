@@ -83,18 +83,18 @@ public class Grant : MonoBehaviour
         //Debug.Log("Countdown: " + Countdown.ToString());
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        Unit unit = other.GetComponent<Unit>();
+        Unit unit = other.gameObject.GetComponent<Unit>();
         if (unit != null)
         {
             CapturingTeams[unit.OwningControllerNum - 1]++;
         }
     }
 
-    void OnTriggerExit(Collider other)
+    void OnTriggerExit2D(Collider2D other)
     {
-        Unit unit = other.GetComponent<Unit>();
+        Unit unit = other.gameObject.GetComponent<Unit>();
         if (unit != null)
         {
             CapturingTeams[unit.OwningControllerNum - 1]--;

@@ -5,12 +5,12 @@ using UnityEngine;
 public class HonorsGameManager : MainGameManager
 {
     [SerializeField] float minigameInterval;
-    [SerializeField] MinigameInfo mgOne = null;
+    [SerializeField] CleanUpGameManager mgOne = null;
+
+    public static HonorsGameManager instanceH = null;
 
     float minigameTimer;
     bool minigameRunning;
-
-    bool minigameInitialized;
 
     void Awake()
     {
@@ -22,10 +22,18 @@ public class HonorsGameManager : MainGameManager
         {
             Destroy(this);
         }
-
+        
+        if (instanceH == null)
+        {
+            instanceH = this;
+        }
+        else if (instanceH != this)
+        {
+            Destroy(this);
+        }
+        
         runLevel = false;
         minigameRunning = false;
-        minigameInitialized = false;
         zeroBasedPlayerToController = new Dictionary<int, int>();
     }
 
@@ -62,19 +70,6 @@ public class HonorsGameManager : MainGameManager
     {
         if (mgOne != null)
         {
-            if (!minigameInitialized)
-            {
-                for (int i = 0; i < Players.Length; i++)
-                {
-                    Sweeper spawnedSweeper = Instantiate<Sweeper>(mgOne.playerSweeperOptions[i]);
-                    spawnedSweeper.SetControllerNumber(zeroBasedPlayerToController[i]);
-                    spawnedSweeper.ResetSweeper(mgOne.playerSweeperSpawns[i]);
-                    mgOne.players.Add(spawnedSweeper);
-                }
-
-                minigameInitialized = true;
-            }
-
             for (int i = 0; i < Players.Length; i++)
             {
                 Players[i].ToggleCamera(false);
@@ -82,7 +77,6 @@ public class HonorsGameManager : MainGameManager
                 Players[i].enabled = false;
             }
 
-            mgOne.ResetMinigame();
             mgOne.StartMinigame(Players.Length);
 
             //minigameRunning = true;
@@ -95,7 +89,12 @@ public class HonorsGameManager : MainGameManager
         }
     }
 
-    public void EndMinigame()
+    public void CleanUpScore(int playerNumScore, int score)
+    {
+        mgOne.Score(playerNumScore, score);
+    }
+
+    public void OnEndMinigame(List<int> winningPlayers)
     {
         
     }

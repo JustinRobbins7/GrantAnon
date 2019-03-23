@@ -92,6 +92,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d58f195eadbce304e80a1fa037989e07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IncomeInterval: 1
-  IncomePerInterval: 10
+  IncomeInterval: 10
+  IncomePerInterval: 1
   OwningPlayerNum: 0

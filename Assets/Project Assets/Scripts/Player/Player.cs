@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
         this.PlayerNumber = PlayerNumber;
     }
 
-    public void SpawnBuilding(Vector3 location) {
+    public void SpawnBuilding(Vector2 location) {
         if (BuildingRoot != null && BuildingOne != null) {
             GameObject SpawnedBuilding = Instantiate(BuildingOne);
             SpawnedBuilding.transform.parent = BuildingRoot.transform;
@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void SpawnUnit(Vector3 location) {
+    public void SpawnUnit(Vector2 location) {
         if (UnitRoot != null && PlayerUnit != null) {
             GameObject SpawnedUnit = Instantiate(PlayerUnit);
             SpawnedUnit.transform.parent = UnitRoot.transform;
@@ -53,6 +53,7 @@ public class Player : MonoBehaviour
     public void SetBaseLocation(Vector2 baseLocation) {
         this.baseLocation = baseLocation;
         SpawnMainBase();
+        SpawnUnit(baseLocation);
     }
 
     public void SpawnMainBase() {

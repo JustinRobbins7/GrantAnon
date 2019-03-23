@@ -12,6 +12,7 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable
     int targetIndex;
 
     private bool selected = false;
+    private bool moving = false;
     private float radius = .5f;
 
     void Update() {
@@ -33,6 +34,7 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable
     }
 
     IEnumerator FollowPath() {
+        moving = true;
         Vector2 currentWaypoint = path[0];
         targetIndex = 0;
 
@@ -41,6 +43,7 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable
                 targetIndex++;
                 if (targetIndex >= path.Length) {
                     targetIndex = 0;
+                    moving = false;
                     yield break;
                 }
                 currentWaypoint = path[targetIndex];
@@ -72,5 +75,9 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable
 
     public bool IsSelected() {
         return selected;
+    }
+
+    public bool IsMoving() {
+        return moving;
     }
 }

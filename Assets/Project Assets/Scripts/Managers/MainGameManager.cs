@@ -15,6 +15,7 @@ public class MainGameManager : GameManager
     protected float grantTimer;
     protected bool runLevel;
     protected bool spawnedGrant;
+    protected Dictionary<int, int> zeroBasedPlayerToController;
 
     void Awake()
     {
@@ -28,6 +29,7 @@ public class MainGameManager : GameManager
         }
 
         runLevel = false;
+        zeroBasedPlayerToController = new Dictionary<int, int>();
     }
 
     // Start is called before the first frame update
@@ -102,5 +104,20 @@ public class MainGameManager : GameManager
            //Debug.Log("PlayerIndex: " + playerIndex.ToString());
             Players[playerIndex].money += moneyEarned;
         }
+    }
+
+    public void ResumeLevel()
+    {
+        runLevel = true;
+    }
+
+    public void AddPlayerControllerPair(int playerNum, int controllerNum)
+    {
+        zeroBasedPlayerToController.Add(playerNum, controllerNum);
+    }
+
+    public int GetPlayerControllerZeroBased(int PlayerNum)
+    {
+        return zeroBasedPlayerToController[PlayerNum];
     }
 }

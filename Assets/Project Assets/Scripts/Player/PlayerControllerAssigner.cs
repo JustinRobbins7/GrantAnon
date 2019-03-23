@@ -151,6 +151,7 @@ public class PlayerControllerAssigner : MonoBehaviour
             if (MainGameManager.instance != null)
             {
                 MainGameManager.instance.InsertPlayer(i - 1, SpawnedPlayer);
+                MainGameManager.instance.AddPlayerControllerPair(i - 1, ControllerNums[i - 1]);
             }
 
             /*

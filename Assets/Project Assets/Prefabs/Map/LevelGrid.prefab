@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2306450355710984204}
   - component: {fileID: 964378571843933940}
   m_Layer: 0
-  m_Name: LevelGrid 1
+  m_Name: LevelGrid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57802,8 +57802,8 @@ Tilemap:
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Origin: {x: -2, y: -60, z: 0}
-  m_Size: {x: 67, y: 68, z: 1}
+  m_Origin: {x: -41, y: -60, z: 0}
+  m_Size: {x: 106, y: 106, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:

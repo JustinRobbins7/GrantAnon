@@ -4,14 +4,21 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    //Main Level
     [SerializeField] float cameraSpeed = 10f;
     [SerializeField] int controllerNum;
+
     [SerializeField] GameObject PlayerUnit = null;
+    List<GameObject> units = null;
+
     [SerializeField] GameObject BuildingOne = null;
+    List<GameObject> incomeBuildings = null;
 
     [HideInInspector] public GameObject BuildingRoot = null;
     [HideInInspector] public GameObject UnitRoot = null;
     [HideInInspector] public int money;
+
+    bool unitsactive;
 
     // Variables for drawing the unit selection circle
     private bool isSelecting = false;
@@ -58,23 +65,36 @@ public class PlayerController : MonoBehaviour
     {
         SetControllerNumber(controllerNum);
 
+        units = new List<GameObject>();
+        incomeBuildings = new List<GameObject>();
+
         money = 0;
+        unitsactive = true;
     }
 
     void FixedUpdate()
     {
         MainGameInputCheck();
+
+        /*
+        else if (levelMode == 1)
+        {
+            CleanUpMinigameInputCheck();
+        }
+        */
     }
 
     private void MainGameInputCheck()
     {
         if (controllerNum > 0 && controllerNum < 5)
         {
+            //Move Camera
             if (Input.GetAxis(horizontalAxis) != 0 || Input.GetAxis(verticalAxis) != 0)
             {
                 updateCameraLocation();
             }
 
+            //Spawn Building
             if (Input.GetButtonDown(squareButton))
             {
                 if (BuildingRoot != null && BuildingOne != null)
@@ -92,9 +112,11 @@ public class PlayerController : MonoBehaviour
                     {
                         //Debug.Log("Could not find IncomeBuilding Component!");
                     }
+                    incomeBuildings.Add(SpawnedBuilding);
                 }
             }
 
+            //Spawn Unit
             if (Input.GetButtonDown(xButton))
             {
                 if (UnitRoot != null && PlayerUnit != null)
@@ -107,9 +129,11 @@ public class PlayerController : MonoBehaviour
                     {
                         SpawnedUnit.GetComponent<Unit>().OwningControllerNum = controllerNum;
                     }
+                    units.Add(SpawnedUnit);
                 }
             }
 
+            //Move Selected Units
             if (Input.GetButtonDown(circleButton))
             {
                 foreach (var selectableObject in FindObjectsOfType<Unit>())
@@ -121,42 +145,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (Input.GetButtonDown(triangleButton))
-            {
-            }
-
-            if (Input.GetButtonDown(L1))
-            {
-            }
-
-            if (Input.GetButtonDown(R1))
-            {
-            }
-
-            if (Input.GetAxis(L2) != -1)
-            {
-            }
-
-            if (Input.GetAxis(R2) != -1)
-            {
-            }
-
-            if (Input.GetAxis(rHorizontalAxis) != 0)
-            {
-            }
-
-            if (Input.GetAxis(rVerticalAxis) != 0)
-            {
-            }
-
-            if (Input.GetAxis(DPadX) != 0)
-            {
-            }
-
-            if (Input.GetAxis(DPadY) != 0)
-            {
-            }
-
+            //Activate Selector
             if (Input.GetButtonDown(L3))
             {
                 // If you are not currently in the selection phase (and want to switch to it), then deactivate all selectable gameObjects for the player first
@@ -180,29 +169,46 @@ public class PlayerController : MonoBehaviour
                 isSelecting = !isSelecting;
             }
 
-            if (Input.GetButtonDown(R3))
-            {
-            }
-
-            if (Input.GetButtonDown(Share))
-            {
-            }
-
-            if (Input.GetButtonDown(Options))
-            {
-            }
-
-            if (Input.GetButtonDown(PS))
-            {
-            }
-
             if (Input.GetButtonDown(Pad))
             {
+                if (unitsactive)
+                {
+                    Debug.Log("Deactivating Units and Buildings");
+                    DeactivateUnits();
+                }
+                else
+                {
+                    Debug.Log("Reactivating Units and Buildings");
+                    ReactivateUnits();
+                }
             }
 
             UpdateSelectionCircle();
         }
-    } 
+    }
+
+    /*
+    private void CleanUpMinigameInputCheck()
+    {
+        if (controllerNum > 0 && controllerNum < 5)
+        {
+            if (Input.GetAxis(horizontalAxis) != 0 || Input.GetAxis(verticalAxis) != 0)
+            {
+                if (sweeper != null)
+                {
+                    Vector3 sweeperPos = sweeper.transform.position;
+                    sweeperPos.x += Input.GetAxis(horizontalAxis) * Time.deltaTime;
+                    sweeperPos.y += Input.GetAxis(verticalAxis) * Time.deltaTime;
+                    sweeper.transform.position = sweeperPos;
+                }
+                else
+                {
+                    Debug.Log("No Sweeper!");
+                }
+            }
+        }
+    }
+    */
 
     private void updateCameraLocation() {
         Vector3 position = transform.position;
@@ -314,4 +320,69 @@ public class PlayerController : MonoBehaviour
 
         playerCam.rect = newViewport;
     }
+
+    public void ToggleCamera(bool activate)
+    {
+        Camera cam = GetComponent<Camera>();
+
+        if (activate)
+        {
+            cam.enabled = true;
+        }
+        else
+        {
+            cam.enabled = false;
+        }
+    }
+    
+    public void DeactivateUnits()
+    {
+        for (int i = 0; i < units.Count; i++)
+        {
+            units[i].SetActive(false);
+        }
+
+        for (int i = 0; i < incomeBuildings.Count; i++)
+        {
+            incomeBuildings[i].SetActive(false);
+        }
+
+        unitsactive = false;
+    }
+
+    public void ReactivateUnits()
+    {
+        for (int i = 0; i < units.Count; i++)
+        {
+            units[i].SetActive(true);
+        }
+
+        for (int i = 0; i < incomeBuildings.Count; i++)
+        {
+            incomeBuildings[i].SetActive(true);
+        }
+
+        unitsactive = true;
+    }
+
+    /*
+    public void SetGameMode(int GameModeID)
+    {
+        if(GameModeID == 0)
+        {
+            //Main Game
+            if (sweeper != null)
+            {
+                sweeper.SetActive(false);
+            }
+
+            levelMode = 0;
+        }
+        else if(GameModeID == 1)
+        {
+            //CleanUp
+            levelMode = 1;
+        }
+    }
+    */
 }

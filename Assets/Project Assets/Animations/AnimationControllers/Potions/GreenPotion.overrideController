@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GreenPotion
+  m_Controller: {fileID: 9100000, guid: 72208d949f02fea4e88f1d8e2f5679e4, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: aa14d78220426a44cbb784739e2b0ea5, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 0d079bba066066d4fa037ac60cfe6d87, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 5f7fe01304b6a1547876e21ebf9cbfc6, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 80c8b3919e84b804f825296ee64e0bb5, type: 2}

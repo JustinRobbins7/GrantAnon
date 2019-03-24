@@ -10,6 +10,11 @@ public class CleanUpGameManager : MonoBehaviour
     [SerializeField] Sweeper[] playerSweeperOptions;
     [SerializeField] Vector3 MonsterSpawn;
     [SerializeField] int moneyRewarded;
+    [SerializeField] float roundTime;
+    [SerializeField] CleanUpGame_UIManager ui;
+    bool runMinigame;
+    bool endingMinigame;
+    float roundTimer;
 
     [HideInInspector] public List<Sweeper> players = null;
     MessMonster currentMonster = null;
@@ -19,18 +24,35 @@ public class CleanUpGameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        runMinigame = false;
+        endingMinigame = false;
+        roundTimer = 0;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (runMinigame)
+        {
+            roundTimer += Time.deltaTime;
+
+            if (roundTimer >= roundTime && !endingMinigame)
+            {
+                endingMinigame = true;
+                runMinigame = false;
+                InitEndMinigame();
+            }
+        }
     }
 
-    public void ResetMinigame()
+    public void InitMinigame()
     {
-        //Reset Scores
-        mgScores = null;
+        ToggleCamera(true);
+        ui.LoadCleanUpStart();
+    }
 
+    public void InitEndMinigame()
+    {
         if (players != null)
         {
             for (int i = 0; i < players.Count; i++)
@@ -49,8 +71,7 @@ public class CleanUpGameManager : MonoBehaviour
             Destroy(currentMonster.gameObject);
         }
 
-        //Turn off camera
-        ToggleCamera(false);
+        ui.LoadCleanUpEnd();
     }
 
     public void StartMinigame(int NumPlayers)
@@ -70,21 +91,40 @@ public class CleanUpGameManager : MonoBehaviour
         currentMonster.transform.position = MonsterSpawn;
 
         mgScores = new List<int>(NumPlayers);
+
+        Debug.Log("mgScores Count Before Add: " + mgScores.Count.ToString());
+
         for (int i = 0; i < NumPlayers; i++)
         {
             mgScores.Add(0);
         }
 
-        ToggleCamera(true);
+        Debug.Log("mgScores Count After Add: " + mgScores.Count.ToString());
+
+        runMinigame = true;
     }
 
     public void EndMinigame()
     {
+        //Turn off camera
+        ToggleCamera(false);
+
         List<int> winningPlayers = new List<int>();
         int bestScore = -1;
 
+        if (mgScores == null)
+        {
+            Debug.Log("mgScores is null!");
+            return; 
+        }
+
+        Debug.Log("mgScores Count Before Score Tally: " + mgScores.Count.ToString());
+        Debug.Log("mgScores first value before score tally: " + mgScores[0]);
+
         for (int i = 0; i < mgScores.Count; i++)
         {
+            Debug.Log("i: " + i.ToString());
+            
             if (mgScores[i] > bestScore)
             {
                 winningPlayers.Clear();
@@ -95,9 +135,11 @@ public class CleanUpGameManager : MonoBehaviour
             {
                 winningPlayers.Add(i);
             }
+            
         }
 
-        ResetMinigame();
+        //Reset Scores
+        mgScores = null;
         
         if (HonorsGameManager.instanceH != null)
         {
@@ -107,6 +149,9 @@ public class CleanUpGameManager : MonoBehaviour
         {
             Debug.Log("Not using Honors Game Manager!");
         }
+
+        roundTimer = 0;
+        endingMinigame = false;
     }
 
     public void Score(int numPlayer, int score)
@@ -127,5 +172,10 @@ public class CleanUpGameManager : MonoBehaviour
         {
             minigameCamera.enabled = false;
         }
+    }
+
+    public int GetMoneyRewarded()
+    {
+        return moneyRewarded;
     }
 }

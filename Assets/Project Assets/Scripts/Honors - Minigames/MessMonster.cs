@@ -8,6 +8,7 @@ public class MessMonster : MonoBehaviour
     [SerializeField] float minThrowRadius;
     [SerializeField] float maxThrowRadius;
     [SerializeField] float throwInterval;
+    [SerializeField] float throwSpeed;
 
     float throwTimer;
 
@@ -15,6 +16,7 @@ public class MessMonster : MonoBehaviour
     void Start()
     {
         throwTimer = 0.0f;
+        //ThrowPotion();
     }
 
     // Update is called once per frame
@@ -22,7 +24,7 @@ public class MessMonster : MonoBehaviour
     {
         if (throwTimer >= throwInterval)
         {
-            //ThrowPotion();
+            ThrowPotion();
             throwTimer = 0.0f;
         }
         else
@@ -35,8 +37,10 @@ public class MessMonster : MonoBehaviour
     {
         int indexOfPotion = Random.Range(0, potionOptions.Count);
         float throwLength = Random.Range(minThrowRadius, maxThrowRadius);
-        float throwAngle = Random.Range(0f, 360f);
+        float throwAngle = Random.Range(0f, 2*Mathf.PI);
 
-
+        Potion spawnedPotion = Instantiate<Potion>(potionOptions[indexOfPotion]);
+        spawnedPotion.gameObject.transform.position = gameObject.transform.position;
+        spawnedPotion.Throw(new Vector3(gameObject.transform.position.x + throwLength*Mathf.Cos(throwAngle), gameObject.transform.position.y + throwLength * Mathf.Sin(throwAngle), 0), throwSpeed);
     }
 }

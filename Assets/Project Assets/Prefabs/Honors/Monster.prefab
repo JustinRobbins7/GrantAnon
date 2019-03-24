@@ -113,7 +113,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   potionOptions:
-  - {fileID: 237646211600751086, guid: 6c73079c389938240ba2a518517209d8, type: 3}
+  - {fileID: 1961639173401016189, guid: 000b34e82cd6808479cd9b29d59be6c2, type: 3}
   minThrowRadius: 1
   maxThrowRadius: 2.5
-  throwInterval: 3
+  throwInterval: 1
+  throwSpeed: 1.5

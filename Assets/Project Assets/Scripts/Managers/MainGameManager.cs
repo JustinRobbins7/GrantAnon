@@ -120,4 +120,9 @@ public class MainGameManager : GameManager
     {
         return zeroBasedPlayerToController[PlayerNum];
     }
+
+    public int GetNumPlayers()
+    {
+        return Players.Length;
+    }
 }

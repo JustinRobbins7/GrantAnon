@@ -17,6 +17,7 @@ public class PlayerControllerAssigner : MonoBehaviour
     private bool[] ReadyPlayers;
     bool AllPlayersReady;
     bool SpawningPlayers;
+    bool anyPlayersActive;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,7 @@ public class PlayerControllerAssigner : MonoBehaviour
         AllPlayersReady = false;
         ActivePlayers = new bool[SignInTexts.Length];
         ReadyPlayers = new bool[SignInTexts.Length];
+        anyPlayersActive = false;
     }
 
     // Update is called once per frame
@@ -32,6 +34,7 @@ public class PlayerControllerAssigner : MonoBehaviour
     {
         if (ReadyScreen != null && ReadyScreen.active)
         {
+            anyPlayersActive = false;
             AllPlayersReady = true;
             for (int i = 0; i < SignInTexts.Length; i++)
             {
@@ -40,9 +43,14 @@ public class PlayerControllerAssigner : MonoBehaviour
                 {
                     AllPlayersReady = false;
                 }
+
+                if (ReadyPlayers[i] || ActivePlayers[i])
+                {
+                    anyPlayersActive = true;
+                }
             }
 
-            if (AllPlayersReady && !SpawningPlayers)
+            if (AllPlayersReady && !SpawningPlayers && anyPlayersActive)
             {
                 if (Input.GetButtonDown("PAll_Start"))
                 {

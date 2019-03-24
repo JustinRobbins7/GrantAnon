@@ -1,13 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Sweeper : MonoBehaviour
 {
     public float speed;
-    [SerializeField] int carriedPotions;
-    [SerializeField] int controllerNum;
-    [SerializeField] int playerNum;
+    int carriedPotions;
+    int controllerNum;
+    int playerNum;
+    [SerializeField] Text scoreText;
 
     //Left Stick
     private string horizontalAxis = "";
@@ -73,8 +75,12 @@ public class Sweeper : MonoBehaviour
 
             //if (Input.GetButtonDown(xButton))
             //{
-                carriedPotions++;
-                Destroy(other.gameObject);
+
+            carriedPotions++;
+            HonorsGameManager.instanceH.CleanUpScore(playerNum, 1);
+            scoreText.text = carriedPotions.ToString();
+            Destroy(other.gameObject);
+
             //}
         }
     }

@@ -31,7 +31,7 @@ public class HonorsGameManager : MainGameManager
         {
             Destroy(this);
         }
-        
+
         runLevel = false;
         minigameRunning = false;
         zeroBasedPlayerToController = new Dictionary<int, int>();
@@ -77,7 +77,7 @@ public class HonorsGameManager : MainGameManager
                 Players[i].enabled = false;
             }
 
-            mgOne.StartMinigame(Players.Length);
+            mgOne.InitMinigame();
 
             //minigameRunning = true;
             //minigameTimer = 0.0f;
@@ -96,6 +96,19 @@ public class HonorsGameManager : MainGameManager
 
     public void OnEndMinigame(List<int> winningPlayers)
     {
-        
+        for (int i = 0; i < Players.Length; i++)
+        {
+            Players[i].ToggleCamera(true);
+            Players[i].ReactivateUnits();
+            Players[i].enabled = true;
+        }
+
+        for (int i = 0; i < winningPlayers.Count; i++)
+        {
+            Players[winningPlayers[i]].money += mgOne.GetMoneyRewarded();
+        }
+
+        minigameRunning = false;
+        runLevel = true;
     }
 }

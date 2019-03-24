@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: YellowSweeper
+  m_Controller: {fileID: 9100000, guid: 71b49478544e83e4f9bf42f223ab7bb6, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 33869ee7136829948b05299b929e8116, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: aa60605d364d217478e4219cdeca046c, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 9343b38df3952d2499d47c9240c465bc, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: cb685e6b144967e4680d515c2b114013, type: 2}

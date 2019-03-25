@@ -16,7 +16,7 @@ public class IncomeBuilding : Building
     {
         if (IncomeInterval == 0)
         {
-            IncomeInterval = 10.0f;
+            IncomeInterval = 5.0f;
         }
 
         if (IncomePerInterval == 0)
@@ -24,7 +24,7 @@ public class IncomeBuilding : Building
             IncomePerInterval = 5;
         }
 
-        IncomeTimer = IncomeInterval;
+        IncomeTimer = 0;
     }
 
     // Update is called once per frame
@@ -35,6 +35,7 @@ public class IncomeBuilding : Building
         if (IncomeTimer <= 0)
         {
             MainGameManager.instance.AddPlayerIncome(OwningPlayerNum, IncomePerInterval);
+            IncomeTimer = IncomeInterval;
         }
     }
 

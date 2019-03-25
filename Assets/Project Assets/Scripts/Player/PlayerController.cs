@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject PlayerUnit = null;
     List<GameObject> units = null;
 
+    [SerializeField] GameObject mainBasePrefab = null;
+    GameObject mainBase = null;
     [SerializeField] GameObject BuildingOne = null;
     List<GameObject> incomeBuildings = null;
 
@@ -76,6 +78,11 @@ public class PlayerController : MonoBehaviour
     {
         MainGameInputCheck();
 
+        if (mainBase == null)
+        {
+            mainBase = Instantiate(mainBasePrefab);
+            mainBase.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0);
+        }
         /*
         else if (levelMode == 1)
         {
@@ -347,6 +354,8 @@ public class PlayerController : MonoBehaviour
             incomeBuildings[i].SetActive(false);
         }
 
+        mainBase.SetActive(false);
+
         unitsactive = false;
     }
 
@@ -361,6 +370,8 @@ public class PlayerController : MonoBehaviour
         {
             incomeBuildings[i].SetActive(true);
         }
+
+        mainBase.SetActive(true);
 
         unitsactive = true;
     }

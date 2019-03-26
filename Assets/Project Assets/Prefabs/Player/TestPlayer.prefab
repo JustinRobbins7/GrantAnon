@@ -92,8 +92,8 @@ GameObject:
   m_Component:
   - component: {fileID: 87648745006986435}
   - component: {fileID: 87648745006986434}
-  - component: {fileID: 87648745006986493}
   - component: {fileID: 87648745006986492}
+  - component: {fileID: 6411638364059548034}
   m_Layer: 0
   m_Name: TestPlayer
   m_TagString: Untagged
@@ -151,7 +151,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -805567103
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7287b269726531343ab7df63cc379ad7, type: 3}
   m_Color: {r: 0, g: 1, b: 0.10340214, a: 1}
@@ -164,20 +164,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &87648745006986493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 87648745006986433}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2652417242d09e345963dd6a5c553b82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraSpeed: 0.25
-  controllerNum: 1
 --- !u!50 &87648745006986492
 Rigidbody2D:
   serializedVersion: 4
@@ -199,3 +185,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &6411638364059548034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87648745006986433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dca45f9ca2d228e4b963ee1da35746a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraSpeed: 10
+  controllerNum: 0

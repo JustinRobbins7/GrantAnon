@@ -95,10 +95,10 @@ public class Grant : MonoBehaviour
     //When Unit collides with grant, add it to the unit counts for its owning player
     void OnTriggerEnter(Collider other)
     {
-        SelectableUnitComponent unit = other.GetComponent<SelectableUnitComponent>();
+        Unit unit = other.GetComponent<Unit>();
         if (unit != null)
         {
-            CapturingTeams[unit.OwningControllerNum - 1]++;
+            CapturingTeams[unit.OwningPlayerNum - 1]++;
         }
     }
 
@@ -108,10 +108,10 @@ public class Grant : MonoBehaviour
     //When Unit leaves grant's collision box, remove it from its player's unit count
     void OnTriggerExit(Collider other)
     {
-        SelectableUnitComponent unit = other.GetComponent<SelectableUnitComponent>();
+        Unit unit = other.GetComponent<Unit>();
         if (unit != null)
         {
-            CapturingTeams[unit.OwningControllerNum - 1]--;
+            CapturingTeams[unit.OwningPlayerNum - 1]--;
         }
     }
 }

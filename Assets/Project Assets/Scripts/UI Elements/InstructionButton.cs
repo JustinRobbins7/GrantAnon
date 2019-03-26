@@ -23,6 +23,6 @@ public class InstructionButton : MenuButton
     override public void onClick()
     {
         //Replace Sample Scene with the instruction Menu scene
-        SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
+        SceneManager.LoadScene("InstructionMenu", LoadSceneMode.Single);
     }
 }

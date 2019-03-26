@@ -14,7 +14,7 @@ public class MainGameManager : GameManager
 
     public static MainGameManager instance = null;
 
-    PlayerController[] Players = null;
+    Player[] Players = null;
     int[] PlayerScores;
     float grantTimer;
     bool runLevel;
@@ -104,13 +104,14 @@ public class MainGameManager : GameManager
      */
     public void InitPlayerArray(int playerCount)
     {
-        Players = new PlayerController[playerCount];
+        Players = new Player[playerCount];
     }
+
 
     /**
      * Inserts a new player into the player array
      */
-    public void InsertPlayer(int playerIndex, PlayerController newPlayer)
+    public void InsertPlayer(int playerIndex, Player newPlayer)
     {
         Players[playerIndex] = newPlayer;
     }
@@ -120,11 +121,10 @@ public class MainGameManager : GameManager
      */
     public void AddPlayerIncome(int earningPlayer, int moneyEarned)
     {
-        int playerIndex = earningPlayer - 1;
-        if (playerIndex <= 0 && playerIndex < Players.Length)
+        if (earningPlayer >= 0 && earningPlayer < Players.Length)
         {
            //Debug.Log("PlayerIndex: " + playerIndex.ToString());
-            Players[playerIndex].money += moneyEarned;
+            Players[earningPlayer].money += moneyEarned;
         }
     }
 

@@ -5,40 +5,53 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour, IMoveable, ISelectable
 {
-    public int OwningControllerNum = 0;
+    public int OwningPlayerNum = 0;
 
-    private List<Node> path = new List<Node>();
+    Vector2[] path;
     [SerializeField] float movementSpeed = 5f;
+    int targetIndex;
 
     private bool selected = false;
+    private bool moving = false;
     private float radius = .5f;
 
     void Update() {
-        UpdateMovement();
+        if (selected && targetIndex > 0) {
+            gameObject.UpdateCircleDraw(radius);
+        }
     }
 
     public void Move(Vector2 target) {
-        path = FindObjectOfType<Pathfinding>().FindPath(GetComponent<Rigidbody2D>().position, target);
+        PathRequestManager.RequestPath(GetComponent<Rigidbody2D>().position, target, OnPathFound);
     }
 
-    private void UpdateMovement() {
-        if (path != null && path.Count > 0) {
-            gameObject.UpdateCircleDraw(radius);
+    private void OnPathFound(Vector2[] path, bool success) {
+        if (success) {
+            StopCoroutine("FollowPath");
+            this.path = path;
+            StartCoroutine("FollowPath");
+        }
+    }
 
-            Vector2 targetPos = FindObjectOfType<AStarGrid>().NodeToWorldPosition(path[0]);
-            Vector2 currPos = transform.position;
+    IEnumerator FollowPath() {
+        moving = true;
+        Vector2 currentWaypoint = path[0];
+        targetIndex = 0;
 
-            if (Math.Round(targetPos.x, 1) == Math.Round(currPos.x, 1) && Math.Round(targetPos.y, 1) == Math.Round(currPos.y, 1)) {
-                path.RemoveAt(0);
-                if (path.Count > 0) {
-                    targetPos = FindObjectOfType<AStarGrid>().NodeToWorldPosition(path[0]);
-                } else {
-                    return;
+        while (true) {
+            if (GetComponent<Rigidbody2D>().position == currentWaypoint) {
+                targetIndex++;
+                if (targetIndex >= path.Length) {
+                    targetIndex = 0;
+                    moving = false;
+                    yield break;
                 }
+                currentWaypoint = path[targetIndex];
             }
 
-            Vector2 direction = (targetPos - currPos).normalized;
-            GetComponent<Rigidbody2D>().MovePosition(currPos + direction * movementSpeed * Time.deltaTime);
+            GetComponent<Rigidbody2D>().position = Vector2.MoveTowards(GetComponent<Rigidbody2D>().position, currentWaypoint, movementSpeed * Time.deltaTime);
+            gameObject.UpdateCircleDraw(radius);
+            yield return null;
         }
     }
 
@@ -49,14 +62,11 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable
         }
 
         if (this.selected) {
-
-            // TODO: Hide gameObject that shows that unit is selected
             gameObject.DestroyCircleDraw();
 
             this.selected = false;
 
         } else {
-            // TODO: Show gameObject that shows that unit is selected
             gameObject.CreateCircleDraw(radius);
 
             this.selected = true;
@@ -65,5 +75,9 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable
 
     public bool IsSelected() {
         return selected;
+    }
+
+    public bool IsMoving() {
+        return moving;
     }
 }

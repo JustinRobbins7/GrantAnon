@@ -78,7 +78,8 @@ public class MainGameManager : GameManager
      */
     public void ScoreGrant(int scoringPlayer)
     {
-        int playerIndex = scoringPlayer - 1;
+        int playerIndex = scoringPlayer;
+        Debug.Log(scoringPlayer.ToString());
         if (0 >= playerIndex && playerIndex < PlayerScores.Length)
         {
             PlayerScores[playerIndex]++;
@@ -94,6 +95,7 @@ public class MainGameManager : GameManager
     {
         PlayerCount = startPlayerCount;
         grantTimer = 0.0f;
+        PlayerScores = new int[startPlayerCount];
 
         spawnedGrant = false;
         runLevel = true;

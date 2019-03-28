@@ -7,18 +7,27 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] public int PlayerNumber = 0;
-
+    
     [SerializeField] public GameObject PlayerUnit = null;
-    [SerializeField] public GameObject BuildingOne = null;
-
-    [HideInInspector] public GameObject BuildingRoot = null;
     [HideInInspector] public GameObject UnitRoot = null;
+    List<GameObject> units = null;
+
+    [SerializeField] GameObject mainBasePrefab = null;
+    GameObject mainBase = null;
+
+    [SerializeField] public GameObject BuildingOne = null;
+    [HideInInspector] public GameObject BuildingRoot = null;
+    List<GameObject> incomeBuildings = null;
+
     [HideInInspector] public int money;
     [HideInInspector] public Vector2 baseLocation;
 
     // Start is called before the first frame update
     void Start()
     {
+        units = new List<GameObject>();
+        incomeBuildings = new List<GameObject>();
+
         money = 0;
     }
 
@@ -58,5 +67,51 @@ public class Player : MonoBehaviour
 
     public void SpawnMainBase() {
         // Method that will spawn the main base once that is ready
+        mainBase = Instantiate(mainBasePrefab);
+        mainBase.transform.position = baseLocation;
+    }
+
+    public void ToggleCamera(bool activate)
+    {
+        Camera cam = GetComponent<Camera>();
+
+        if (activate)
+        {
+            cam.enabled = true;
+        }
+        else
+        {
+            cam.enabled = false;
+        }
+    }
+
+    public void DeactivateUnits()
+    {
+        for (int i = 0; i < units.Count; i++)
+        {
+            units[i].SetActive(false);
+        }
+
+        for (int i = 0; i < incomeBuildings.Count; i++)
+        {
+            incomeBuildings[i].SetActive(false);
+        }
+
+        mainBase.SetActive(false);
+    }
+
+    public void ReactivateUnits()
+    {
+        for (int i = 0; i < units.Count; i++)
+        {
+            units[i].SetActive(true);
+        }
+
+        for (int i = 0; i < incomeBuildings.Count; i++)
+        {
+            incomeBuildings[i].SetActive(true);
+        }
+
+        mainBase.SetActive(true);
     }
 }

@@ -13,18 +13,12 @@ public class MainGameManager : GameManager
 
     public static MainGameManager instance = null;
 
-    protected PlayerController[] Players = null;
+    protected Player[] Players = null;
     protected int[] PlayerScores;
     protected float grantTimer;
     protected bool runLevel;
     protected bool spawnedGrant;
     protected Dictionary<int, int> zeroBasedPlayerToController;
-
-    Player[] Players = null;
-    int[] PlayerScores;
-    float grantTimer;
-    bool runLevel;
-    bool spawnedGrant;
 
     /**
      * Ensures the GameManager is unique and accessible from code anywhere
@@ -122,6 +116,7 @@ public class MainGameManager : GameManager
      */
     public void InsertPlayer(int playerIndex, Player newPlayer)
     {
+        Debug.Log(playerIndex.ToString());
         Players[playerIndex] = newPlayer;
     }
 

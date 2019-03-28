@@ -11,16 +11,6 @@ public class PlayerController : MonoBehaviour
      * and performs defined behaviors based on those axes inputs.
      */
     [SerializeField] float cameraSpeed = 10f;
-    [SerializeField] int controllerNum;
-
-    [SerializeField] GameObject PlayerUnit = null;
-    List<GameObject> units = null;
-
-    [SerializeField] GameObject mainBasePrefab = null;
-    GameObject mainBase = null;
-    [SerializeField] GameObject BuildingOne = null;
-    List<GameObject> incomeBuildings = null;
-
     public int controllerNum;
 
     private Player player;
@@ -81,12 +71,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         SetControllerNumber(controllerNum);
-
-        units = new List<GameObject>();
-        incomeBuildings = new List<GameObject>();
-
-        money = 0;
-        unitsactive = true;
     }
 
     /**
@@ -96,11 +80,7 @@ public class PlayerController : MonoBehaviour
     {
         MainGameInputCheck();
 
-        if (mainBase == null)
-        {
-            mainBase = Instantiate(mainBasePrefab);
-            mainBase.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0);
-        }
+        
         /*
         else if (levelMode == 1)
         {
@@ -166,61 +146,46 @@ public class PlayerController : MonoBehaviour
                 }
             }
             */
-
-            //Activate Selector
-            if (Input.GetButtonDown(L3))
-            {
-                // If you are not currently in the selection phase (and want to switch to it), then deactivate all selectable gameObjects for the player first
-                if (!isSelecting)
-                {
-                    foreach (var selectableObject in FindObjectsOfType<Unit>())
-                    {
-                        if (selectableObject.OwningControllerNum == controllerNum)
-                        { // Ensure that unit is in same group as this camera
-                            selectableObject.SetSelected(false);
-                        }
-                    }
-                }
-            }
-
+            
             /**
-             * Draws a selection circle to select units
-             */
-             /*
+              * Draws a selection circle to select units
+              */
             if (Input.GetButtonDown(L3))
-            {
-                // If you are not currently in the selection phase (and want to switch to it), then deactivate all selectable gameObjects for the player first
-                if (!isSelecting)
-                {
-                    foreach (var unit in player.GetUnits())
-                    {
-                        unit.SetSelected(false);
-                    }
+           {
+               // If you are not currently in the selection phase (and want to switch to it), then deactivate all selectable gameObjects for the player first
+               if (!isSelecting)
+               {
+                   foreach (var unit in player.GetUnits())
+                   {
+                       unit.SetSelected(false);
+                   }
 
 
-                    // Initialize the line renderer
-                    gameObject.CreateCircleDraw(radius);
-                }
-                else
-                {
-                    gameObject.DestroyCircleDraw();
-                }
+                   // Initialize the line renderer
+                   gameObject.CreateCircleDraw(radius);
+               }
+               else
+               {
+                   gameObject.DestroyCircleDraw();
+               }
 
-                isSelecting = !isSelecting;
-            }
-            */
+               isSelecting = !isSelecting;
+           }
+           
 
             if (Input.GetButtonDown(Pad))
             {
                 if (unitsactive)
                 {
                     Debug.Log("Deactivating Units and Buildings");
-                    DeactivateUnits();
+                    player.DeactivateUnits();
+                    unitsactive = false;
                 }
                 else
                 {
                     Debug.Log("Reactivating Units and Buildings");
-                    ReactivateUnits();
+                    player.ReactivateUnits();
+                    unitsactive = true;
                 }
             }
 
@@ -268,11 +233,15 @@ public class PlayerController : MonoBehaviour
     /**
      * Moves drawn circle on this gameobject's location.
      */
-    private void UpdateSelectionCircle() {
-        if (isSelecting) {
-            foreach (var selectableObject in FindObjectsOfType<Unit>()) {
+    private void UpdateSelectionCircle()
+    {
+        if (isSelecting)
+        {
+            foreach (var selectableObject in FindObjectsOfType<Unit>())
+            {
                 Unit[] unitsInBounds = Array.FindAll(player.GetUnits(), unit => IsWithinBounds(unit.gameObject));
-                foreach (var unit in unitsInBounds) {
+                foreach (var unit in unitsInBounds)
+                {
                     unit.SetSelected(true);
                 }
             }
@@ -282,8 +251,10 @@ public class PlayerController : MonoBehaviour
     /**
      * Checks if selectable object is within bounds of the drawn circle
      */
-    private bool IsWithinBounds(GameObject gameObject) {
-        if (!isSelecting) {
+    private bool IsWithinBounds(GameObject gameObject)
+    {
+        if (!isSelecting)
+        {
             return false;
         }
 
@@ -380,54 +351,6 @@ public class PlayerController : MonoBehaviour
         playerCam.rect = newViewport;
     }
 
-    public void ToggleCamera(bool activate)
-    {
-        Camera cam = GetComponent<Camera>();
-
-        if (activate)
-        {
-            cam.enabled = true;
-        }
-        else
-        {
-            cam.enabled = false;
-        }
-    }
-
-    public void DeactivateUnits()
-    {
-        for (int i = 0; i < units.Count; i++)
-        {
-            units[i].SetActive(false);
-        }
-
-        for (int i = 0; i < incomeBuildings.Count; i++)
-        {
-            incomeBuildings[i].SetActive(false);
-        }
-
-        mainBase.SetActive(false);
-
-        unitsactive = false;
-    }
-
-    public void ReactivateUnits()
-    {
-        for (int i = 0; i < units.Count; i++)
-        {
-            units[i].SetActive(true);
-        }
-
-        for (int i = 0; i < incomeBuildings.Count; i++)
-        {
-            incomeBuildings[i].SetActive(true);
-        }
-
-        mainBase.SetActive(true);
-
-        unitsactive = true;
-    }
-}
     /*
     public void SetGameMode(int GameModeID)
     {

@@ -197,18 +197,20 @@ public class PlayerControllerAssigner : MonoBehaviour
             PlayerBuildingRoot.name = "Player " + (i + 1) + " Buildings";
             SpawnedPlayer.GetComponent<Player>().BuildingRoot = PlayerBuildingRoot;
 
-
+            /*
             //NEEDS TO BE RESOLVED (PROBABLY)
             if (MainGameManager.instance != null)
             {
                 MainGameManager.instance.InsertPlayer(i - 1, SpawnedPlayer);
                 MainGameManager.instance.AddPlayerControllerPair(i - 1, ControllerNums[i - 1]);
             }
+            */
 
             SpawnedPlayer.GetComponent<Player>().SetBaseLocation(ConvertSpawnTileToCoords(spawnTiles[i]));
-
-            //NEEDS TO BE RESOLVED (PROBABLY)
+            
             MainGameManager.instance.InsertPlayer(i, SpawnedPlayer.GetComponent<Player>());
+
+            MainGameManager.instance.AddPlayerControllerPair(i, ControllerNums[i]);
         }
 
         MainGameManager.instance.StartLevel(PlayersToSpawn);

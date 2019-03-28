@@ -17,6 +17,9 @@ public abstract class MenuButton : MonoBehaviour
         
     }
 
+    /**
+     * Changes color when selected and deselected
+     */
     public void onSelect()
     {
         this.GetComponent<Image>().color = new Color32(215, 180, 0, 180);

@@ -5,6 +5,7 @@ using UnityEngine;
 public static class CircleDraw {
     public static void UpdateCircleDraw(this GameObject gameObject, float radius) {
         if (HasCircleDraw(gameObject)) {
+
             Vector3 pos;
             float theta = 0f;
             for (int i = 0; i < GetCircleDrawNumPoints(gameObject); i++) {

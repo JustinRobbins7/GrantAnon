@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
+    /**
+     * Defines behavior of the main menu, includes UI information and a player controller for the menu.
+     */
     public Image[] menuGameObjs = new Image[3];
     private MenuButton[] menuScripts;
     public int controllerNum = 0;
@@ -54,6 +57,9 @@ public class MenuManager : MonoBehaviour
     private Rigidbody2D rgdbdy2;
 
     // Start is called before the first frame update
+    /**
+     * Collects Button scripts for later use
+     */
     void Start()
     {
         timer = waitTime;
@@ -91,6 +97,9 @@ public class MenuManager : MonoBehaviour
         rgdbdy2 = GetComponent<Rigidbody2D>();
     }
 
+    /**
+     * Checks for player input for menu navigation
+     */
     void FixedUpdate()
     {
 
@@ -150,6 +159,9 @@ public class MenuManager : MonoBehaviour
 
     }
 
+    /**
+     * Initializes which axes the script reads from
+     */
     public void SetControllerNumber(int ControllerNum)
     {
         controllerNum = ControllerNum;
@@ -175,6 +187,9 @@ public class MenuManager : MonoBehaviour
         Pad = "P" + ControllerNum.ToString() + "_Pad";
     }
 
+    /**
+     * Highlights specified button
+     */
     public void highlightButton(int deselect)
     {
         //deselect the old button
@@ -192,6 +207,10 @@ public class MenuManager : MonoBehaviour
             menuScripts[buttonSelector].onSelect();
         }
     }
+
+    /**
+     * Selects specified button
+     */
     public void selectButton(int i)
     {
         //for moving up or down

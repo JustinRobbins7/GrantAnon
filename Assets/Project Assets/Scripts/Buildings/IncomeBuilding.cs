@@ -12,6 +12,9 @@ public class IncomeBuilding : Building
     float IncomeTimer;
 
     // Start is called before the first frame update
+    /**
+     * Sets initial interval times and income per interval if nothing is set in editor
+     */
     void Start()
     {
         if (IncomeInterval == 0)
@@ -28,6 +31,9 @@ public class IncomeBuilding : Building
     }
 
     // Update is called once per frame
+    /**
+     * Counts down the interval timer, adding funds to the owning player when the timer hits 0.
+     */
     void FixedUpdate()
     {
         IncomeTimer -= Time.deltaTime;

@@ -16,12 +16,20 @@ public class Grant : MonoBehaviour
         CapturingTeams = new int[MainGameManager.instance.PlayerCount];
         Countdown = CaptureTime;
         CurrentTimerOwner = 0;
+
+        gameObject.GetComponent<CircleCollider2D>().enabled = true;
     }
 
     // Update is called once per frame
+    /**
+     * Grant checks every time fixed update is called whether or not the grant has been claimed yet.
+     * This is determined by an array that holds ints indicating how many units a player has near the grant.
+     * If there is only one player with units nearby, they begin claiming the grant. This timer is paused if
+     * there are other players' units in the area and reset if another player is alone with the grant.
+     */
     void FixedUpdate()
     {
-        int NumCapturing = 0;
+        int NumCapturing = -1;
         bool MultipleCapturing = false;
 
         for(int i = 0; i < CapturingTeams.Length; i++)
@@ -30,9 +38,9 @@ public class Grant : MonoBehaviour
             if(CapturingTeams[i] > 0)
             {
                 //If there are, check if anyone else is doing so
-                if (NumCapturing == 0)
+                if (NumCapturing == -1)
                 {
-                    NumCapturing = i + 1;
+                    NumCapturing = i;
                 }
                 else
                 {
@@ -46,7 +54,7 @@ public class Grant : MonoBehaviour
         if (!MultipleCapturing)
         {
             // Check if no one is capturing grant
-            if (NumCapturing > 0)
+            if (NumCapturing >= 0)
             {
                 //See if capturing player was the same as last check
                 if (CurrentTimerOwner == NumCapturing)
@@ -56,11 +64,11 @@ public class Grant : MonoBehaviour
 
                     if (Countdown <= 0.0f)
                     {
+                        Debug.Log("Scoring for player " + CurrentTimerOwner.ToString());
                         //Claim Grant
                         MainGameManager.instance.ScoreGrant(CurrentTimerOwner);
                         Destroy(gameObject);
                     }
-
                 }
                 else
                 {
@@ -83,15 +91,25 @@ public class Grant : MonoBehaviour
         //Debug.Log("Countdown: " + Countdown.ToString());
     }
 
+    /**
+     * When a Unit comes within range of the grant's collision box, it is added to that players' unit count.
+     */
+    //When Unit collides with grant, add it to the unit counts for its owning player
     void OnTriggerEnter2D(Collider2D other)
     {
         Unit unit = other.gameObject.GetComponent<Unit>();
         if (unit != null)
         {
-            CapturingTeams[unit.OwningPlayerNum - 1]++;
+            Debug.Log(unit.OwningPlayerNum.ToString());
+            CapturingTeams[unit.OwningPlayerNum]++;
         }
     }
 
+
+    /**
+     * When a Unit leaves the range of the grant's collision box, it is subtracted from that players' unit count.
+     */
+    //When Unit leaves grant's collision box, remove it from its player's unit count
     void OnTriggerExit2D(Collider2D other)
     {
         Unit unit = other.gameObject.GetComponent<Unit>();

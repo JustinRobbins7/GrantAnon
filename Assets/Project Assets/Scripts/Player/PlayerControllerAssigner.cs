@@ -206,8 +206,11 @@ public class PlayerControllerAssigner : MonoBehaviour
             }
             */
 
-            SpawnedPlayer.GetComponent<Player>().SetBaseLocation(ConvertSpawnTileToCoords(spawnTiles[i]));
-            
+            //SpawnedPlayer.GetComponent<Player>().SetBaseLocation(ConvertSpawnTileToCoords(spawnTiles[i]));
+
+            SpawnedPlayer.transform.position = PlayerSpawns[i];
+            SpawnedPlayer.GetComponent<Player>().SetBaseLocation(PlayerSpawns[i]);
+
             MainGameManager.instance.InsertPlayer(i, SpawnedPlayer.GetComponent<Player>());
 
             MainGameManager.instance.AddPlayerControllerPair(i, ControllerNums[i]);

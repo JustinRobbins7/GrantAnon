@@ -6,18 +6,18 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: YellowMeleeUnit
+  m_Name: BlueMeleeUnit
   m_Controller: {fileID: 9100000, guid: 03c0801571816b24cbda2e8a50af3b9d, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400000, guid: 4be53acc9adbe254e9160d444acff14b, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 1a0a872d487439546897526689bae44f, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 4985ccdc7ff64044bad4473f4a0f0092, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 87d90c1aa260e0f4db5d1e4fb4095239, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 262891efe72faea46b095351cb6f2e30, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: f1194870af328864084ff5a432e5bce4, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: aa32aa719d0cb264d833d1c6e809d443, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: ff3b731a25ed03643ab1bcf5488cde66, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: bed4b58da6b3c01458f8ab4ee66d03c9, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 173bd670b50412f4ba2d6b2941da52ff, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 48b41de98a3d9c8499a03f3a95029e71, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 5543369e0eb1c654daa2be10579912a8, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: c5e2353bf57f8c545b895aa6a5d86f7b, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 4b7b939e117d90f40b85158b10780c48, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 49d315f34c0ab8741a83a148ef4e228d, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 0c75d13d4358247448df2ced9172c152, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 0d65e799088bcbe4daf8b7944921124b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ddde0bb109bea44458cb4cf8e4a9a5a3, type: 2}

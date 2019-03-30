@@ -16,6 +16,9 @@ public class ExitButton : MenuButton
         
     }
 
+    /**
+     * Quits application when called
+     */
     override public void onClick()
     {
         Application.Quit();

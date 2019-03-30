@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    /**
+     * Main player script, manages which input axes this player reads from 
+     * and performs defined behaviors based on those axes inputs.
+     */
     [SerializeField] float cameraSpeed = 10f;
     public int controllerNum;
 
@@ -50,23 +54,42 @@ public class PlayerController : MonoBehaviour
     private string PS = "";
     private string Pad = "";
 
+
+    // Start is called before the first frame update
+    /**
+     * Sets initial information for circle draw radius and sets unusable controller num to avoid crashes.
+     * Actual number set in PlayerControllerAssigner
+     */
+
     void Awake() {
         player = GetComponent<Player>();
     }
 
+    /**
+     * Reads controller axes to perform a number of actions.
+     */
     void FixedUpdate()
     {
         if (controllerNum > 0 && controllerNum < 5)
         {
+            /**
+             * Moves camera
+             */
             if (Input.GetAxis(horizontalAxis) != 0 || Input.GetAxis(verticalAxis) != 0) {
                 updateCameraLocation();
             }
 
+            /**
+             * Spawns building, placing it under this player's control
+             */
             if (Input.GetButtonDown(squareButton))
             {
                 player.SpawnBuilding(transform.position);
             }
 
+            /**
+             * Spawns unit, placing it under this player's control
+             */
             if (Input.GetButtonDown(xButton))
             {
                 player.SpawnUnit(transform.position);
@@ -116,6 +139,9 @@ public class PlayerController : MonoBehaviour
             {
             }
 
+            /**
+             * Draws a selection circle to select units
+             */
             if (Input.GetButtonDown(L3))
             {
               // If you are not currently in the selection phase (and want to switch to it), then deactivate all selectable gameObjects for the player first
@@ -156,7 +182,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void updateCameraLocation() {
+    /**
+     * Moves camerabased on this gameobject's location.
+     */
+    private void updateCameraLocation()
+    {
         Vector3 position = transform.position;
         position.x += Input.GetAxis(horizontalAxis) * cameraSpeed * Time.deltaTime;
         position.y += Input.GetAxis(verticalAxis) * cameraSpeed * Time.deltaTime;
@@ -165,6 +195,9 @@ public class PlayerController : MonoBehaviour
         gameObject.UpdateCircleDraw(radius);
     }
 
+    /**
+     * Moves drawn circle on this gameobject's location.
+     */
     private void UpdateSelectionCircle() {
         if (isSelecting) {
             foreach (var selectableObject in FindObjectsOfType<Unit>()) {
@@ -176,6 +209,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /**
+     * Checks if selectable object is within bounds of the drawn circle
+     */
     private bool IsWithinBounds(GameObject gameObject) {
         if (!isSelecting) {
             return false;
@@ -213,6 +249,12 @@ public class PlayerController : MonoBehaviour
         Pad = "P" + ControllerNum.ToString() + "_Pad";
     }
 
+    /**
+     * Defines which section of the screen this player's camera occupies, 
+     * partitioning the screen into sections based on the total number of players.
+     * This method sets the camera location on screen based on the player number and
+     * total number of playeres given.
+     */
     public void SetCameraViewport(int ViewportID, int NumberOfPlayers)
     {
         Camera playerCam = gameObject.GetComponentInChildren<Camera>();

@@ -310,10 +310,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerCount: 0
-  grantInterval: 1
+  grantInterval: 20
   grantPrefab: {fileID: 235358727748765205, guid: 99f819c5537c2f94ea9ffcd10e3e2139,
     type: 3}
-  grantSpawnLocation: {x: 0, y: 0}
+  grantSpawnLocation: {x: 20, y: 1.5}
 --- !u!4 &298649337
 Transform:
   m_ObjectHideFlags: 0
@@ -425,10 +425,10 @@ MonoBehaviour:
     type: 3}
   player: {fileID: 1910057981075629901, guid: b63f4954cf5e7674383e9f54914ee38d, type: 3}
   PlayerSpawns:
-  - {x: -1, y: 1, z: -1}
   - {x: 1, y: 1, z: -1}
-  - {x: -1, y: -1, z: -1}
-  - {x: 1, y: -1, z: -1}
+  - {x: 40, y: 1, z: -1}
+  - {x: 21.5, y: 14, z: -1}
+  - {x: 21.5, y: -12, z: -1}
   SignInTexts:
   - {fileID: 151456096339869540}
   - {fileID: 1570552303}

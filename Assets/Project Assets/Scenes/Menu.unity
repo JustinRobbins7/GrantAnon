@@ -125,6 +125,8 @@ GameObject:
   - component: {fileID: 447393895}
   - component: {fileID: 447393894}
   - component: {fileID: 447393898}
+  - component: {fileID: 447393900}
+  - component: {fileID: 447393899}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -206,6 +208,7 @@ RectTransform:
   - {fileID: 1107402076}
   - {fileID: 1686279705}
   - {fileID: 1455242889}
+  - {fileID: 1420995289}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -232,6 +235,41 @@ MonoBehaviour:
   - {fileID: 0}
   controllerNum: 0
   waitTime: 2
+--- !u!114 &447393899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 447393893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -98529514, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Texture: {fileID: 2800000, guid: 492197f5e7f292047b6880e9b651dd92, type: 3}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!222 &447393900
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 447393893}
+  m_CullTransparentMesh: 0
 --- !u!1 &800903272
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,12 +562,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1420995287}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 411.28564, y: 368.469, z: -9.037837}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -161.57355, y: -61.75711, z: -5.239326}
+  m_LocalScale: {x: 0.5797102, y: 0.5797102, z: 0.5797102}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_Father: {fileID: 447393897}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1420995290
 Rigidbody2D:

@@ -3,17 +3,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Unit : MonoBehaviour, IMoveable, ISelectable
+public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable
 {
     public int OwningPlayerNum = 0;
 
     Vector2[] path;
     [SerializeField] float movementSpeed = 5f;
+    [SerializeField] float maxHealth = 5f;
+    [SerializeField] GameObject healthBar = null;
     int targetIndex;
 
     private bool selected = false;
     private bool moving = false;
     private float radius = .5f;
+
+    //Serialized for testing
+    [SerializeField] private float currentHealth;
+
+    void Start()
+    {
+        currentHealth = maxHealth;
+    }
 
     void Update() {
         if (selected && targetIndex > 0) {
@@ -79,5 +89,26 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable
 
     public bool IsMoving() {
         return moving;
+    }
+
+    public void OnDamageTaken(float damageTaken)
+    {
+        currentHealth -= damageTaken;
+
+        if (healthBar != null)
+        {
+            healthBar.transform.localScale = new Vector3(currentHealth / maxHealth, 1f, 1f);
+        }
+
+        if (currentHealth <= 0)
+        {
+            OnDeath();
+        }
+    }
+
+    public void OnDeath()
+    {
+        selected = false;
+        Destroy(gameObject);
     }
 }

@@ -2,17 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Building : MonoBehaviour
+public class Building : MonoBehaviour, IDamageable
 {
-    // Start is called before the first frame update
+    [SerializeField] float maxHealth;
+    [SerializeField] GameObject healthBar = null;
+    float currentHealth;
+
     void Start()
     {
-        
+        currentHealth = maxHealth;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnDamageTaken(float damageTaken)
     {
-        
+        damageTaken -= currentHealth;
+
+        if (healthBar != null)
+        {
+            healthBar.transform.localScale = new Vector3(currentHealth / maxHealth, 1f, 1f);
+        }
+
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

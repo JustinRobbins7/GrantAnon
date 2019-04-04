@@ -1044,6 +1044,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelGrid
       objectReference: {fileID: 0}
+    - target: {fileID: 3480459701344105013, guid: a6b3a2f1c3909ed45a276d21a1339fc9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2306450355710984204, guid: a6b3a2f1c3909ed45a276d21a1339fc9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1112,11 +1117,6 @@ PrefabInstance:
     - target: {fileID: 7662578811587056499, guid: a6b3a2f1c3909ed45a276d21a1339fc9,
         type: 3}
       propertyPath: m_ColliderPaths.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3480459701344105013, guid: a6b3a2f1c3909ed45a276d21a1339fc9,
-        type: 3}
-      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1025431617978998426, guid: a6b3a2f1c3909ed45a276d21a1339fc9,
@@ -29333,6 +29333,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_CompositePaths.m_Paths.Array.data[5].Array.data[1412].y
       value: -9.74125
+      objectReference: {fileID: 0}
+    - target: {fileID: 1837516480744568126, guid: a6b3a2f1c3909ed45a276d21a1339fc9,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1396227117
+      objectReference: {fileID: 0}
+    - target: {fileID: 1837516480744568126, guid: a6b3a2f1c3909ed45a276d21a1339fc9,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6b3a2f1c3909ed45a276d21a1339fc9, type: 3}

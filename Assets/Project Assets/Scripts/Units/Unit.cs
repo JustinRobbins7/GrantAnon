@@ -16,6 +16,8 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable
     private bool selected = false;
     private bool moving = false;
     private float radius = .5f;
+    private Animator anim = null;
+    private SpriteRenderer sprite = null;
 
     //Serialized for testing
     [SerializeField] private float currentHealth;
@@ -23,6 +25,8 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable
     void Start()
     {
         currentHealth = maxHealth;
+        anim = gameObject.GetComponent<Animator>();
+        sprite = gameObject.GetComponent<SpriteRenderer>();
     }
 
     void Update() {
@@ -45,8 +49,20 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable
 
     IEnumerator FollowPath() {
         moving = true;
+        anim.SetBool("Moving", moving);
         Vector2 currentWaypoint = path[0];
         targetIndex = 0;
+
+        if (anim != null)
+        {
+            anim.SetBool("Right", GetComponent<Rigidbody2D>().position.x < currentWaypoint.x);
+            anim.SetBool("Up", GetComponent<Rigidbody2D>().position.y < currentWaypoint.y);
+        }
+
+        if (sprite != null)
+        {
+            sprite.flipX = GetComponent<Rigidbody2D>().position.x < currentWaypoint.x;
+        }
 
         while (true) {
             if (GetComponent<Rigidbody2D>().position == currentWaypoint) {
@@ -54,9 +70,26 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable
                 if (targetIndex >= path.Length) {
                     targetIndex = 0;
                     moving = false;
+
+                    if (anim != null)
+                    {
+                        anim.SetBool("Moving", moving);
+                    }
+                    
                     yield break;
                 }
                 currentWaypoint = path[targetIndex];
+
+                if (anim != null)
+                {
+                    anim.SetBool("Right", GetComponent<Rigidbody2D>().position.x < currentWaypoint.x);
+                    anim.SetBool("Up", GetComponent<Rigidbody2D>().position.y < currentWaypoint.y);
+                }
+
+                if (sprite != null)
+                {
+                    sprite.flipX = GetComponent<Rigidbody2D>().position.x < currentWaypoint.x;
+                }
             }
 
             GetComponent<Rigidbody2D>().position = Vector2.MoveTowards(GetComponent<Rigidbody2D>().position, currentWaypoint, movementSpeed * Time.deltaTime);

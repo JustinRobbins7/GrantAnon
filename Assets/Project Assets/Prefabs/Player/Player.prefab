@@ -172,6 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraSpeed: 10
+  controllerNum: 0
 --- !u!114 &1910057981075629901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,13 +186,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerNumber: 0
-  PlayerUnit: {fileID: 7255119618380831499, guid: cf9c66fa362817a42b3a0705de7528ab,
+  PlayerUnit: {fileID: 7140491234711736886, guid: 83e27204cd1a1fe4ea16bf2544fbd7c9,
     type: 3}
   BuildingOne: {fileID: 4789209872255996429, guid: 797daec30ec5b8c4a887b60397a7d3a4,
     type: 3}
   BuildingRoot: {fileID: 0}
   UnitRoot: {fileID: 0}
   money: 0
+  baseLocation: {x: 0, y: 0}
 --- !u!1 &4904088750689139821
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,10 +2,10 @@ fileFormatVersion: 2
 guid: af1f121c556da0d4db9ab9857bf2a1d3
 TextureImporter:
   fileIDToRecycleName:
-    21300000: ColoredBuildings_0
-    21300002: ColoredBuildings_1
-    21300004: ColoredBuildings_2
-    21300006: ColoredBuildings_3
+    21300000: RedCentralBuilding
+    21300002: GreenCentralBuilding
+    21300004: BlueCentralBuilding
+    21300006: YellowCentralBuilding
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -88,15 +88,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ColoredBuildings_0
+      name: RedCentralBuilding
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 2000
         height: 3000
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -108,15 +108,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ColoredBuildings_1
+      name: GreenCentralBuilding
       rect:
         serializedVersion: 2
         x: 2000
         y: 0
         width: 2000
         height: 3000
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -128,15 +128,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ColoredBuildings_2
+      name: BlueCentralBuilding
       rect:
         serializedVersion: 2
         x: 4000
         y: 0
         width: 2000
         height: 3000
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -148,15 +148,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ColoredBuildings_3
+      name: YellowCentralBuilding
       rect:
         serializedVersion: 2
         x: 6000
         y: 0
         width: 2000
         height: 3000
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

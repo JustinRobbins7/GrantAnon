@@ -2,10 +2,10 @@ fileFormatVersion: 2
 guid: d918bebd8bbdfc24c9ecd841e26c9951
 TextureImporter:
   fileIDToRecycleName:
-    21300000: ColoredResearchBuildings_0
-    21300002: ColoredResearchBuildings_1
-    21300004: ColoredResearchBuildings_2
-    21300006: ColoredResearchBuildings_3
+    21300000: RedIncomeBuilding
+    21300002: GreenIncomeBuilding
+    21300004: BlueIncomeBuilding
+    21300006: YellowIncomeBuilding
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -88,15 +88,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ColoredResearchBuildings_0
+      name: RedIncomeBuilding
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 1000
         height: 1500
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -108,15 +108,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ColoredResearchBuildings_1
+      name: GreenIncomeBuilding
       rect:
         serializedVersion: 2
         x: 1000
         y: 0
         width: 1000
         height: 1500
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -128,15 +128,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ColoredResearchBuildings_2
+      name: BlueIncomeBuilding
       rect:
         serializedVersion: 2
         x: 2000
         y: 0
         width: 1000
         height: 1500
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -148,15 +148,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ColoredResearchBuildings_3
+      name: YellowIncomeBuilding
       rect:
         serializedVersion: 2
         x: 3000
         y: 0
         width: 1000
         height: 1500
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

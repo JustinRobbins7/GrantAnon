@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
      * Sets initial information for circle draw radius and sets unusable controller num to avoid crashes.
      * Actual number set in PlayerControllerAssigner
      */
-
+    
     void Awake() {
         player = GetComponent<Player>();
     }

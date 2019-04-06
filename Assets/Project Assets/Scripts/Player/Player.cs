@@ -8,13 +8,17 @@ public class Player : MonoBehaviour
 {
     [SerializeField] public int PlayerNumber = 0;
 
-    [SerializeField] public GameObject PlayerUnit = null;
-    [SerializeField] public GameObject BuildingOne = null;
+    [HideInInspector] public GameObject HeroUnitPrefab = null;
+    [HideInInspector] public GameObject MeleeUnitPrefab = null;
+
+    [HideInInspector] public GameObject CentralBuildingPrefab = null;
+    [HideInInspector] public GameObject IncomeBuildingPrefab = null;
 
     [HideInInspector] public GameObject BuildingRoot = null;
     [HideInInspector] public GameObject UnitRoot = null;
-    [HideInInspector] public int money;
     [HideInInspector] public Vector2 baseLocation;
+    [HideInInspector] public int money;
+    private GameObject spawnedBase;
 
     // Start is called before the first frame update
     void Start()
@@ -27,8 +31,8 @@ public class Player : MonoBehaviour
     }
 
     public void SpawnBuilding(Vector2 location) {
-        if (BuildingRoot != null && BuildingOne != null) {
-            GameObject SpawnedBuilding = Instantiate(BuildingOne);
+        if (BuildingRoot != null && IncomeBuildingPrefab != null) {
+            GameObject SpawnedBuilding = Instantiate(IncomeBuildingPrefab);
             SpawnedBuilding.transform.parent = BuildingRoot.transform;
             SpawnedBuilding.transform.position = new Vector3(location.x, location.y, 0);
             SpawnedBuilding.layer = SortingLayer.GetLayerValueFromName("Foreground");
@@ -37,8 +41,8 @@ public class Player : MonoBehaviour
     }
 
     public void SpawnUnit(Vector2 location) {
-        if (UnitRoot != null && PlayerUnit != null) {
-            GameObject SpawnedUnit = Instantiate(PlayerUnit);
+        if (UnitRoot != null && MeleeUnitPrefab != null) {
+            GameObject SpawnedUnit = Instantiate(MeleeUnitPrefab);
             SpawnedUnit.transform.parent = UnitRoot.transform;
             SpawnedUnit.transform.position = new Vector3(location.x, location.y, 0);
             SpawnedUnit.layer = SortingLayer.GetLayerValueFromName("Characters");
@@ -58,5 +62,10 @@ public class Player : MonoBehaviour
 
     public void SpawnMainBase() {
         // Method that will spawn the main base once that is ready
+        if (CentralBuildingPrefab != null)
+        {
+            spawnedBase = Instantiate(CentralBuildingPrefab);
+            spawnedBase.gameObject.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+        }
     }
 }

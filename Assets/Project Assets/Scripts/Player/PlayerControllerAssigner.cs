@@ -16,6 +16,11 @@ public class PlayerControllerAssigner : MonoBehaviour
 
     public Vector3[] PlayerSpawns;
     public Text[] SignInTexts;
+    public GameObject[] CentralBuildings;
+    public GameObject[] IncomeBuildings;
+    public GameObject[] HeroUnits;
+    public GameObject[] MeleeUnits;
+
     private bool[] ActivePlayers;
     private bool[] ReadyPlayers;
     bool AllPlayersReady;
@@ -171,6 +176,10 @@ public class PlayerControllerAssigner : MonoBehaviour
                 SpawnedPlayer = Instantiate(player);
                 SpawnedPlayer.GetComponent<PlayerController>().SetCameraViewport(i + 1, RealPlayers);
                 SpawnedPlayer.GetComponent<PlayerController>().SetControllerNumber(ControllerNums[i]);
+                SpawnedPlayer.GetComponent<Player>().CentralBuildingPrefab = CentralBuildings[i];
+                SpawnedPlayer.GetComponent<Player>().IncomeBuildingPrefab = IncomeBuildings[i];
+                SpawnedPlayer.GetComponent<Player>().HeroUnitPrefab = HeroUnits[i];
+                SpawnedPlayer.GetComponent<Player>().MeleeUnitPrefab = MeleeUnits[i];
             } else { /* Spawn AI player */
                 SpawnedPlayer = Instantiate(aiPlayer);
             }

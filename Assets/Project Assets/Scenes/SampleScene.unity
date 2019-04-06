@@ -425,7 +425,7 @@ MonoBehaviour:
     type: 3}
   player: {fileID: 1910057981075629901, guid: b63f4954cf5e7674383e9f54914ee38d, type: 3}
   PlayerSpawns:
-  - {x: 1, y: 1, z: -1}
+  - {x: 3, y: 0, z: -1}
   - {x: 40, y: 1, z: -1}
   - {x: 21.5, y: 14, z: -1}
   - {x: 21.5, y: -12, z: -1}
@@ -434,6 +434,26 @@ MonoBehaviour:
   - {fileID: 1570552303}
   - {fileID: 1617681325}
   - {fileID: 1441924980}
+  CentralBuildings:
+  - {fileID: 813649127479131740, guid: cd4059138966deb418e3709e392dc691, type: 3}
+  - {fileID: 8324665624590536897, guid: 2ce2e50a239743044815a51a2d6f9f47, type: 3}
+  - {fileID: 619738231011429234, guid: c12d83d120d05134e92fe89593088f31, type: 3}
+  - {fileID: 1143111786086107824, guid: e5e5532896944a84bb0208d78719fb80, type: 3}
+  IncomeBuildings:
+  - {fileID: 4789209872255996429, guid: 797daec30ec5b8c4a887b60397a7d3a4, type: 3}
+  - {fileID: 5594834706568832305, guid: f903767dceb3f694899a385d1bf8bd2a, type: 3}
+  - {fileID: 1427504406002815035, guid: 2e3492a22dcc44d4e98b6c9cd1657376, type: 3}
+  - {fileID: 4214311246225102023, guid: 61454e8897e0e27489cef7a97aae13d0, type: 3}
+  HeroUnits:
+  - {fileID: 7140491234711736886, guid: 83e27204cd1a1fe4ea16bf2544fbd7c9, type: 3}
+  - {fileID: 9203108301439864215, guid: db13ae478be151f4dbff0ff35c571fa6, type: 3}
+  - {fileID: 961681523161037725, guid: 88ef8ccd1468db749b6bf2199a72612c, type: 3}
+  - {fileID: 5877460741378991907, guid: c6f5f61289490364da5dd7561bda5877, type: 3}
+  MeleeUnits:
+  - {fileID: 7018489986844735102, guid: f465bc82cbc5008449bbeb9c0737e9c4, type: 3}
+  - {fileID: 3559805077830492302, guid: ae5f5c77f90bc8849938e8b0e8121be0, type: 3}
+  - {fileID: 1837206800527598086, guid: 86075097a15b18c4e8c32ff984e2b06f, type: 3}
+  - {fileID: 8056650831484582219, guid: e2d55d470f5e09449827d2af5e2309c4, type: 3}
   SpawnAI: 0
 --- !u!1001 &375436420
 PrefabInstance:

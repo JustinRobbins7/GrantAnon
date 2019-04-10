@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 961681523161037712}
   - component: {fileID: 961681523161037727}
-  - component: {fileID: 332365892695083231}
   - component: {fileID: 7489545595394698422}
   - component: {fileID: 961681523161037726}
   - component: {fileID: 5262076417839069857}
+  - component: {fileID: 1295765980734557977}
   m_Layer: 0
   m_Name: RedHero
   m_TagString: Untagged
@@ -58,23 +58,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &332365892695083231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 961681523161037725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24625221eaf96094388d2d675885c4e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OwningPlayerNum: 0
-  movementSpeed: 5
-  maxHealth: 10
-  healthBar: {fileID: 4588511030776310971}
-  currentHealth: 0
 --- !u!61 &7489545595394698422
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -168,6 +151,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1295765980734557977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 961681523161037725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c98533eab2dfed647a5e79a420e0ba3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OwningPlayerNum: 0
+  movementSpeed: 5
+  maxHealth: 10
+  healthBar: {fileID: 4588511030776310971}
+  owner: {fileID: 0}
+  respawnTime: 5
 --- !u!1 &1963797266589468653
 GameObject:
   m_ObjectHideFlags: 0

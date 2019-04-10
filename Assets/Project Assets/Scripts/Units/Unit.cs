@@ -9,27 +9,26 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable
 
     Vector2[] path;
     [SerializeField] float movementSpeed = 5f;
-    [SerializeField] float maxHealth = 5f;
-    [SerializeField] GameObject healthBar = null;
+    [SerializeField] protected float maxHealth = 5f;
+    [SerializeField] protected GameObject healthBar = null;
     int targetIndex;
 
-    private bool selected = false;
+    protected bool selected = false;
     private bool moving = false;
     private float radius = .5f;
     private Animator anim = null;
     private SpriteRenderer sprite = null;
 
-    //Serialized for testing
-    [SerializeField] private float currentHealth;
+    protected float currentHealth;
 
-    void Start()
+    protected virtual  void Start()
     {
         currentHealth = maxHealth;
         anim = gameObject.GetComponent<Animator>();
         sprite = gameObject.GetComponent<SpriteRenderer>();
     }
 
-    void Update() {
+    protected virtual void Update() {
         if (selected && targetIndex > 0) {
             gameObject.UpdateCircleDraw(radius);
         }
@@ -124,7 +123,7 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable
         return moving;
     }
 
-    public void OnDamageTaken(float damageTaken)
+    public virtual void OnDamageTaken(float damageTaken)
     {
         currentHealth -= damageTaken;
 
@@ -139,7 +138,7 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable
         }
     }
 
-    public void OnDeath()
+    public virtual void OnDeath()
     {
         selected = false;
         Destroy(gameObject);

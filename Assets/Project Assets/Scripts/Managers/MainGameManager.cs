@@ -129,12 +129,5 @@ public class MainGameManager : GameManager
             Players[earningPlayer].money += moneyEarned;
         }
     }
-
-    /**
-     * Not yet implemented
-     */
-    public override void StartLevelAfterLoad(int startPlayerCount)
-    {
-
-    }
+    
 }

@@ -9,7 +9,9 @@ public class Player : MonoBehaviour
     [SerializeField] public int PlayerNumber = 0;
 
     [HideInInspector] public GameObject HeroUnitPrefab = null;
+    [HideInInspector] public GameObject SpawnedHeroUnit = null;
     [HideInInspector] public GameObject MeleeUnitPrefab = null;
+
 
     [HideInInspector] public GameObject CentralBuildingPrefab = null;
     [HideInInspector] public GameObject IncomeBuildingPrefab = null;
@@ -20,10 +22,27 @@ public class Player : MonoBehaviour
     [HideInInspector] public int money;
     private GameObject spawnedBase;
 
+    private float heroRespawnTimer;
+
     // Start is called before the first frame update
     void Start()
     {
         money = 0;
+        heroRespawnTimer = 0;
+    }
+
+    void FixedUpdate()
+    {
+        if (heroRespawnTimer >= 0)
+        {
+            heroRespawnTimer -= Time.deltaTime;
+
+            if (heroRespawnTimer < 0)
+            {
+                heroRespawnTimer = 0;
+                SpawnHeroUnit(baseLocation);
+            }
+        }
     }
 
     public void SetPlayerNumber(int PlayerNumber) {
@@ -50,6 +69,19 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void SpawnHeroUnit(Vector2 location)
+    {
+        if (SpawnedHeroUnit == null)
+        {
+            SpawnedHeroUnit = Instantiate(HeroUnitPrefab);
+            SpawnedHeroUnit.transform.parent = UnitRoot.transform;
+            SpawnedHeroUnit.transform.position = new Vector3(location.x, location.y, 0);
+            SpawnedHeroUnit.name = "Player " + PlayerNumber.ToString() + " Hero";
+            SpawnedHeroUnit.GetComponent<HeroUnit>().owner = this;
+            SpawnedHeroUnit.GetComponent<HeroUnit>().OwningPlayerNum = PlayerNumber;
+        }
+    }
+
     public Unit[] GetUnits() {
         return Array.FindAll(FindObjectsOfType<Unit>(), selectableObject => selectableObject.OwningPlayerNum == PlayerNumber);
     }
@@ -57,7 +89,8 @@ public class Player : MonoBehaviour
     public void SetBaseLocation(Vector2 baseLocation) {
         this.baseLocation = baseLocation;
         SpawnMainBase();
-        SpawnUnit(baseLocation);
+        //SpawnUnit(baseLocation);
+        SpawnHeroUnit(baseLocation);
     }
 
     public void SpawnMainBase() {
@@ -67,5 +100,10 @@ public class Player : MonoBehaviour
             spawnedBase = Instantiate(CentralBuildingPrefab);
             spawnedBase.gameObject.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
         }
+    }
+
+    public void SetHeroRespawn(float timeToRespawn)
+    {
+        heroRespawnTimer = timeToRespawn;
     }
 }

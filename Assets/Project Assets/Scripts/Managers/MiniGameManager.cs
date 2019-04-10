@@ -20,9 +20,4 @@ public class MiniGameManager : GameManager
     {
 
     }
-
-    public override void StartLevelAfterLoad(int startPlayerCount)
-    {
-
-    }
 }

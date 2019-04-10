@@ -172,6 +172,7 @@ GameObject:
   - component: {fileID: 4267245510499545096}
   - component: {fileID: 5877460741378991904}
   - component: {fileID: 1571437102919509535}
+  - component: {fileID: 485676053247019483}
   m_Layer: 0
   m_Name: YellowHero
   m_TagString: Untagged
@@ -232,7 +233,6 @@ MonoBehaviour:
   movementSpeed: 5
   maxHealth: 10
   healthBar: {fileID: 7162360991664123909}
-  currentHealth: 0
 --- !u!61 &4267245510499545096
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -326,6 +326,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &485676053247019483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5877460741378991907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c98533eab2dfed647a5e79a420e0ba3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OwningPlayerNum: 0
+  movementSpeed: 5
+  maxHealth: 10
+  healthBar: {fileID: 7162360991664123909}
+  owner: {fileID: 0}
+  respawnTime: 5
 --- !u!1 &7162360991664123909
 GameObject:
   m_ObjectHideFlags: 0

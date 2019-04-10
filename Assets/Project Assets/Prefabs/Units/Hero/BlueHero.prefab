@@ -151,10 +151,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7140491234711736891}
   - component: {fileID: 7140491234711736884}
-  - component: {fileID: 7700108312327659892}
   - component: {fileID: 698265455991637277}
   - component: {fileID: 7140491234711736885}
   - component: {fileID: 2829997989707682570}
+  - component: {fileID: 5899876173743433842}
   m_Layer: 0
   m_Name: BlueHero
   m_TagString: Untagged
@@ -199,23 +199,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &7700108312327659892
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7140491234711736886}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24625221eaf96094388d2d675885c4e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OwningPlayerNum: 0
-  movementSpeed: 5
-  maxHealth: 10
-  healthBar: {fileID: 5903410741137589520}
-  currentHealth: 0
 --- !u!61 &698265455991637277
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -309,6 +292,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5899876173743433842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7140491234711736886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c98533eab2dfed647a5e79a420e0ba3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OwningPlayerNum: 0
+  movementSpeed: 5
+  maxHealth: 10
+  healthBar: {fileID: 5903410741137589520}
+  currentHealth: 0
+  respawnTime: 5
 --- !u!1 &8430814951717449286
 GameObject:
   m_ObjectHideFlags: 0

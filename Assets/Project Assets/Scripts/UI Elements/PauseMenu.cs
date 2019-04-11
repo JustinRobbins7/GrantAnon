@@ -21,7 +21,7 @@ public class PauseMenu : MonoBehaviour
 
     public void toggle()
     {
-        Debug.LogError("We toggle");
+        //Debug.LogError("We toggle");
         menu.SetActive(!(menu.activeSelf));
     }
 }

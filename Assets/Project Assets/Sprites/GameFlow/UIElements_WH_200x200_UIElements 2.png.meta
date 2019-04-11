@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: f4e38aad300adad48bb50c0b9eae1a7c
+guid: 7a2f17a093bdb6845a72a93f9e261d27
 TextureImporter:
   fileIDToRecycleName:
     21300000: Cursor
-    21300002: Resource
-    21300004: Unit
+    21300002: Resources
+    21300004: Units
     21300006: Grant
-    21300008: Arrow
-    21300010: Minigame Icon
+    21300008: Indicator
+    21300010: MinigameIcon
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -104,13 +104,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 70eda7b15b917194b8a2afa01d822984
+      spriteID: 4479a001eb662d046b1dbe5b86466416
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Resource
+      name: Resources
       rect:
         serializedVersion: 2
         x: 200
@@ -124,13 +124,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ff4bcba1d71db6345abbeef854732cba
+      spriteID: 5ea546748587c364e8131b09132d1987
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Unit
+      name: Units
       rect:
         serializedVersion: 2
         x: 400
@@ -144,7 +144,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6156dfaf6d1c1ee42988b60baa78e235
+      spriteID: 1c64a9b4c1a7a5d469f64f3707e833e6
       vertices: []
       indices: 
       edges: []
@@ -164,13 +164,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ee90222edd484948a66d9435050142d
+      spriteID: d4b9fb70d3bad98408a1daa7c6c51cb8
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arrow
+      name: Indicator
       rect:
         serializedVersion: 2
         x: 800
@@ -184,13 +184,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9d8944d8302efd540a45f366d7d4323f
+      spriteID: 8280de09b5220dc4abf2881b76149108
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Minigame Icon
+      name: MinigameIcon
       rect:
         serializedVersion: 2
         x: 1000
@@ -204,7 +204,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 857c7659e7168e641810ee939bf22ea9
+      spriteID: c66803c61260c344082a8ab2f9970624
       vertices: []
       indices: 
       edges: []
@@ -212,7 +212,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: d9f5fcd13afb0bc488b037c4b6032996
+    spriteID: bf6db4f0b42e96245baabe2df6fee8b4
     vertices: []
     indices: 
     edges: []

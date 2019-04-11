@@ -87,12 +87,28 @@ public class PlayerController : MonoBehaviour
                 player.SpawnBuilding(transform.position);
             }
 
+
             /**
-             * Spawns unit, placing it under this player's control
+             * Draws a selection circle to select units
              */
             if (Input.GetButtonDown(xButton))
             {
-                player.SpawnUnit(transform.position);
+                // If you are not currently in the selection phase (and want to switch to it), then deactivate all selectable gameObjects for the player first
+                if (!isSelecting)
+                {
+                    foreach (var unit in player.GetUnits())
+                    {
+                        unit.SetSelected(false);
+                    }
+
+                    // Initialize the line renderer
+                    gameObject.CreateCircleDraw(radius);
+                }
+                else
+                {
+                    gameObject.DestroyCircleDraw();
+                }
+                isSelecting = !isSelecting;
             }
 
             if (Input.GetButtonDown(circleButton))
@@ -102,9 +118,12 @@ public class PlayerController : MonoBehaviour
                     unit.Move(transform.position);
                 }
             }
-
+            /**
+            * Spawns unit, placing it under this player's control
+            */
             if (Input.GetButtonDown(triangleButton))
             {
+                player.SpawnUnit(transform.position);
             }
 
             if (Input.GetButtonDown(L1))
@@ -139,23 +158,8 @@ public class PlayerController : MonoBehaviour
             {
             }
 
-            /**
-             * Draws a selection circle to select units
-             */
             if (Input.GetButtonDown(L3))
             {
-              // If you are not currently in the selection phase (and want to switch to it), then deactivate all selectable gameObjects for the player first
-              if (!isSelecting) {
-                  foreach (var unit in player.GetUnits()) {
-                    unit.SetSelected(false);
-                  }
-
-                  // Initialize the line renderer
-                  gameObject.CreateCircleDraw(radius);
-              } else {
-                  gameObject.DestroyCircleDraw();
-              }
-              isSelecting = !isSelecting;
             }
 
             if (Input.GetButtonDown(R3))
@@ -168,6 +172,9 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetButtonDown(Options))
             {
+                //here's where we add the pause button
+                //Debug.LogError("Options Button Pressed!");
+                this.GetComponent<PauseMenu>().toggle();
             }
 
             if (Input.GetButtonDown(PS))

@@ -19,11 +19,11 @@ public class IndicatorButton : MonoBehaviour
 
     public void onSelect()
     {
-        this.GetComponent<Image>().color = new Color32(215, 180, 0, 180);
+        this.GetComponent<Image>().color = new Color32(255, 255,255, 255);
     }
     public void onUnselect()
     {
-        this.GetComponent<Image>().color = new Color32(138, 25, 19, 180);
+        this.GetComponent<Image>().color = new Color32(183, 183, 183, 120);
     }
     
 }

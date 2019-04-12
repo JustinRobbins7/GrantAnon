@@ -123,7 +123,8 @@ public class PlayerController : MonoBehaviour
             */
             if (Input.GetButtonDown(triangleButton))
             {
-                player.SpawnUnit(transform.position);
+                // player.SpawnUnit(transform.position);
+                player.SpawnUnitAtBase();
             }
 
             if (Input.GetButtonDown(L1))

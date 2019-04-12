@@ -153,7 +153,7 @@ MonoBehaviour:
   movementSpeed: 5
   maxHealth: 10
   healthBar: {fileID: 3137372735275201824}
-  currentHealth: 0
+  buildCost: 5
 --- !u!61 &8347337866583962925
 BoxCollider2D:
   m_ObjectHideFlags: 0

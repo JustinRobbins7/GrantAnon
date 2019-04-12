@@ -50,22 +50,24 @@ public class Player : MonoBehaviour
     }
 
     public void SpawnBuilding(Vector2 location) {
-        if (BuildingRoot != null && IncomeBuildingPrefab != null) {
+        if (BuildingRoot != null && IncomeBuildingPrefab != null && money >= IncomeBuildingPrefab.GetComponent<IncomeBuilding>().GetCost()) {
             GameObject SpawnedBuilding = Instantiate(IncomeBuildingPrefab);
             SpawnedBuilding.transform.parent = BuildingRoot.transform;
             SpawnedBuilding.transform.position = new Vector3(location.x, location.y, 0);
             SpawnedBuilding.layer = SortingLayer.GetLayerValueFromName("Foreground");
             SpawnedBuilding.GetComponent<IncomeBuilding>().OwningPlayerNum = PlayerNumber;
+            money -= IncomeBuildingPrefab.GetComponent<IncomeBuilding>().GetCost();
         }
     }
 
     public void SpawnUnit(Vector2 location) {
-        if (UnitRoot != null && MeleeUnitPrefab != null) {
+        if (UnitRoot != null && MeleeUnitPrefab != null && money >= MeleeUnitPrefab.GetComponent<Unit>().GetCost()) {
             GameObject SpawnedUnit = Instantiate(MeleeUnitPrefab);
             SpawnedUnit.transform.parent = UnitRoot.transform;
             SpawnedUnit.transform.position = new Vector3(location.x, location.y, 0);
             SpawnedUnit.layer = SortingLayer.GetLayerValueFromName("Characters");
             SpawnedUnit.GetComponent<Unit>().OwningPlayerNum = PlayerNumber;
+            money -= MeleeUnitPrefab.GetComponent<Unit>().GetCost();
         }
     }
 
@@ -79,6 +81,19 @@ public class Player : MonoBehaviour
             SpawnedHeroUnit.name = "Player " + PlayerNumber.ToString() + " Hero";
             SpawnedHeroUnit.GetComponent<HeroUnit>().owner = this;
             SpawnedHeroUnit.GetComponent<HeroUnit>().OwningPlayerNum = PlayerNumber;
+        }
+    }
+
+    public void SpawnUnitAtBase()
+    {
+        if (UnitRoot != null && MeleeUnitPrefab != null && money >= MeleeUnitPrefab.GetComponent<Unit>().GetCost())
+        {
+            GameObject SpawnedUnit = Instantiate(MeleeUnitPrefab);
+            SpawnedUnit.transform.parent = UnitRoot.transform;
+            SpawnedUnit.transform.position = new Vector3(baseLocation.x, baseLocation.y, 0);
+            SpawnedUnit.layer = SortingLayer.GetLayerValueFromName("Characters");
+            SpawnedUnit.GetComponent<Unit>().OwningPlayerNum = PlayerNumber;
+            money -= MeleeUnitPrefab.GetComponent<Unit>().GetCost();
         }
     }
 

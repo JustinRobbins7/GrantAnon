@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5807166430319224457}
   - component: {fileID: 7410862859372230929}
   m_Layer: 0
-  m_Name: CentralBuilding
+  m_Name: BlueCentralBuilding
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,6 +96,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 15
   healthBar: {fileID: 3661968687392428151}
+  buildCost: 0
+  IncomeInterval: 10
+  IncomePerInterval: 5
+  OwningPlayerNum: 0
 --- !u!1 &1694500083756191984
 GameObject:
   m_ObjectHideFlags: 0

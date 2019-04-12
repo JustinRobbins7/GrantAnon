@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable
+public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable, IBuyable
 {
     public int OwningPlayerNum = 0;
 
@@ -11,6 +11,7 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable
     [SerializeField] float movementSpeed = 5f;
     [SerializeField] protected float maxHealth = 5f;
     [SerializeField] protected GameObject healthBar = null;
+    [SerializeField] protected int buildCost;
     int targetIndex;
 
     protected bool selected = false;
@@ -142,5 +143,10 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable
     {
         selected = false;
         Destroy(gameObject);
+    }
+
+    public int GetCost()
+    {
+        return buildCost;
     }
 }

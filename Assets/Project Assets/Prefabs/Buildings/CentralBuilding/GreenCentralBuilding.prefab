@@ -316,3 +316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 15
   healthBar: {fileID: 5340252982121201386}
+  buildCost: 0
+  IncomeInterval: 10
+  IncomePerInterval: 5
+  OwningPlayerNum: 0

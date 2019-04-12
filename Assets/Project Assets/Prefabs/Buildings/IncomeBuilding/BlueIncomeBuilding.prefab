@@ -201,7 +201,7 @@ GameObject:
   - component: {fileID: 6683111259290960744}
   - component: {fileID: 1984993733049225443}
   m_Layer: 0
-  m_Name: IncomeBuilding
+  m_Name: BlueIncomeBuilding
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -285,8 +285,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   healthBar: {fileID: 5708604943303076701}
-  IncomeInterval: 1
-  IncomePerInterval: 10
+  buildCost: 10
+  IncomeInterval: 5
+  IncomePerInterval: 1
   OwningPlayerNum: 0
 --- !u!1 &5708604943303076701
 GameObject:

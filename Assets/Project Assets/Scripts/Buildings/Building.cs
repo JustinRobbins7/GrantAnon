@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Building : MonoBehaviour, IDamageable
+public class Building : MonoBehaviour, IDamageable, IBuyable
 {
     [SerializeField] float maxHealth;
     [SerializeField] GameObject healthBar = null;
+    [SerializeField] int buildCost;
     float currentHealth;
 
     void Start()
@@ -26,5 +27,10 @@ public class Building : MonoBehaviour, IDamageable
         {
             Destroy(gameObject);
         }
+    }
+
+    public int GetCost()
+    {
+        return buildCost;
     }
 }

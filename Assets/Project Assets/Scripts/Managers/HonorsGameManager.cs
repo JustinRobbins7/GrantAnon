@@ -52,6 +52,7 @@ public class HonorsGameManager : MainGameManager
                 grantTimer = 0.0f;
             }
 
+            /*
             if (!minigameRunning)
             {
                 minigameTimer += Time.deltaTime;
@@ -63,29 +64,33 @@ public class HonorsGameManager : MainGameManager
                 minigameTimer = 0.0f;
                 StartMinigame();
             }
+            */
         }
     }
 
-    void StartMinigame()
+    public void StartMinigame()
     {
-        if (mgOne != null)
+        if (!minigameRunning)
         {
-            for (int i = 0; i < Players.Length; i++)
+            if (mgOne != null)
             {
-                Players[i].ToggleCamera(false);
-                Players[i].DeactivateUnits();
-                Players[i].enabled = false;
+                for (int i = 0; i < Players.Length; i++)
+                {
+                    Players[i].ToggleCamera(false);
+                    Players[i].DeactivateUnits();
+                    Players[i].enabled = false;
+                }
+
+                mgOne.InitMinigame();
+
+                //minigameRunning = true;
+                //minigameTimer = 0.0f;
+                runLevel = false;
             }
-
-            mgOne.InitMinigame();
-
-            //minigameRunning = true;
-            //minigameTimer = 0.0f;
-            runLevel = false;
-        }
-        else
-        {
-            Debug.Log("Minigame is null, aborting minigame start.");
+            else
+            {
+                Debug.Log("Minigame is null, aborting minigame start.");
+            }
         }
     }
 

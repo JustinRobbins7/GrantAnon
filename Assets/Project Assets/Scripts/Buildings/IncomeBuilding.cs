@@ -7,8 +7,7 @@ public class IncomeBuilding : Building
     [SerializeField] float IncomeInterval;
     [SerializeField] int IncomePerInterval;
 
-     public int OwningPlayerNum;
-
+    public int OwningPlayerNum;
     float IncomeTimer;
 
     // Start is called before the first frame update

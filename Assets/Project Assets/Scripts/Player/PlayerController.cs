@@ -1,11 +1,10 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
     /**
      * Main player script, manages which input axes this player reads from 
      * and performs defined behaviors based on those axes inputs.
@@ -14,8 +13,6 @@ public class PlayerController : MonoBehaviour
     public int controllerNum;
 
     private Player player;
-
-    bool unitsactive;
 
     // Variables for drawing the unit selection circle
     private bool isSelecting = false;
@@ -58,19 +55,14 @@ public class PlayerController : MonoBehaviour
     private string Pad = "";
 
 
+    // Start is called before the first frame update
     /**
      * Sets initial information for circle draw radius and sets unusable controller num to avoid crashes.
      * Actual number set in PlayerControllerAssigner
      */
-    void Awake()
-    {
+    
+    void Awake() {
         player = GetComponent<Player>();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        SetControllerNumber(controllerNum);
     }
 
     /**
@@ -78,26 +70,12 @@ public class PlayerController : MonoBehaviour
      */
     void FixedUpdate()
     {
-        MainGameInputCheck();
-
-        
-        /*
-        else if (levelMode == 1)
-        {
-            CleanUpMinigameInputCheck();
-        }
-        */
-    }
-
-    private void MainGameInputCheck()
-    {
         if (controllerNum > 0 && controllerNum < 5)
         {
             /**
              * Moves camera
              */
-            if (Input.GetAxis(horizontalAxis) != 0 || Input.GetAxis(verticalAxis) != 0)
-            {
+            if (Input.GetAxis(horizontalAxis) != 0 || Input.GetAxis(verticalAxis) != 0) {
                 updateCameraLocation();
             }
 
@@ -109,113 +87,108 @@ public class PlayerController : MonoBehaviour
                 player.SpawnBuilding(transform.position);
             }
 
+
             /**
-             * Spawns unit, placing it under this player's control
+             * Draws a selection circle to select units
              */
             if (Input.GetButtonDown(xButton))
             {
-                player.SpawnUnit(transform.position);
+                // If you are not currently in the selection phase (and want to switch to it), then deactivate all selectable gameObjects for the player first
+                if (!isSelecting)
+                {
+                    foreach (var unit in player.GetUnits())
+                    {
+                        unit.SetSelected(false);
+                    }
+
+                    // Initialize the line renderer
+                    gameObject.CreateCircleDraw(radius);
+                }
+                else
+                {
+                    gameObject.DestroyCircleDraw();
+                }
+                isSelecting = !isSelecting;
             }
 
             if (Input.GetButtonDown(circleButton))
             {
                 Unit[] selectedUnits = Array.FindAll(player.GetUnits(), unit => unit.IsSelected());
-                foreach (var unit in selectedUnits)
-                {
+                foreach (var unit in selectedUnits) {
                     unit.Move(transform.position);
                 }
             }
-
-            /*
-            //Move Selected Units
-            if (Input.GetButtonDown(circleButton))
-            {
-
-                foreach (var selectableObject in FindObjectsOfType<Unit>())
-                {
-                    if (selectableObject.OwningControllerNum == controllerNum && selectableObject.IsSelected())
-                    { // Ensure that unit is in same group as this camera
-                        selectableObject.GetComponent<Unit>().Move(transform.position);
-                    }
-
-                    Unit[] selectedUnits = Array.FindAll(player.GetUnits(), unit => unit.IsSelected());
-                    foreach (var unit in selectedUnits)
-                    {
-                        unit.Move(transform.position);
-                    }
-                }
-            }
-            */
-            
             /**
-              * Draws a selection circle to select units
-              */
+            * Spawns unit, placing it under this player's control
+            */
+            if (Input.GetButtonDown(triangleButton))
+            {
+                // player.SpawnUnit(transform.position);
+                player.SpawnUnitAtBase();
+            }
+
+            if (Input.GetButtonDown(L1))
+            {
+            }
+
+            if (Input.GetButtonDown(R1))
+            {
+            }
+
+            if (Input.GetAxis(L2) != -1)
+            {
+            }
+
+            if (Input.GetAxis(R2) != -1)
+            {
+            }
+
+            if (Input.GetAxis(rHorizontalAxis) != 0)
+            {
+            }
+
+            if (Input.GetAxis(rVerticalAxis) != 0)
+            {
+            }
+
+            if (Input.GetAxis(DPadX) != 0)
+            {
+            }
+
+            if (Input.GetAxis(DPadY) != 0)
+            {
+            }
+
             if (Input.GetButtonDown(L3))
-           {
-               // If you are not currently in the selection phase (and want to switch to it), then deactivate all selectable gameObjects for the player first
-               if (!isSelecting)
-               {
-                   foreach (var unit in player.GetUnits())
-                   {
-                       unit.SetSelected(false);
-                   }
+            {
+            }
 
+            if (Input.GetButtonDown(R3))
+            {
+            }
 
-                   // Initialize the line renderer
-                   gameObject.CreateCircleDraw(radius);
-               }
-               else
-               {
-                   gameObject.DestroyCircleDraw();
-               }
+            if (Input.GetButtonDown(Share))
+            {
+            }
 
-               isSelecting = !isSelecting;
-           }
-           
+            if (Input.GetButtonDown(Options))
+            {
+                //here's where we add the pause button
+                //Debug.LogError("Options Button Pressed!");
+                this.GetComponent<PauseMenu>().toggle();
+            }
+
+            if (Input.GetButtonDown(PS))
+            {
+            }
 
             if (Input.GetButtonDown(Pad))
             {
-                if (unitsactive)
-                {
-                    Debug.Log("Deactivating Units and Buildings");
-                    player.DeactivateUnits();
-                    unitsactive = false;
-                }
-                else
-                {
-                    Debug.Log("Reactivating Units and Buildings");
-                    player.ReactivateUnits();
-                    unitsactive = true;
-                }
             }
 
             UpdateSelectionCircle();
         }
     }
-
-
-    /*
-    private void CleanUpMinigameInputCheck()
-    {
-        if (controllerNum > 0 && controllerNum < 5)
-        {
-            if (Input.GetAxis(horizontalAxis) != 0 || Input.GetAxis(verticalAxis) != 0)
-            {
-                if (sweeper != null)
-                {
-                    Vector3 sweeperPos = sweeper.transform.position;
-                    sweeperPos.x += Input.GetAxis(horizontalAxis) * Time.deltaTime;
-                    sweeperPos.y += Input.GetAxis(verticalAxis) * Time.deltaTime;
-                    sweeper.transform.position = sweeperPos;
-                }
-                else
-                {
-                    Debug.Log("No Sweeper!");
-                }
-            }
-        }
-    }
-    */
 
     /**
      * Moves camerabased on this gameobject's location.
@@ -233,15 +206,11 @@ public class PlayerController : MonoBehaviour
     /**
      * Moves drawn circle on this gameobject's location.
      */
-    private void UpdateSelectionCircle()
-    {
-        if (isSelecting)
-        {
-            foreach (var selectableObject in FindObjectsOfType<Unit>())
-            {
+    private void UpdateSelectionCircle() {
+        if (isSelecting) {
+            foreach (var selectableObject in FindObjectsOfType<Unit>()) {
                 Unit[] unitsInBounds = Array.FindAll(player.GetUnits(), unit => IsWithinBounds(unit.gameObject));
-                foreach (var unit in unitsInBounds)
-                {
+                foreach (var unit in unitsInBounds) {
                     unit.SetSelected(true);
                 }
             }
@@ -251,10 +220,8 @@ public class PlayerController : MonoBehaviour
     /**
      * Checks if selectable object is within bounds of the drawn circle
      */
-    private bool IsWithinBounds(GameObject gameObject)
-    {
-        if (!isSelecting)
-        {
+    private bool IsWithinBounds(GameObject gameObject) {
+        if (!isSelecting) {
             return false;
         }
 
@@ -350,25 +317,4 @@ public class PlayerController : MonoBehaviour
 
         playerCam.rect = newViewport;
     }
-
-    /*
-    public void SetGameMode(int GameModeID)
-    {
-        if(GameModeID == 0)
-        {
-            //Main Game
-            if (sweeper != null)
-            {
-                sweeper.SetActive(false);
-            }
-
-            levelMode = 0;
-        }
-        else if(GameModeID == 1)
-        {
-            //CleanUp
-            levelMode = 1;
-        }
-    }
-    */
 }

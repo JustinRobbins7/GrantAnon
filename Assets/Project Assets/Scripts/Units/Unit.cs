@@ -3,19 +3,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Unit : MonoBehaviour, IMoveable, ISelectable
+public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable, IBuyable
 {
     public int OwningPlayerNum = 0;
 
     Vector2[] path;
     [SerializeField] float movementSpeed = 5f;
+    [SerializeField] protected float maxHealth = 5f;
+    [SerializeField] protected GameObject healthBar = null;
+    [SerializeField] protected int buildCost;
     int targetIndex;
 
-    private bool selected = false;
+    protected bool selected = false;
     private bool moving = false;
     private float radius = .5f;
+    private Animator anim = null;
+    private SpriteRenderer sprite = null;
 
-    void Update() {
+    protected float currentHealth;
+
+    protected virtual  void Start()
+    {
+        currentHealth = maxHealth;
+        anim = gameObject.GetComponent<Animator>();
+        sprite = gameObject.GetComponent<SpriteRenderer>();
+    }
+
+    protected virtual void Update() {
         if (selected && targetIndex > 0) {
             gameObject.UpdateCircleDraw(radius);
         }
@@ -35,8 +49,20 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable
 
     IEnumerator FollowPath() {
         moving = true;
+        anim.SetBool("Moving", moving);
         Vector2 currentWaypoint = path[0];
         targetIndex = 0;
+
+        if (anim != null)
+        {
+            anim.SetBool("Right", GetComponent<Rigidbody2D>().position.x < currentWaypoint.x);
+            anim.SetBool("Up", GetComponent<Rigidbody2D>().position.y < currentWaypoint.y);
+        }
+
+        if (sprite != null)
+        {
+            sprite.flipX = GetComponent<Rigidbody2D>().position.x < currentWaypoint.x;
+        }
 
         while (true) {
             if (GetComponent<Rigidbody2D>().position == currentWaypoint) {
@@ -44,9 +70,26 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable
                 if (targetIndex >= path.Length) {
                     targetIndex = 0;
                     moving = false;
+
+                    if (anim != null)
+                    {
+                        anim.SetBool("Moving", moving);
+                    }
+                    
                     yield break;
                 }
                 currentWaypoint = path[targetIndex];
+
+                if (anim != null)
+                {
+                    anim.SetBool("Right", GetComponent<Rigidbody2D>().position.x < currentWaypoint.x);
+                    anim.SetBool("Up", GetComponent<Rigidbody2D>().position.y < currentWaypoint.y);
+                }
+
+                if (sprite != null)
+                {
+                    sprite.flipX = GetComponent<Rigidbody2D>().position.x < currentWaypoint.x;
+                }
             }
 
             GetComponent<Rigidbody2D>().position = Vector2.MoveTowards(GetComponent<Rigidbody2D>().position, currentWaypoint, movementSpeed * Time.deltaTime);
@@ -79,5 +122,31 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable
 
     public bool IsMoving() {
         return moving;
+    }
+
+    public virtual void OnDamageTaken(float damageTaken)
+    {
+        currentHealth -= damageTaken;
+
+        if (healthBar != null)
+        {
+            healthBar.transform.localScale = new Vector3(currentHealth / maxHealth, 1f, 1f);
+        }
+
+        if (currentHealth <= 0)
+        {
+            OnDeath();
+        }
+    }
+
+    public virtual void OnDeath()
+    {
+        selected = false;
+        Destroy(gameObject);
+    }
+
+    public int GetCost()
+    {
+        return buildCost;
     }
 }

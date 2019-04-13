@@ -9,6 +9,7 @@ public class Grant : MonoBehaviour
     int[] CapturingTeams;
     int CurrentTimerOwner;
     float Countdown;
+    bool capturable = false;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +19,7 @@ public class Grant : MonoBehaviour
         CurrentTimerOwner = 0;
 
         gameObject.GetComponent<CircleCollider2D>().enabled = true;
+        capturable = true;
     }
 
     // Update is called once per frame
@@ -29,66 +31,67 @@ public class Grant : MonoBehaviour
      */
     void FixedUpdate()
     {
-        int NumCapturing = -1;
-        bool MultipleCapturing = false;
-
-        for(int i = 0; i < CapturingTeams.Length; i++)
+        if (capturable)
         {
-            //Check if any units are capturing
-            if(CapturingTeams[i] > 0)
+            int NumCapturing = -1;
+            bool MultipleCapturing = false;
+
+            for (int i = 0; i < CapturingTeams.Length; i++)
             {
-                //If there are, check if anyone else is doing so
-                if (NumCapturing == -1)
+                //Check if any units are capturing
+                if (CapturingTeams[i] > 0)
                 {
-                    NumCapturing = i;
-                }
-                else
-                {
-                    //If so, set flag
-                    MultipleCapturing = true;
+                    //If there are, check if anyone else is doing so
+                    if (NumCapturing == -1)
+                    {
+                        NumCapturing = i;
+                    }
+                    else
+                    {
+                        //If so, set flag
+                        MultipleCapturing = true;
+                    }
                 }
             }
-        }
 
-        //If multiple people capturing, do nothing
-        if (!MultipleCapturing)
-        {
-            // Check if no one is capturing grant
-            if (NumCapturing >= 0)
+            //If multiple people capturing, do nothing
+            if (!MultipleCapturing)
             {
-                //See if capturing player was the same as last check
-                if (CurrentTimerOwner == NumCapturing)
+                // Check if no one is capturing grant
+                if (NumCapturing >= 0)
                 {
-                    //Count down timer
-                    Countdown -= Time.deltaTime;
-
-                    if (Countdown <= 0.0f)
+                    //See if capturing player was the same as last check
+                    if (CurrentTimerOwner == NumCapturing)
                     {
-                        Debug.Log("Scoring for player " + CurrentTimerOwner.ToString());
-                        //Claim Grant
-                        MainGameManager.instance.ScoreGrant(CurrentTimerOwner);
-                        Destroy(gameObject);
+                        //Count down timer
+                        Countdown -= Time.deltaTime;
+
+                        if (Countdown <= 0.0f)
+                        {
+                            Debug.Log("Scoring for player " + CurrentTimerOwner.ToString());
+                            //Claim Grant
+                            MainGameManager.instance.ScoreGrant(CurrentTimerOwner);
+                            Destroy(gameObject);
+                        }
+                    }
+                    else
+                    {
+                        //Set new timer owner and start countdown
+                        Countdown = CaptureTime;
+                        Countdown -= Time.deltaTime;
+                        CurrentTimerOwner = NumCapturing;
                     }
                 }
                 else
                 {
-                    //Set new timer owner and start countdown
-                    Countdown = CaptureTime;
-                    Countdown -= Time.deltaTime;
-                    CurrentTimerOwner = NumCapturing;
-                }
-            }
-            else
-            {
-                //Reset Timer
-                if (Countdown != CaptureTime)
-                {
-                    Countdown = CaptureTime;
+                    //Reset Timer
+                    if (Countdown != CaptureTime)
+                    {
+                        Countdown = CaptureTime;
+                    }
                 }
             }
         }
-
-        //Debug.Log("Countdown: " + Countdown.ToString());
     }
 
     /**
@@ -115,7 +118,7 @@ public class Grant : MonoBehaviour
         Unit unit = other.gameObject.GetComponent<Unit>();
         if (unit != null)
         {
-            CapturingTeams[unit.OwningPlayerNum - 1]--;
+            CapturingTeams[unit.OwningPlayerNum]--;
         }
     }
 }

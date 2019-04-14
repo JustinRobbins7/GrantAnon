@@ -7,6 +7,7 @@ public class HonorsGameManager : MainGameManager
     [SerializeField] float minigameInterval;
     [SerializeField] CleanUpGameManager mgOne = null;
 
+    MinigameStarter[] minigameStarters = null;
     public static HonorsGameManager instanceH = null;
 
     float minigameTimer;
@@ -35,6 +36,11 @@ public class HonorsGameManager : MainGameManager
         runLevel = false;
         minigameRunning = false;
         zeroBasedPlayerToController = new Dictionary<int, int>();
+    }
+
+    void Start()
+    {
+        minigameStarters = FindObjectsOfType<MinigameStarter>();
     }
 
     void FixedUpdate()
@@ -83,7 +89,7 @@ public class HonorsGameManager : MainGameManager
 
                 mgOne.InitMinigame();
 
-                //minigameRunning = true;
+                minigameRunning = true;
                 //minigameTimer = 0.0f;
                 runLevel = false;
             }
@@ -106,11 +112,20 @@ public class HonorsGameManager : MainGameManager
             Players[i].ToggleCamera(true);
             Players[i].ReactivateUnits();
             Players[i].enabled = true;
+            if (minigameStarters[0])
+            {
+                Players[i].transform.position = new Vector3(minigameStarters[0].transform.position.x, minigameStarters[0].transform.position.y, -1);
+            }
         }
 
         for (int i = 0; i < winningPlayers.Count; i++)
         {
             Players[winningPlayers[i]].money += mgOne.GetMoneyRewarded();
+        }
+
+        for (int i = 0; i < minigameStarters.Length; i++)
+        {
+            minigameStarters[i].RestartTimer();
         }
 
         minigameRunning = false;

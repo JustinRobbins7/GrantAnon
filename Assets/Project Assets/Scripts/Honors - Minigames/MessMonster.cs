@@ -11,10 +11,12 @@ public class MessMonster : MonoBehaviour
     [SerializeField] float throwSpeed;
 
     float throwTimer;
+    List<Potion> thrownPotions;
 
     // Start is called before the first frame update
     void Start()
     {
+        thrownPotions = new List<Potion>();
         throwTimer = 0.0f;
         //ThrowPotion();
     }
@@ -40,7 +42,21 @@ public class MessMonster : MonoBehaviour
         float throwAngle = Random.Range(0f, 2*Mathf.PI);
 
         Potion spawnedPotion = Instantiate<Potion>(potionOptions[indexOfPotion]);
+        thrownPotions.Add(spawnedPotion);
         spawnedPotion.gameObject.transform.position = gameObject.transform.position;
         spawnedPotion.Throw(new Vector3(gameObject.transform.position.x + throwLength*Mathf.Cos(throwAngle), gameObject.transform.position.y + throwLength * Mathf.Sin(throwAngle), 0), throwSpeed);
     }
+
+    
+    void OnDestroy()
+    {
+        for (int i = 0; i < thrownPotions.Count; i++)
+        {
+            if (thrownPotions[i] != null)
+            {
+                Destroy(thrownPotions[i].gameObject);
+            }
+        }
+    }
+    
 }

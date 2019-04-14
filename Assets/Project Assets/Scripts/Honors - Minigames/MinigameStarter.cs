@@ -46,17 +46,21 @@ public class MinigameStarter : MonoBehaviour
         }
     }
 
-    public void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter2D(Collider2D other)
     {
         if(!minigameRunning && other.gameObject.GetComponent<Unit>() != null)
         {
             minigameRunning = true;
             //Start minigame
+            if(HonorsGameManager.instanceH != null)
+            {
+                HonorsGameManager.instanceH.StartMinigame();
+            }
             activator.enabled = false;
         }
     }
 
-    public void restartTimer()
+    public void RestartTimer()
     {
         minigameRunning = false;
         minigameTimer = minigameInterval;

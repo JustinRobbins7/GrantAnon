@@ -172,9 +172,6 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetButtonDown(Options))
             {
-                //here's where we add the pause button
-                //Debug.LogError("Options Button Pressed!");
-                this.GetComponent<PauseMenu>().toggle();
             }
 
             if (Input.GetButtonDown(PS))

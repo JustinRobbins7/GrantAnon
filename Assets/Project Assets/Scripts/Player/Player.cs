@@ -66,14 +66,17 @@ public class Player : MonoBehaviour
     }
 
     bool InAttackRange(Unit unit, GameObject attackTarget) {
-        Node unitNode = FindObjectOfType<AStarGrid>().NodeFromWorldPoint(unit.transform.position);
-        Node attackTargetNode = FindObjectOfType<AStarGrid>().NodeFromWorldPoint(attackTarget.transform.position);
+        if (FindObjectOfType<AStarGrid>() != null) {
+            Node unitNode = FindObjectOfType<AStarGrid>().NodeFromWorldPoint(unit.transform.position);
+            Node attackTargetNode = FindObjectOfType<AStarGrid>().NodeFromWorldPoint(attackTarget.transform.position);
 
-        List<Node> unitNeighbors = FindObjectOfType<AStarGrid>().GetNeighbors(unitNode);
+            List<Node> attackNodes = FindObjectOfType<AStarGrid>().GetNeighbors(unitNode);
+            attackNodes.Add(unitNode);
 
-        foreach (var neighborNode in unitNeighbors) {
-            if (neighborNode.Equals(attackTargetNode)) {
-                return true;
+            foreach (var node in attackNodes) {
+                if (node.IsEqual(attackTargetNode)) {
+                    return true;
+                }
             }
         }
 

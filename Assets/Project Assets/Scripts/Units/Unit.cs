@@ -38,18 +38,21 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable, IBuyable
     }
 
     public void SetAttackTarget(GameObject attackTarget) {
-        if (!moving) {
+        this.attackTarget = attackTarget;
+        if (attackTarget != null) {
             StopCoroutine("Attack");
             this.attackTarget = attackTarget;
             StartCoroutine("Attack");
         }
     }
 
-    IEnumerable Attack() {
+    IEnumerator Attack() {
         while (true) {
             if (attackTarget == null) {
                 yield break;
             }
+
+            Debug.Log("Attacking!");
 
             attackTarget.GetComponent<IDamageable>().OnDamageTaken(attackDamage);
             yield return null;
@@ -69,6 +72,10 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable, IBuyable
     }
 
     IEnumerator FollowPath() {
+        if (path.Length == 0) {
+            yield break;
+        }
+
         moving = true;
         anim.SetBool("Moving", moving);
         Vector2 currentWaypoint = path[0];

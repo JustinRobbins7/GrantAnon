@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -136,8 +137,8 @@ public class Player : MonoBehaviour
     }
 
     public GameObject[] GetEnemyObjects() {
-        Unit[] units = Array.FindAll(FindObjectsOfType<Unit>(), selectableObject => selectableObject.GetOwningPlayerNum() != PlayerNumber);
-        Building[] buildings = Array.FindAll(FindObjectsOfType<IncomeBuilding>(), building => building.GetOwningPlayerNum() != PlayerNumber);
+        GameObject[] units = Array.FindAll(FindObjectsOfType<Unit>(), selectableObject => selectableObject.GetOwningPlayerNum() != PlayerNumber).Select(unit => unit.gameObject).ToArray();
+        GameObject[] buildings = Array.FindAll(FindObjectsOfType<IncomeBuilding>(), building => building.GetOwningPlayerNum() != PlayerNumber).Select(incomeBuilding => incomeBuilding.gameObject).ToArray();
 
         GameObject[] gameObjects = new GameObject[units.Length + buildings.Length];
         Array.Copy(units, gameObjects, units.Length);

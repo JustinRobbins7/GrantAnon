@@ -48,4 +48,8 @@ public class Node : IHeapItem<Node>
         }
         return -compare;
     }
+
+    public bool IsEqual(Node node) {
+        return (node.gridRow == gridRow && node.gridCol == gridCol);
+    }
 }

@@ -3,26 +3,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable, IBuyable
+public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable, IBuyable, ISpawnable
 {
-    public int OwningPlayerNum = 0;
+    int owningPlayerNum = 0;
 
     Vector2[] path;
     [SerializeField] float movementSpeed = 5f;
     [SerializeField] protected float maxHealth = 5f;
     [SerializeField] protected GameObject healthBar = null;
     [SerializeField] protected int buildCost;
+    [SerializeField] float attackDamage = .1f;
     int targetIndex;
 
     protected bool selected = false;
     private bool moving = false;
+    public GameObject attackTarget = null;
     private float radius = .5f;
     private Animator anim = null;
     private SpriteRenderer sprite = null;
 
     protected float currentHealth;
 
-    protected virtual  void Start()
+    protected virtual void Start()
     {
         currentHealth = maxHealth;
         anim = gameObject.GetComponent<Animator>();
@@ -32,6 +34,26 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable, IBuyable
     protected virtual void Update() {
         if (selected && targetIndex > 0) {
             gameObject.UpdateCircleDraw(radius);
+        }
+    }
+
+    public void SetAttackTarget(GameObject attackTarget) {
+        this.attackTarget = attackTarget;
+        if (attackTarget != null) {
+            StopCoroutine("Attack");
+            this.attackTarget = attackTarget;
+            StartCoroutine("Attack");
+        }
+    }
+
+    IEnumerator Attack() {
+        while (true) {
+            if (attackTarget == null) {
+                yield break;
+            }
+
+            attackTarget.GetComponent<IDamageable>().OnDamageTaken(attackDamage);
+            yield return null;
         }
     }
 
@@ -48,6 +70,10 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable, IBuyable
     }
 
     IEnumerator FollowPath() {
+        if (path.Length == 0) {
+            yield break;
+        }
+
         moving = true;
         anim.SetBool("Moving", moving);
         Vector2 currentWaypoint = path[0];
@@ -148,5 +174,13 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable, IBuyable
     public int GetCost()
     {
         return buildCost;
+    }
+
+    public void SetOwningPlayerNum(int owningPlayerNum) {
+        this.owningPlayerNum = owningPlayerNum;
+    }
+
+    public int GetOwningPlayerNum() {
+        return owningPlayerNum;
     }
 }

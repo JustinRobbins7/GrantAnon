@@ -7,7 +7,6 @@ public class IncomeBuilding : Building
     [SerializeField] float IncomeInterval;
     [SerializeField] int IncomePerInterval;
 
-    public int OwningPlayerNum;
     float IncomeTimer;
 
     // Start is called before the first frame update
@@ -39,7 +38,7 @@ public class IncomeBuilding : Building
 
         if (IncomeTimer <= 0)
         {
-            MainGameManager.instance.AddPlayerIncome(OwningPlayerNum, IncomePerInterval);
+            MainGameManager.instance.AddPlayerIncome(GetOwningPlayerNum(), IncomePerInterval);
             IncomeTimer = IncomeInterval;
         }
     }

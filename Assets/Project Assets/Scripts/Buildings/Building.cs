@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Building : MonoBehaviour, IDamageable, IBuyable
+public class Building : MonoBehaviour, IDamageable, IBuyable, ISpawnable
 {
     [SerializeField] float maxHealth;
     [SerializeField] GameObject healthBar = null;
     [SerializeField] int buildCost;
     float currentHealth;
+    int owningPlayerNum;
 
     void Start()
     {
@@ -32,5 +33,13 @@ public class Building : MonoBehaviour, IDamageable, IBuyable
     public int GetCost()
     {
         return buildCost;
+    }
+
+    public void SetOwningPlayerNum(int owningPlayerNum) {
+        this.owningPlayerNum = owningPlayerNum;
+    }
+
+    public int GetOwningPlayerNum() {
+        return owningPlayerNum;
     }
 }

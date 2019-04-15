@@ -122,6 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 113845469}
   - component: {fileID: 113845468}
+  - component: {fileID: 113845470}
   m_Layer: 0
   m_Name: Audio
   m_TagString: Untagged
@@ -237,8 +238,16 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &113845470
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113845467}
+  m_Enabled: 1
 --- !u!1 &177801432
 GameObject:
   m_ObjectHideFlags: 0

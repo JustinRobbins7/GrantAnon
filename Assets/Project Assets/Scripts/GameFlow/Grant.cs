@@ -100,8 +100,8 @@ public class Grant : MonoBehaviour
         Unit unit = other.GetComponent<Unit>();
         if (unit != null)
         {
-            Debug.Log(unit.OwningPlayerNum.ToString());
-            CapturingTeams[unit.OwningPlayerNum]++;
+            Debug.Log(unit.GetOwningPlayerNum().ToString());
+            CapturingTeams[unit.GetOwningPlayerNum()]++;
         }
     }
 
@@ -114,7 +114,7 @@ public class Grant : MonoBehaviour
         Unit unit = other.GetComponent<Unit>();
         if (unit != null)
         {
-            CapturingTeams[unit.OwningPlayerNum - 1]--;
+            CapturingTeams[unit.GetOwningPlayerNum() - 1]--;
         }
     }
 }

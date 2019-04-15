@@ -52,8 +52,6 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable, IBuyable
                 yield break;
             }
 
-            Debug.Log("Attacking!");
-
             attackTarget.GetComponent<IDamageable>().OnDamageTaken(attackDamage);
             yield return null;
         }

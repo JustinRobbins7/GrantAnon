@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
      */
     [SerializeField] float cameraSpeed = 10f;
     public int controllerNum;
+    public Vector2 bottomLeftLimit;
+    public Vector2 topRightLimit;
 
     private Player player;
 
@@ -198,6 +200,27 @@ public class PlayerController : MonoBehaviour
         Vector3 position = transform.position;
         position.x += Input.GetAxis(horizontalAxis) * cameraSpeed * Time.deltaTime;
         position.y += Input.GetAxis(verticalAxis) * cameraSpeed * Time.deltaTime;
+        
+        if(position.x > topRightLimit.x)
+        {
+            position.x = topRightLimit.x;
+        }
+
+        if (position.x < bottomLeftLimit.x)
+        {
+            position.x = bottomLeftLimit.x;
+        }
+
+        if (position.y > topRightLimit.y)
+        {
+            position.y = topRightLimit.y;
+        }
+
+        if (position.y < bottomLeftLimit.y)
+        {
+            position.y = bottomLeftLimit.y;
+        }
+
         transform.position = position;
 
         gameObject.UpdateCircleDraw(radius);

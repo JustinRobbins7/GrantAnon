@@ -29,7 +29,7 @@ public class PlayerControllerAssigner : MonoBehaviour
 
     AStarGrid grid;
     Vector2Int[] spawnTiles = {
-        new Vector2Int(3, -3),
+        new Vector2Int(2, -3),
         new Vector2Int(-3, -3),
         new Vector2Int(3, 3),
         new Vector2Int(-3, 3)};
@@ -195,6 +195,8 @@ public class PlayerControllerAssigner : MonoBehaviour
             SpawnedPlayer.GetComponent<Player>().BuildingRoot = PlayerBuildingRoot;
 
             SpawnedPlayer.GetComponent<Player>().SetBaseLocation(ConvertSpawnTileToCoords(spawnTiles[i]));
+            //Debug.Log(PlayerSpawns[i].x.ToString() + " " + PlayerSpawns[i].y.ToString());
+            //SpawnedPlayer.GetComponent<Player>().SetBaseLocation(new Vector2(PlayerSpawns[i].x, PlayerSpawns[i].y));
 
             MainGameManager.instance.InsertPlayer(i, SpawnedPlayer.GetComponent<Player>());
         }

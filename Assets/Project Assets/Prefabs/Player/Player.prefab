@@ -165,6 +165,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraSpeed: 10
   controllerNum: 0
+  bottomLeftLimit: {x: -7, y: -17}
+  topRightLimit: {x: 48, y: 20}
 --- !u!114 &1910057981075629901
 MonoBehaviour:
   m_ObjectHideFlags: 0

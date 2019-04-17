@@ -162,7 +162,7 @@ public class Player : MonoBehaviour
         {
             spawnedBase = Instantiate(CentralBuildingPrefab);
             spawnedBase.gameObject.GetComponent<CentralBuilding>().SetOwningPlayerNum(PlayerNumber);
-            spawnedBase.gameObject.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+            spawnedBase.gameObject.transform.position = new Vector2(baseLocation.x, baseLocation.y);
         }
     }
 

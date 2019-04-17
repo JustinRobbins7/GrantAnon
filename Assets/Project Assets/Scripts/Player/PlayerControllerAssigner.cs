@@ -30,9 +30,9 @@ public class PlayerControllerAssigner : MonoBehaviour
     AStarGrid grid;
     Vector2Int[] spawnTiles = {
         new Vector2Int(2, -3),
+        new Vector2Int(-3, 3),
         new Vector2Int(-3, -3),
-        new Vector2Int(3, 3),
-        new Vector2Int(-3, 3)};
+        new Vector2Int(3, 3),};
 
     private int RealPlayers;
     private int AiPlayers;
@@ -180,6 +180,7 @@ public class PlayerControllerAssigner : MonoBehaviour
                 SpawnedPlayer.GetComponent<Player>().IncomeBuildingPrefab = IncomeBuildings[i];
                 SpawnedPlayer.GetComponent<Player>().HeroUnitPrefab = HeroUnits[i];
                 SpawnedPlayer.GetComponent<Player>().MeleeUnitPrefab = MeleeUnits[i];
+                SpawnedPlayer.gameObject.transform.position = PlayerSpawns[i];
             } else { /* Spawn AI player */
                 SpawnedPlayer = Instantiate(aiPlayer);
             }

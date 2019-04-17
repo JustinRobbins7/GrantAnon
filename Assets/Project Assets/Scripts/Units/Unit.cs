@@ -47,6 +47,7 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable, IBuyable
     }
 
     IEnumerator Attack() {
+        anim.SetTrigger("Attack");
         while (true) {
             if (attackTarget == null) {
                 yield break;

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainGameManager : GameManager
 {
@@ -22,6 +23,7 @@ public class MainGameManager : GameManager
     public int winningCondition = 3;
 
     public GameObject Victory;
+    public Text Timer;
 
     /**
      * Ensures the GameManager is unique and accessible from code anywhere
@@ -53,6 +55,15 @@ public class MainGameManager : GameManager
             if (!spawnedGrant)
             {
                 grantTimer += Time.deltaTime;
+                int time = (int)(grantInterval - grantTimer);
+                if (time == 0)
+                {
+                    Timer.text = "Grant has Spawned!";
+                }
+                else
+                {
+                    Timer.text = "Grant Spawns in " + time;
+                }
             }
 
             if (grantTimer >= grantInterval)

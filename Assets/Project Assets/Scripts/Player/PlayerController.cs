@@ -341,3 +341,195 @@ public class PlayerController : MonoBehaviour
         playerCam.rect = newViewport;
     }
 }
+                player.SpawnUnit(transform.position);
+            }
+
+            if (Input.GetButtonDown(L1))
+            {
+            }
+
+            if (Input.GetButtonDown(R1))
+            {
+            }
+
+            if (Input.GetAxis(L2) != -1)
+            {
+            }
+
+            if (Input.GetAxis(R2) != -1)
+            {
+            }
+
+            if (Input.GetAxis(rHorizontalAxis) != 0)
+            {
+            }
+
+            if (Input.GetAxis(rVerticalAxis) != 0)
+            {
+            }
+
+            if (Input.GetAxis(DPadX) != 0)
+            {
+            }
+
+            if (Input.GetAxis(DPadY) != 0)
+            {
+            }
+
+            if (Input.GetButtonDown(L3))
+            {
+            }
+
+            if (Input.GetButtonDown(R3))
+            {
+            }
+
+            if (Input.GetButtonDown(Share))
+            {
+            }
+
+            if (Input.GetButtonDown(Options))
+            {
+            }
+
+            if (Input.GetButtonDown(PS))
+            {
+            }
+
+            if (Input.GetButtonDown(Pad))
+            {
+            }
+
+            UpdateSelectionCircle();
+        }
+    }
+
+    /**
+     * Moves camerabased on this gameobject's location.
+     */
+    private void updateCameraLocation()
+    {
+        Vector3 position = transform.position;
+        position.x += Input.GetAxis(horizontalAxis) * cameraSpeed * Time.deltaTime;
+        position.y += Input.GetAxis(verticalAxis) * cameraSpeed * Time.deltaTime;
+        transform.position = position;
+
+        gameObject.UpdateCircleDraw(radius);
+    }
+
+    /**
+     * Moves drawn circle on this gameobject's location.
+     */
+    private void UpdateSelectionCircle() {
+        if (isSelecting) {
+            foreach (var selectableObject in FindObjectsOfType<Unit>()) {
+                Unit[] unitsInBounds = Array.FindAll(player.GetUnits(), unit => IsWithinBounds(unit.gameObject));
+                foreach (var unit in unitsInBounds) {
+                    unit.SetSelected(true);
+                }
+            }
+        }
+    }
+
+    /**
+     * Checks if selectable object is within bounds of the drawn circle
+     */
+    private bool IsWithinBounds(GameObject gameObject) {
+        if (!isSelecting) {
+            return false;
+        }
+
+        Vector3 adjustedCameraPos = this.gameObject.transform.position;
+        adjustedCameraPos.z = 0;
+
+        // Return true if the distance between the selectableObject and the camera is less than the radius
+        return Vector3.Distance(gameObject.transform.position, adjustedCameraPos) < radius;
+    }
+
+    public void SetControllerNumber(int ControllerNum)
+    {
+        controllerNum = ControllerNum;
+        horizontalAxis = "P" + ControllerNum.ToString() + "_Horizontal";
+        verticalAxis = "P" + ControllerNum.ToString() + "_Vertical";
+        squareButton = "P" + ControllerNum.ToString() + "_Sq";
+        xButton = "P" + ControllerNum.ToString() + "_X";
+        circleButton = "P" + ControllerNum.ToString() + "_Cir";
+        triangleButton = "P" + ControllerNum.ToString() + "_Tri";
+        L1 = "P" + ControllerNum.ToString() + "_L1";
+        R1 = "P" + ControllerNum.ToString() + "_R1";
+        rHorizontalAxis = "P" + ControllerNum.ToString() + "_RHorizontal";
+        rVerticalAxis = "P" + ControllerNum.ToString() + "_RVertical";
+        L2 = "P" + ControllerNum.ToString() + "_L2";
+        R2 = "P" + ControllerNum.ToString() + "_R2";
+        DPadX = "P" + ControllerNum.ToString() + "_DPadX";
+        DPadY = "P" + ControllerNum.ToString() + "_DPadY";
+        L3 = "P" + ControllerNum.ToString() + "_L3";
+        R3 = "P" + ControllerNum.ToString() + "_R3";
+        Share = "P" + ControllerNum.ToString() + "_Share";
+        Options = "P" + ControllerNum.ToString() + "_Options";
+        PS = "P" + ControllerNum.ToString() + "_PS";
+        Pad = "P" + ControllerNum.ToString() + "_Pad";
+    }
+
+    /**
+     * Defines which section of the screen this player's camera occupies, 
+     * partitioning the screen into sections based on the total number of players.
+     * This method sets the camera location on screen based on the player number and
+     * total number of playeres given.
+     */
+    public void SetCameraViewport(int ViewportID, int NumberOfPlayers)
+    {
+        Camera playerCam = gameObject.GetComponentInChildren<Camera>();
+
+        if (playerCam == null)
+        {
+            Debug.Log("ERROR: SetCameraViewport - Player Camera Component Not Found For Player " + controllerNum.ToString() + "!");
+            return;
+        }
+
+        if (ViewportID < 1 || ViewportID > NumberOfPlayers)
+        {
+            Debug.Log("ERROR: SetCameraViewport - Invalid viewport ID for number of players given. Viewport ID: " + ViewportID.ToString() + " | Number of Players: " + NumberOfPlayers.ToString());
+            return;
+        }
+
+        Rect newViewport = new Rect(0, 0, 0, 0);
+        if (NumberOfPlayers > 0 && NumberOfPlayers <= 2)
+        {
+            switch (ViewportID)
+            {
+                case 1:
+                    newViewport = new Rect(0, 0.5f, 1.0f, 0.5f);
+                    break;
+                case 2:
+                    newViewport = new Rect(0, 0, 1.0f, 0.5f);
+                    break;
+                default:
+                    return;
+            }
+        }
+        else if (NumberOfPlayers > 0 && NumberOfPlayers <= 4)
+        {
+            switch (ViewportID)
+            {
+                case 1:
+                    newViewport = new Rect(0, 0.5f, 0.5f, 0.5f);
+                    break;
+                case 2:
+                    newViewport = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
+                    break;
+                case 3:
+                    newViewport = new Rect(0, 0, 0.5f, 0.5f);
+                    break;
+                case 4:
+                    newViewport = new Rect(0.5f, 0, 0.5f, 0.5f);
+                    break;
+                default:
+                    return;
+            }
+        }
+
+        playerCam.rect = newViewport;
+    }
+}
+

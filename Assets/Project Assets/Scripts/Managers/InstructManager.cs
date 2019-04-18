@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class InstructManager : MonoBehaviour
 {
-    public Canvas[] menuGameObjs = new Canvas[3];
+    public GameObject[] menuGameObjs = new GameObject[3];
     public Image[] buttonObj = new Image[2];
     private IndicatorButton[] indicatorScripts;
     public int controllerNum = 0;
@@ -67,11 +67,11 @@ public class InstructManager : MonoBehaviour
         {
             if (i == canvasSelector)
             {
-                menuGameObjs[i].GetComponent<Canvas>().enabled = true;
+                menuGameObjs[i].SetActive(true);
             }
             else
             {
-                menuGameObjs[i].GetComponent<Canvas>().enabled = false;
+                menuGameObjs[i].SetActive(false);
             }
         }
 
@@ -185,10 +185,10 @@ public class InstructManager : MonoBehaviour
         //if deselect =-1 it means it doesn't need to be 
         if (deselect != -1)
         {
-            menuGameObjs[deselect].GetComponent<Canvas>().enabled = false;
+            menuGameObjs[deselect].SetActive(false);
         }
         //select the new button
-        menuGameObjs[canvasSelector].GetComponent<Canvas>().enabled = true;
+        menuGameObjs[canvasSelector].SetActive(true);
     }
     public void selectCanvas(int i)
     {

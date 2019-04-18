@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class MainGameManager : GameManager
 {
@@ -24,6 +25,8 @@ public class MainGameManager : GameManager
 
     public GameObject Victory;
     public Text Timer;
+    public AudioSource grantAcquired;
+    public AudioSource grantSpawn;
 
     /**
      * Ensures the GameManager is unique and accessible from code anywhere
@@ -69,7 +72,7 @@ public class MainGameManager : GameManager
             if (grantTimer >= grantInterval)
             {
                 SpawnGrant();
-                grantTimer = 0.0f;
+                grantTimer = 0.0f;               
             }
         }
     }
@@ -80,6 +83,7 @@ public class MainGameManager : GameManager
     public void SpawnGrant()
     {
         Debug.Log("Spawning grant!");
+        grantSpawn.Play(0);
         GameObject grantObject = Instantiate(grantPrefab);
         grantObject.transform.position = grantSpawnLocation;
         grantObject.layer = SortingLayer.GetLayerValueFromName("Foreground");
@@ -104,6 +108,7 @@ public class MainGameManager : GameManager
                 Victory.GetComponent<Victory>().setText(playerIndex+1);
                 Victory.SetActive(true);
             }
+            grantAcquired.Play(0);
         }
 
         spawnedGrant = false;

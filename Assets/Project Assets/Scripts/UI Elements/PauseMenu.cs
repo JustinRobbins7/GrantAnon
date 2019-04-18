@@ -7,39 +7,47 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject menu;
+    public GameObject start;
     bool visibility;
-    bool first;
+    bool check;
     // Start is called before the first frame update
     void Start()
     {
         visibility = false;
-        first = true;
+        check = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("PAll_Start"))
+        if (!check)
         {
-            if (first)
+            if (start != null)
             {
-                first = false;
-            }
-            else
-            {
-                toggle();
+                if (!start.activeSelf)
+                {
+                    check = true;
+                }
             }
         }
-
-        if (visibility) {
-            if (Input.GetButtonDown("PAll_X"))
+        else
+        {
+            if (Input.GetButtonDown("PAll_Start"))
             {
-                toggle();
+                    toggle();
             }
-            if (Input.GetButtonDown("PAll_Cir"))
+
+            if (visibility)
             {
-                Time.timeScale = 1;
-                SceneManager.LoadScene("Menu", LoadSceneMode.Single);
+                if (Input.GetButtonDown("PAll_X"))
+                {
+                    toggle();
+                }
+                if (Input.GetButtonDown("PAll_Cir"))
+                {
+                    Time.timeScale = 1;
+                    SceneManager.LoadScene("Menu", LoadSceneMode.Single);
+                }
             }
         }
     }

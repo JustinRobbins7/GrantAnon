@@ -8,6 +8,7 @@ public class PauseMenu : MonoBehaviour
 {
     public GameObject menu;
     public GameObject start;
+    public GameObject timer;
     bool visibility;
     bool check;
     // Start is called before the first frame update
@@ -27,6 +28,7 @@ public class PauseMenu : MonoBehaviour
                 if (!start.activeSelf)
                 {
                     check = true;
+                    timer.SetActive(true);
                 }
             }
         }

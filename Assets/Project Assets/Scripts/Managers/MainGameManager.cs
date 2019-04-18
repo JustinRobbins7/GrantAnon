@@ -19,6 +19,9 @@ public class MainGameManager : GameManager
     float grantTimer;
     bool runLevel;
     bool spawnedGrant;
+    public int winningCondition = 3;
+
+    public GameObject Victory;
 
     /**
      * Ensures the GameManager is unique and accessible from code anywhere
@@ -83,9 +86,17 @@ public class MainGameManager : GameManager
         if (0 >= playerIndex && playerIndex < PlayerScores.Length)
         {
             PlayerScores[playerIndex]++;
+            Players[playerIndex].grant++;
+            //if the score has increased above the winning conditions this means we need to go to the victory screen
+            if(PlayerScores[playerIndex] >= winningCondition)
+            {
+                Victory.GetComponent<Victory>().setText(playerIndex+1);
+                Victory.SetActive(true);
+            }
         }
 
         spawnedGrant = false;
+        
     }
 
     /**

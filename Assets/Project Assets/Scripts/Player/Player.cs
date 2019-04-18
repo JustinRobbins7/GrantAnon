@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     [HideInInspector] public GameObject UnitRoot = null;
     [HideInInspector] public Vector2 baseLocation;
     [HideInInspector] public int money;
+    [HideInInspector] public int grant;
     private GameObject spawnedBase;
 
     private float heroRespawnTimer;
@@ -29,6 +30,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         money = 0;
+        grant = 0;
         heroRespawnTimer = 0;
     }
 

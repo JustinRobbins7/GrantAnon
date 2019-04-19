@@ -109,25 +109,29 @@ public class InstructManager : MonoBehaviour
             }
             if (Input.GetAxis(rHorizontalAxis) != 0)
             {
-                Debug.Log("R horiz Button Pressed: " + rHorizontalAxis);
                 if (timer <= 0)
                 {
-
                     timer = waitTime;
-                    if (Input.GetAxis(rHorizontalAxis) > 0)
+                    //Debug.Log("R horiz Button Pressed: " + rHorizontalAxis);
+                    if (timer <= 0)
                     {
-                        selectCanvas(1);
-                    }
-                    else if (Input.GetAxis(rHorizontalAxis) < 0)
-                    {
-                        selectCanvas(-1);
+
+                        timer = waitTime;
+                        if (Input.GetAxis(rHorizontalAxis) > 0)
+                        {
+                            selectCanvas(1);
+                        }
+                        else if (Input.GetAxis(rHorizontalAxis) < 0)
+                        {
+                            selectCanvas(-1);
+                        }
                     }
                 }
 
             }
             if (Input.GetAxis(horizontalAxis) != 0)
             {
-                Debug.Log("horiz Button Pressed: " + horizontalAxis);
+                //Debug.Log("horiz Button Pressed: " + horizontalAxis);
                 if (timer <= 0)
                 {
                     timer = waitTime;
@@ -143,13 +147,13 @@ public class InstructManager : MonoBehaviour
             }
             if (Input.GetAxis(DPadX) != 0)
             {
-                Debug.Log("DPAD Button Pressed: " + Input.GetAxis(DPadX));
-                if (timer <= 0)
-                {
-                    timer = waitTime;
-                    selectCanvas((int)Input.GetAxis(DPadX));
-                }
-
+               //Debug.Log("DPAD Button Pressed: " + Input.GetAxis(DPadX));
+               if (timer <= 0)
+               {
+                   timer = waitTime;
+                   selectCanvas((int)Input.GetAxis(DPadX));
+               }
+                
             }
         }
 

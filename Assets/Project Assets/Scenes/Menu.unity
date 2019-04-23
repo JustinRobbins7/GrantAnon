@@ -230,9 +230,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuGameObjs:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1107402077}
+  - {fileID: 1686279707}
+  - {fileID: 1455242891}
   controllerNum: 0
   waitTime: 2
 --- !u!114 &447393899

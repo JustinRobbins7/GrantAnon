@@ -17,7 +17,7 @@ public class Grant : MonoBehaviour
         Countdown = CaptureTime;
         CurrentTimerOwner = 0;
 
-        gameObject.GetComponent<CircleCollider2D>().enabled = true;
+        
     }
 
     // Update is called once per frame
@@ -88,6 +88,11 @@ public class Grant : MonoBehaviour
             }
         }
 
+        if (!(gameObject.GetComponent<CircleCollider2D>().enabled))
+        {
+            gameObject.GetComponent<CircleCollider2D>().enabled = true;
+        }
+
         //Debug.Log("Countdown: " + Countdown.ToString());
     }
 
@@ -100,8 +105,11 @@ public class Grant : MonoBehaviour
         Unit unit = other.GetComponent<Unit>();
         if (unit != null)
         {
-            Debug.Log(unit.GetOwningPlayerNum().ToString());
-            CapturingTeams[unit.GetOwningPlayerNum()]++;
+            Debug.Log("Unit owning player num: " + unit.GetOwningPlayerNum().ToString());
+            if(CapturingTeams != null)
+            {
+                CapturingTeams[unit.GetOwningPlayerNum()]++;
+            }
         }
     }
 
@@ -109,12 +117,15 @@ public class Grant : MonoBehaviour
      * When a Unit leaves the range of the grant's collision box, it is subtracted from that players' unit count.
      */
     //When Unit leaves grant's collision box, remove it from its player's unit count
-    void OnTriggerExit1D(Collider2D other)
+    void OnTriggerExit2D(Collider2D other)
     {
         Unit unit = other.GetComponent<Unit>();
         if (unit != null)
         {
-            CapturingTeams[unit.GetOwningPlayerNum() - 1]--;
+            if(CapturingTeams != null && CapturingTeams[unit.GetOwningPlayerNum()] > 0)
+            {
+                CapturingTeams[unit.GetOwningPlayerNum()]--;
+            }
         }
     }
 }

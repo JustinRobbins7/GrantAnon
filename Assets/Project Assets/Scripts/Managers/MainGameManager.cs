@@ -78,7 +78,7 @@ public class MainGameManager : GameManager
     }
 
     /**
-     * Spawns a grant at a specificed position
+     * Spawns a grant at a specified position
      */
     public void SpawnGrant()
     {
@@ -97,8 +97,8 @@ public class MainGameManager : GameManager
     public void ScoreGrant(int scoringPlayer)
     {
         int playerIndex = scoringPlayer;
-        Debug.Log(scoringPlayer.ToString());
-        if (0 >= playerIndex && playerIndex < PlayerScores.Length)
+        Debug.Log("scoring index: " + scoringPlayer.ToString());
+        if (playerIndex >= 0 && playerIndex < PlayerScores.Length)
         {
             PlayerScores[playerIndex]++;
             Players[playerIndex].grant++;
@@ -112,7 +112,6 @@ public class MainGameManager : GameManager
         }
 
         spawnedGrant = false;
-        
     }
 
     /**

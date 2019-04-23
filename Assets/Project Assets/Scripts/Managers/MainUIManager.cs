@@ -38,7 +38,5 @@ public class MainUIManager : MonoBehaviour
         {
             GrantDisplay.text = OwningPlayer.grant.ToString() + " / 3";
         }
-        
-
     }
 }

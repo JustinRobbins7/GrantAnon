@@ -100,9 +100,19 @@ public class PlayerController : MonoBehaviour
                 // If you are not currently in the selection phase (and want to switch to it), then deactivate all selectable gameObjects for the player first
                 if (!isSelecting)
                 {
+                    /*
                     foreach (var unit in player.GetUnits())
                     {
                         unit.SetSelected(false);
+                    }
+                    */
+
+                    for (int i = 0; i < player.units.Count; i++)
+                    {
+                        if (player.units[i] != null)
+                        {
+                            player.units[i].GetComponent<Unit>().SetSelected(false);
+                        }
                     }
 
                     // Initialize the line renderer
@@ -117,10 +127,24 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetButtonDown(circleButton))
             {
+                /*
                 Unit[] selectedUnits = Array.FindAll(player.GetUnits(), unit => unit.IsSelected());
                 foreach (var unit in selectedUnits)
                 {
                     unit.Move(transform.position);
+                }
+                */
+
+                for (int i = 0; i < player.units.Count; i++)
+                {
+                    if (player.units[i] != null)
+                    {
+                        Unit unit = player.units[i].GetComponent<Unit>();
+                        if (unit.IsSelected())
+                        {
+                            unit.Move(transform.position);
+                        }
+                    }
                 }
             }
             /**
@@ -236,6 +260,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isSelecting)
         {
+            /*
             foreach (var selectableObject in FindObjectsOfType<Unit>())
             {
                 Unit[] unitsInBounds = Array.FindAll(player.GetUnits(), unit => IsWithinBounds(unit.gameObject));
@@ -244,6 +269,20 @@ public class PlayerController : MonoBehaviour
                     unit.SetSelected(true);
                 }
             }
+            */
+            
+            for (int i = 0; i < player.units.Count; i++)
+            {
+                if (player.units[i] != null)
+                {
+                    Unit unit = player.units[i].GetComponent<Unit>();
+                    if (IsWithinBounds(unit.gameObject))
+                    {
+                        unit.SetSelected(true);
+                    }
+                }
+            }
+            
         }
     }
 

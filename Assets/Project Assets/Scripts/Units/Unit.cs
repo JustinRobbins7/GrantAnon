@@ -15,6 +15,8 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable, IBuyable
     [SerializeField] float attackDamage = .1f;
     int targetIndex;
 
+    [HideInInspector] public Player owner = null;
+
     protected bool selected = false;
     private bool moving = false;
     public GameObject attackTarget = null;
@@ -63,10 +65,14 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable, IBuyable
     }
 
     private void OnPathFound(Vector2[] path, bool success) {
-        if (success) {
-            StopCoroutine("FollowPath");
-            this.path = path;
-            StartCoroutine("FollowPath");
+        if (this != null)
+        {
+            if (success)
+            {
+                StopCoroutine("FollowPath");
+                this.path = path;
+                StartCoroutine("FollowPath");
+            }
         }
     }
 
@@ -169,6 +175,10 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable, IBuyable
     public virtual void OnDeath()
     {
         selected = false;
+        if(owner != null)
+        {
+            owner.units.Remove(gameObject);
+        }
         Destroy(gameObject);
     }
 

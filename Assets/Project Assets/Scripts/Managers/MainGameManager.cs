@@ -16,7 +16,7 @@ public class MainGameManager : GameManager
 
     public static MainGameManager instance = null;
 
-    Player[] Players = null;
+    public Player[] Players = null;
     int[] PlayerScores;
     float grantTimer;
     bool runLevel;

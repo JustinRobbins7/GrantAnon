@@ -288,7 +288,7 @@ MonoBehaviour:
   buildCost: 10
   IncomeInterval: 5
   IncomePerInterval: 1
-  OwningPlayerNum: 0
+  owner: {fileID: 0}
 --- !u!1 &5708604943303076701
 GameObject:
   m_ObjectHideFlags: 0

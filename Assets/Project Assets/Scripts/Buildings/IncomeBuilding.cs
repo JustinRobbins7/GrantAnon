@@ -7,6 +7,8 @@ public class IncomeBuilding : Building
     [SerializeField] float IncomeInterval;
     [SerializeField] int IncomePerInterval;
 
+    [HideInInspector] public Player owner = null;
+
     float IncomeTimer;
 
     // Start is called before the first frame update
@@ -43,5 +45,13 @@ public class IncomeBuilding : Building
         }
     }
 
-    
+    public override void OnDeath()
+    {
+        if (owner != null)
+        {
+            owner.incomeBuildings.Remove(gameObject);
+        }
+
+        base.OnDeath();
+    }
 }

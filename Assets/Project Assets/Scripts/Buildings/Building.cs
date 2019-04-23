@@ -26,7 +26,7 @@ public class Building : MonoBehaviour, IDamageable, IBuyable, ISpawnable
 
         if (currentHealth <= 0)
         {
-            Destroy(gameObject);
+            OnDeath();
         }
     }
 
@@ -41,5 +41,10 @@ public class Building : MonoBehaviour, IDamageable, IBuyable, ISpawnable
 
     public int GetOwningPlayerNum() {
         return owningPlayerNum;
+    }
+
+    public virtual void OnDeath()
+    {
+        Destroy(gameObject);
     }
 }

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class HeroUnit : Unit
 {
-    [HideInInspector] public Player owner = null;
     [SerializeField] float respawnTime;
 
     protected override void Start()
@@ -19,23 +18,12 @@ public class HeroUnit : Unit
 
     public override void OnDamageTaken(float damageTaken)
     {
-        currentHealth -= damageTaken;
-
-        if (healthBar != null)
-        {
-            healthBar.transform.localScale = new Vector3(currentHealth / maxHealth, 1f, 1f);
-        }
-
-        if (currentHealth <= 0)
-        {
-            OnDeath();
-        }
+        base.OnDamageTaken(damageTaken);
     }
 
     public override void OnDeath()
     {
-        selected = false;
         owner.SetHeroRespawn(respawnTime);
-        Destroy(gameObject);
+        base.OnDeath();
     }
 }

@@ -29,6 +29,7 @@ public class UnitController : MonoBehaviour {
             while (damageableAddQueue.Count > 0) {
                 GameObject damageable = damageableAddQueue.Dequeue();
                 int locationKey = NodeToKey(aStarGrid.NodeFromWorldPoint(damageable.transform.position));
+                Debug.Log(damageable + " " + locationKey);
                 damageableLocations[locationKey].Add(damageable);
                 AddUpdateLocations(locationKey);
             }
@@ -37,6 +38,8 @@ public class UnitController : MonoBehaviour {
                 int[] updateArray = new int[toUpdate.Count];
                 toUpdate.CopyTo(updateArray);
                 toUpdate = new HashSet<int>(); // Reset to ensure the same things aren't unnecessarily updated again
+
+                Debug.Log(string.Join(",", updateArray));
 
                 // Update targets for all units at these locations
                 foreach (int index in updateArray) {
@@ -72,11 +75,11 @@ public class UnitController : MonoBehaviour {
     }
 
     private bool InFirstColumn(int locationKey) {
-        return locationKey % gridColSize != 0;
+        return locationKey % gridColSize == 0;
     }
 
     private bool InLastColumn(int locationKey) {
-        return locationKey % gridColSize != gridColSize - 1;
+        return locationKey % gridColSize == gridColSize - 1;
     }
 
     private bool InTopRow(int locationKey) {

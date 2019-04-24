@@ -65,59 +65,6 @@ public class Player : MonoBehaviour
                 SpawnHeroUnit(baseLocation);
             }
         }
-
-        //AssignAttack();
-    }
-
-    void AssignAttack() {
-        /*
-        foreach (var unit in GetUnits()) {
-            if (unit.attackTarget == null || !InAttackRange(unit, unit.attackTarget)) {
-                unit.SetAttackTarget(FindAttackTarget(unit));
-            }
-        }
-        */
-
-        for (int i = 0; i < units.Count; i++)
-        {
-            if (units[i] != null)
-            {
-                Unit unit = units[i].GetComponent<Unit>();
-                if (unit.attackTarget == null || !InAttackRange(unit, unit.attackTarget))
-                {
-                    unit.SetAttackTarget(FindAttackTarget(unit));
-                }
-            }
-        }
-    }
-
-    GameObject FindAttackTarget(Unit unit) {
-        
-        foreach (var enemyObject in GetEnemyObjects()) {
-            if (InAttackRange(unit, enemyObject)) {
-                return enemyObject;
-            }
-        }
-        
-        return null;
-    }
-
-    bool InAttackRange(Unit unit, GameObject attackTarget) {
-        if (FindObjectOfType<AStarGrid>() != null) {
-            Node unitNode = FindObjectOfType<AStarGrid>().NodeFromWorldPoint(unit.transform.position);
-            Node attackTargetNode = FindObjectOfType<AStarGrid>().NodeFromWorldPoint(attackTarget.transform.position);
-
-            List<Node> attackNodes = FindObjectOfType<AStarGrid>().GetNeighbors(unitNode);
-            attackNodes.Add(unitNode);
-
-            foreach (var node in attackNodes) {
-                if (node.IsEqual(attackTargetNode)) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
     }
 
     public void SetPlayerNumber(int PlayerNumber) {
@@ -132,6 +79,7 @@ public class Player : MonoBehaviour
             SpawnedBuilding.layer = SortingLayer.GetLayerValueFromName("Foreground");
             SpawnedBuilding.GetComponent<IncomeBuilding>().SetOwningPlayerNum(PlayerNumber);
             incomeBuildings.Add(SpawnedBuilding);
+            FindObjectOfType<UnitController>().AddDamageable(SpawnedBuilding);
             money -= IncomeBuildingPrefab.GetComponent<IncomeBuilding>().GetCost();
         }
     }
@@ -146,6 +94,7 @@ public class Player : MonoBehaviour
             SpawnedHeroUnit.GetComponent<Unit>().owner = this;
             SpawnedUnit.GetComponent<Unit>().SetOwningPlayerNum(PlayerNumber);
             units.Add(SpawnedUnit);
+            FindObjectOfType<UnitController>().AddDamageable(SpawnedUnit);
             Debug.Log("Current Unit Count: " + units.Count.ToString());
             money -= MeleeUnitPrefab.GetComponent<Unit>().GetCost();
         }
@@ -178,6 +127,7 @@ public class Player : MonoBehaviour
             SpawnedHeroUnit.name = "Player " + PlayerNumber.ToString() + " Hero";
             SpawnedHeroUnit.GetComponent<HeroUnit>().owner = this;
             SpawnedHeroUnit.GetComponent<HeroUnit>().SetOwningPlayerNum(PlayerNumber);
+            FindObjectOfType<UnitController>().AddDamageable(SpawnedHeroUnit);
             units.Add(SpawnedHeroUnit);
             Debug.Log("Current Unit Count: " + units.Count.ToString());
         }

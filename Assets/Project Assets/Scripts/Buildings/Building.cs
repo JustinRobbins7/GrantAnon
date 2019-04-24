@@ -45,6 +45,7 @@ public class Building : MonoBehaviour, IDamageable, IBuyable, ISpawnable
 
     public virtual void OnDeath()
     {
+        FindObjectOfType<UnitController>().RemoveDamageable(gameObject);
         Destroy(gameObject);
     }
 }

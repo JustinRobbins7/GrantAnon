@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 305586292374584930}
-  - component: {fileID: 2934905983520087594}
   - component: {fileID: 1910057981075629901}
   - component: {fileID: 5262510446966275255}
   m_Layer: 0
@@ -33,14 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &2934905983520087594
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4857483719195344923}
-  m_Enabled: 1
 --- !u!114 &1910057981075629901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54,14 +45,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerNumber: 0
-  PlayerUnit: {fileID: 7255119618380831499, guid: cf9c66fa362817a42b3a0705de7528ab,
-    type: 3}
-  BuildingOne: {fileID: 4789209872255996429, guid: 797daec30ec5b8c4a887b60397a7d3a4,
-    type: 3}
+  HeroUnitPrefab: {fileID: 0}
+  SpawnedHeroUnit: {fileID: 0}
+  MeleeUnitPrefab: {fileID: 0}
+  units: []
+  CentralBuildingPrefab: {fileID: 0}
+  IncomeBuildingPrefab: {fileID: 0}
+  incomeBuildings: []
   BuildingRoot: {fileID: 0}
   UnitRoot: {fileID: 0}
-  money: 0
   baseLocation: {x: 0, y: 0}
+  money: 0
+  grant: 0
 --- !u!114 &5262510446966275255
 MonoBehaviour:
   m_ObjectHideFlags: 0

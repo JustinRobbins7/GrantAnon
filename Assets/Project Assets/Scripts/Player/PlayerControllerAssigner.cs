@@ -183,6 +183,10 @@ public class PlayerControllerAssigner : MonoBehaviour
                 SpawnedPlayer.gameObject.transform.position = PlayerSpawns[i];
             } else { /* Spawn AI player */
                 SpawnedPlayer = Instantiate(aiPlayer);
+                SpawnedPlayer.GetComponent<Player>().CentralBuildingPrefab = CentralBuildings[i];
+                SpawnedPlayer.GetComponent<Player>().IncomeBuildingPrefab = IncomeBuildings[i];
+                SpawnedPlayer.GetComponent<Player>().HeroUnitPrefab = HeroUnits[i];
+                SpawnedPlayer.GetComponent<Player>().MeleeUnitPrefab = MeleeUnits[i];
             }
 
             SpawnedPlayer.GetComponent<Player>().PlayerNumber = i;

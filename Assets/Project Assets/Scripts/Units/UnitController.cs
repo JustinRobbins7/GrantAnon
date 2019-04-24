@@ -20,32 +20,32 @@ public class UnitController : MonoBehaviour {
             gridSize = aStarGrid.GridSize;
             gridColSize = aStarGrid.GridSizeVector.x;
             damageableLocations = new List<GameObject>[gridSize];
+            for (int i = 0; i < damageableLocations.Length; i++) {
+                damageableLocations[i] = new List<GameObject>();
+            }
         }
 
         if (gridSize != 0) {
-            if (damageableAddQueue.Count > 0) {
-                while (damageableAddQueue.Count > 0) {
-                    GameObject damageable = damageableAddQueue.Dequeue();
-                    int locationKey = NodeToKey(aStarGrid.NodeFromWorldPoint(damageable.transform.position));
-                    damageableLocations[locationKey].Add(damageable);
-                    AddUpdateLocations(locationKey);
-                }
+            while (damageableAddQueue.Count > 0) {
+                GameObject damageable = damageableAddQueue.Dequeue();
+                int locationKey = NodeToKey(aStarGrid.NodeFromWorldPoint(damageable.transform.position));
+                damageableLocations[locationKey].Add(damageable);
+                AddUpdateLocations(locationKey);
             }
 
             if (toUpdate.Count > 0) {
                 int[] updateArray = new int[toUpdate.Count];
                 toUpdate.CopyTo(updateArray);
+                toUpdate = new HashSet<int>(); // Reset to ensure the same things aren't unnecessarily updated again
 
                 // Update targets for all units at these locations
-                foreach (int index in toUpdate) {
+                foreach (int index in updateArray) {
                     foreach (GameObject current in damageableLocations[index]) {
                         if (current != null && current.GetComponent<Unit>() != null) {
-                            FindTarget(current.GetComponent<Unit>(), index);
+                            FindTarget(current, index);
                         }
                     }
                 }
-
-                toUpdate = new HashSet<int>(); // Reset to ensure the same things aren't unnecessarily updated again
             }
         }
     }
@@ -87,16 +87,25 @@ public class UnitController : MonoBehaviour {
         return locationKey + gridColSize > gridSize;
     }
 
-    private void FindTarget(Unit current, int locationKey) {
+    private void FindTarget(GameObject current, int locationKey) {
         List<GameObject> gos = new List<GameObject>();
 
         List<int> neighbors = GetNeighborsAndSelf(locationKey);
+        int playerNumber = current.GetComponent<Unit>().GetOwningPlayerNum();
 
         foreach (int neighbor in neighbors) {
             foreach (GameObject target in damageableLocations[neighbor]) {
-                if (target != null && !target.Equals(current) && (target.GetComponent<Unit>() != null || target.GetComponent<Building>() != null)) {
-                    current.SetAttackTarget(target);
-                    return;
+                if (target != null && !target.Equals(current)) {
+                    int targetPlayerNumber = -1;
+                    if (target.GetComponent<Unit>() != null) {
+                        targetPlayerNumber = target.GetComponent<Unit>().GetOwningPlayerNum();
+                    } else if (target.GetComponent<Building>() != null) {
+                        targetPlayerNumber = target.GetComponent<Building>().GetOwningPlayerNum();
+                    }
+                    if (targetPlayerNumber != -1 && playerNumber != targetPlayerNumber) {
+                        current.GetComponent<Unit>().SetAttackTarget(target);
+                        return;
+                    }
                 }
             }
         }

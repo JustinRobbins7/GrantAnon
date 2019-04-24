@@ -24,6 +24,9 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable, IBuyable
     private Animator anim = null;
     private SpriteRenderer sprite = null;
 
+    private AStarGrid aStarGrid;
+    private Node currentLocation;
+
     protected float currentHealth;
 
     protected virtual void Start()
@@ -31,6 +34,7 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable, IBuyable
         currentHealth = maxHealth;
         anim = gameObject.GetComponent<Animator>();
         sprite = gameObject.GetComponent<SpriteRenderer>();
+        aStarGrid = FindObjectOfType<AStarGrid>();
     }
 
     protected virtual void Update() {
@@ -77,6 +81,10 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable, IBuyable
     }
 
     IEnumerator FollowPath() {
+        if (currentLocation == null) {
+            currentLocation = aStarGrid.NodeFromWorldPoint(GetComponent<Rigidbody2D>().position);
+        }
+
         if (path.Length == 0) {
             yield break;
         }
@@ -126,6 +134,13 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable, IBuyable
             }
 
             GetComponent<Rigidbody2D>().position = Vector2.MoveTowards(GetComponent<Rigidbody2D>().position, currentWaypoint, movementSpeed * Time.deltaTime);
+
+            Node newLocation = aStarGrid.NodeFromWorldPoint(GetComponent<Rigidbody2D>().position);
+            if (!newLocation.IsEqual(currentLocation)) {
+                FindObjectOfType<UnitController>().UpdateDamageable(gameObject, currentLocation);
+                currentLocation = newLocation;
+            }
+
             gameObject.UpdateCircleDraw(radius);
             yield return null;
         }
@@ -175,10 +190,11 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable, IBuyable
     public virtual void OnDeath()
     {
         selected = false;
-        if(owner != null)
+        if (owner != null)
         {
             owner.units.Remove(gameObject);
         }
+        FindObjectOfType<UnitController>().RemoveDamageable(gameObject);
         Destroy(gameObject);
     }
 

@@ -40,7 +40,8 @@ public class UnitController : MonoBehaviour {
 
                 // Update targets for all units at these locations
                 foreach (int index in updateArray) {
-                    foreach (GameObject current in damageableLocations[index]) {
+                    List<GameObject> locations = damageableLocations[index];
+                    foreach (GameObject current in locations) {
                         if (current != null && current.GetComponent<Unit>() != null) {
                             FindTarget(current, index);
                         }

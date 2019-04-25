@@ -6,7 +6,7 @@ public class Building : MonoBehaviour, IDamageable, IBuyable, ISpawnable
 {
     [SerializeField] float maxHealth;
     [SerializeField] GameObject healthBar = null;
-    [SerializeField] int buildCost;
+    [SerializeField] static int buildCost = 10;
     float currentHealth;
     int owningPlayerNum;
 
@@ -30,9 +30,13 @@ public class Building : MonoBehaviour, IDamageable, IBuyable, ISpawnable
         }
     }
 
-    public int GetCost()
+    public static int GetCost()
     {
         return buildCost;
+    }
+
+    int IBuyable.GetCost() {
+        return Building.GetCost();
     }
 
     public void SetOwningPlayerNum(int owningPlayerNum) {

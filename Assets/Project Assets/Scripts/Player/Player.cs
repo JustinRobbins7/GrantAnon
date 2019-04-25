@@ -71,8 +71,8 @@ public class Player : MonoBehaviour
         this.PlayerNumber = PlayerNumber;
     }
 
-    public void SpawnBuilding(Vector2 location) {
-        if (BuildingRoot != null && IncomeBuildingPrefab != null && money >= IncomeBuildingPrefab.GetComponent<IncomeBuilding>().GetCost()) {
+    public void SpawnBuilding(Vector2 location, bool ai = false) {
+        if (BuildingRoot != null && IncomeBuildingPrefab != null && money >= IncomeBuilding.GetCost()) {
             GameObject SpawnedBuilding = Instantiate(IncomeBuildingPrefab);
             SpawnedBuilding.transform.parent = BuildingRoot.transform;
             SpawnedBuilding.transform.position = new Vector3(location.x, location.y, 0);
@@ -80,23 +80,24 @@ public class Player : MonoBehaviour
             SpawnedBuilding.GetComponent<IncomeBuilding>().SetOwningPlayerNum(PlayerNumber);
             incomeBuildings.Add(SpawnedBuilding);
             FindObjectOfType<UnitController>().AddDamageable(SpawnedBuilding);
-            money -= IncomeBuildingPrefab.GetComponent<IncomeBuilding>().GetCost();
+            money -= Building.GetCost();
         }
     }
 
-    public void SpawnUnit(Vector2 location) {
-        if (UnitRoot != null && MeleeUnitPrefab != null && money >= MeleeUnitPrefab.GetComponent<Unit>().GetCost()) {
+    public void SpawnUnit(Vector2 location, bool ai = false) {
+        if (UnitRoot != null && MeleeUnitPrefab != null && money >= Unit.GetCost()) {
             Debug.Log("Pre Spawn Unit Count: " + units.Count.ToString());
             GameObject SpawnedUnit = Instantiate(MeleeUnitPrefab);
             SpawnedUnit.transform.parent = UnitRoot.transform;
             SpawnedUnit.transform.position = new Vector3(location.x, location.y, 0);
             SpawnedUnit.layer = SortingLayer.GetLayerValueFromName("Characters");
-            SpawnedHeroUnit.GetComponent<Unit>().owner = this;
+            SpawnedUnit.GetComponent<Unit>().owner = this;
             SpawnedUnit.GetComponent<Unit>().SetOwningPlayerNum(PlayerNumber);
+            SpawnedUnit.GetComponent<Unit>().aiUnit = ai;
             units.Add(SpawnedUnit);
             FindObjectOfType<UnitController>().AddDamageable(SpawnedUnit);
             Debug.Log("Current Unit Count: " + units.Count.ToString());
-            money -= MeleeUnitPrefab.GetComponent<Unit>().GetCost();
+            money -= Unit.GetCost();
         }
         else
         {
@@ -110,14 +111,14 @@ public class Player : MonoBehaviour
                 Debug.Log("MeleeUnitPrefab is null!");
             }
 
-            if (money >= MeleeUnitPrefab.GetComponent<Unit>().GetCost())
+            if (money >= Unit.GetCost())
             {
                 Debug.Log("Not enough money!");
             }
         }
     }
 
-    public void SpawnHeroUnit(Vector2 location)
+    public void SpawnHeroUnit(Vector2 location, bool ai = false)
     {
         if (SpawnedHeroUnit == null)
         {
@@ -127,32 +128,24 @@ public class Player : MonoBehaviour
             SpawnedHeroUnit.name = "Player " + PlayerNumber.ToString() + " Hero";
             SpawnedHeroUnit.GetComponent<HeroUnit>().owner = this;
             SpawnedHeroUnit.GetComponent<HeroUnit>().SetOwningPlayerNum(PlayerNumber);
+            SpawnedHeroUnit.GetComponent<HeroUnit>().aiUnit = ai;
             FindObjectOfType<UnitController>().AddDamageable(SpawnedHeroUnit);
             units.Add(SpawnedHeroUnit);
             Debug.Log("Current Unit Count: " + units.Count.ToString());
         }
     }
 
-    public void SpawnUnitAtBase()
+    public void SpawnUnitAtBase(bool ai = false)
     {
-        SpawnUnit(baseLocation);
+        SpawnUnit(baseLocation, ai);
     }
 
     public Unit[] GetUnits() {
         return Array.FindAll(FindObjectsOfType<Unit>(), selectableObject => selectableObject.GetOwningPlayerNum() == PlayerNumber);
     }
 
-    public GameObject[] GetEnemyObjects() {
-        
-        GameObject[] units = Array.FindAll(FindObjectsOfType<Unit>(), selectableObject => selectableObject.GetOwningPlayerNum() != PlayerNumber).Select(unit => unit.gameObject).ToArray();
-        GameObject[] buildings = Array.FindAll(FindObjectsOfType<IncomeBuilding>(), building => building.GetOwningPlayerNum() != PlayerNumber).Select(incomeBuilding => incomeBuilding.gameObject).ToArray();
-
-        GameObject[] gameObjects = new GameObject[units.Length + buildings.Length];
-        Array.Copy(units, gameObjects, units.Length);
-        Array.Copy(buildings, 0, gameObjects, units.Length, buildings.Length);
-        
-
-        return gameObjects;
+    public int GetNumEnemyUnits() {
+        return Array.FindAll(FindObjectsOfType<Unit>(), selectableObject => selectableObject.GetOwningPlayerNum() != PlayerNumber).Select(unit => unit.gameObject).ToArray().Length;
     }
 
     public void SetBaseLocation(Vector2 baseLocation) {

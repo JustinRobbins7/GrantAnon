@@ -1126,7 +1126,7 @@ MonoBehaviour:
   - {fileID: 3559805077830492302, guid: ae5f5c77f90bc8849938e8b0e8121be0, type: 3}
   - {fileID: 1837206800527598086, guid: 86075097a15b18c4e8c32ff984e2b06f, type: 3}
   - {fileID: 8056650831484582219, guid: e2d55d470f5e09449827d2af5e2309c4, type: 3}
-  SpawnAI: 0
+  SpawnAI: 1
 --- !u!1001 &375436420
 PrefabInstance:
   m_ObjectHideFlags: 0

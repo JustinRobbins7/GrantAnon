@@ -11,7 +11,7 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable, IBuyable
     [SerializeField] float movementSpeed = 5f;
     [SerializeField] protected float maxHealth = 5f;
     [SerializeField] protected GameObject healthBar = null;
-    [SerializeField] protected int buildCost;
+    [SerializeField] protected static int buildCost = 5;
     [SerializeField] float attackDamage = .1f;
     int targetIndex;
 
@@ -25,7 +25,9 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable, IBuyable
     private SpriteRenderer sprite = null;
 
     private AStarGrid aStarGrid;
-    private Node currentLocation;
+    public Node currentLocation;
+    public bool unitAtGrant = false;
+    public bool aiUnit = false;
 
     protected float currentHealth;
 
@@ -116,6 +118,10 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable, IBuyable
                     {
                         anim.SetBool("Moving", moving);
                     }
+
+                    if (aiUnit) {
+                        unitAtGrant = true;
+                    }
                     
                     yield break;
                 }
@@ -198,9 +204,13 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable, IBuyable
         Destroy(gameObject);
     }
 
-    public int GetCost()
+    public static int GetCost()
     {
         return buildCost;
+    }
+
+    int IBuyable.GetCost() {
+        return Unit.GetCost();
     }
 
     public void SetOwningPlayerNum(int owningPlayerNum) {

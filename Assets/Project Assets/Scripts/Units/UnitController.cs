@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * Unit controller, keeps track of all of the units and controls which units attack each other
+ */
 public class UnitController : MonoBehaviour {
     // Store the location of the gameobjects 
     List<GameObject>[] damageableLocations;
@@ -11,10 +14,19 @@ public class UnitController : MonoBehaviour {
     int gridSize = 0;
     int gridColSize = 0;
 
+    /**
+     * Start method that intializes the UnitController variables
+     */
     public void Start() {
         aStarGrid = FindObjectOfType<AStarGrid>();
     }
 
+    /**
+     * If a unit has moved, it will be added to the damageableAddQueue. This method adds the unit
+     * to the correct index in damageableLocations. At locations where units were added or deleted,
+     * this method will iterate through those locations and their neighbors and update the attack
+     * targets for any of the units in these positions
+     */
     public void FixedUpdate() {
         if (gridSize == 0 && aStarGrid.GridInitialized()) {
             gridSize = aStarGrid.GridSize;
@@ -51,20 +63,34 @@ public class UnitController : MonoBehaviour {
         }
     }
 
+    /**
+     * Add a damageable GameObject to the damageableAddQueue
+     */
     public void AddDamageable(GameObject damageable) {
         damageableAddQueue.Enqueue(damageable);
     }
 
+    /**
+     * Remove a damageable GameObject from its position on the map and update the attack targets
+     * for all units at that location and its neighbors (in the next FixedUpdate())
+     */
     public bool RemoveDamageable(GameObject damageable, int locationKey) {
         AddUpdateLocations(locationKey);
         return damageableLocations[locationKey].Remove(damageable);
     }
 
+    /**
+     * Remove a damageable GameObject from its position on the map and update the attack targets
+     * for all units at that location and its neighbors (in the next FixedUpdate())
+     */
     public bool RemoveDamageable(GameObject damageable) {
         int locationKey = NodeToKey(aStarGrid.NodeFromWorldPoint(damageable.transform.position));
         return RemoveDamageable(damageable, locationKey);
     }
 
+    /**
+     * If a unit has moved, updates its position and update all of its new and old neighbors attack targets
+     */
     public void UpdateDamageable(GameObject damageable, Node oldLocation) {
         // If the gameObject exists at the old location then remove it from that location
         int locationKey = NodeToKey(oldLocation);
@@ -72,22 +98,37 @@ public class UnitController : MonoBehaviour {
         AddDamageable(damageable);
     }
 
+    /**
+     * If the unit is in the first column of the 2D grid return true
+     */
     private bool InFirstColumn(int locationKey) {
         return locationKey % gridColSize == 0;
     }
 
+    /**
+     * If the unit is in the last column of the 2D grid return true
+     */
     private bool InLastColumn(int locationKey) {
         return locationKey % gridColSize == gridColSize - 1;
     }
 
+    /**
+     * If the unit is in the first row of the 2D grid return true
+     */
     private bool InTopRow(int locationKey) {
         return locationKey < gridColSize;
     }
 
+    /**
+     * If the unit is in the last row of the 2D grid return true
+     */
     private bool InBottomRow(int locationKey) {
         return locationKey + gridColSize > gridSize;
     }
 
+    /**
+     * Finds an attackable target for a unit within its current tile or any of its neighbor tiles
+     */
     private void FindTarget(GameObject current, int locationKey) {
         List<GameObject> gos = new List<GameObject>();
 
@@ -112,6 +153,10 @@ public class UnitController : MonoBehaviour {
         }
     }
 
+    /**
+     * Returns a list of integers corresponding to the indexes in the damageableLocations array that are neighbors of
+     * or are the passed in locationKey
+     */
     private List<int> GetNeighborsAndSelf(int locationKey) {
         List<int> neighbors = new List<int>();
 
@@ -161,6 +206,9 @@ public class UnitController : MonoBehaviour {
         return neighbors;
     }
 
+    /**
+     * For each neighbor of a given location, this method adds that to the list of tiles to update in the next fixedUpdate()
+     */
     private void AddUpdateLocations(int locationKey) {
         List<int> neighbors = GetNeighborsAndSelf(locationKey);
 
@@ -169,6 +217,9 @@ public class UnitController : MonoBehaviour {
         }
     }
 
+    /**
+     * Converts a node location to a key representing the index of the node in a one dimensional array
+     */
     private int NodeToKey(Node node) {
         return node.gridRow * gridColSize + node.gridCol;
     }

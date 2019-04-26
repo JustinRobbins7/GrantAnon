@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+/**
+ * Implementation of the A* pathfinding algorithm
+ */
 public class AStarGrid : MonoBehaviour {
     Node[,] grid;
     string[] tilePrecedence = { "Obstacles", "LavaHazards", "Grass" };
@@ -17,6 +20,9 @@ public class AStarGrid : MonoBehaviour {
         CreateGrid();
     }
 
+    /**
+     * Creates a 2D grid from the tilemap
+     */
     public void CreateGrid() {
         GameObject levelGrid = GameObject.Find("LevelGrid");
         Tilemap[] tilemaps = levelGrid.GetComponentsInChildren<Tilemap>();
@@ -65,6 +71,9 @@ public class AStarGrid : MonoBehaviour {
         }
     }
 
+    /**
+     * Gets all of the neighbors of a node (diagonal and up,down,left,right)
+     */
     public List<Node> GetNeighbors(Node node) {
         List<Node> neighbors = new List<Node>();
 
@@ -86,10 +95,16 @@ public class AStarGrid : MonoBehaviour {
         return neighbors;
     }
 
+    /**
+     * Converts grid position to world position
+     */
     public Vector2 Vector2FromGridPosition(Vector2Int gridPos) {
         return NodeToWorldPosition(grid[gridPos.x, gridPos.y]);
     }
 
+    /**
+     * Converts tile position to world position
+     */
     public Vector2 TileToWorld(Vector2 tilePos) {
         Vector2 worldPos;
 
@@ -99,6 +114,9 @@ public class AStarGrid : MonoBehaviour {
         return worldPos;
     }
 
+    /**
+     * Converts tile position to world position
+     */
     public Vector2 WorldToTile(Vector2 worldPos) {
         Vector2 tilePos;
 
@@ -108,6 +126,9 @@ public class AStarGrid : MonoBehaviour {
         return tilePos;
     }
 
+    /**
+     * Converts node position to world position
+     */
     public Vector2 NodeToWorldPosition(Node node) {
         int tileX = node.gridCol + origin.x;
         int tileY = node.gridRow + origin.y;
@@ -115,10 +136,16 @@ public class AStarGrid : MonoBehaviour {
         return TileToWorld(new Vector2(tileX, tileY));
     }
 
+    /**
+     * Converts grid position to node
+     */
     public Node NodeFromGridPosition(Vector2Int gridPos) {
         return grid[gridPos.x, gridPos.y];
     }
 
+    /**
+     * Converts node from tile position
+     */
     public Node NodeFromTilePoint(Vector2 tilePos) {
         int x = Mathf.RoundToInt(tilePos.x - origin.x);
         int y = Mathf.RoundToInt(tilePos.y - origin.y);
@@ -138,22 +165,34 @@ public class AStarGrid : MonoBehaviour {
         return NodeFromGridPosition(new Vector2Int(x, y));
     }
 
+    /**
+     * Converts world point to node
+     */
     public Node NodeFromWorldPoint(Vector2 worldPos) {
         Vector2 tilePos = WorldToTile(worldPos);
 
         return NodeFromTilePoint(tilePos);
     }
 
+    /**
+     * Boolean of if the grid has been initialized or not
+     */
     public bool GridInitialized() {
         return grid != null;
     }
 
+    /**
+     * Returns a vector representing the size of the grid
+     */
     public Vector2Int GridSizeVector {
         get {
             return size;
         }
     }
 
+    /**
+     * Returns the number of tiles in the grid
+     */
     public int GridSize {
         get {
             return size.x * size.y;

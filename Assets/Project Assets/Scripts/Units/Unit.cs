@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
+/**
  * Unit class, details the behavior of the players' units, implements IMovable, ISelectable, IDamageable, IBuyable, and ISpawnable
  * 
  * Allows the players' units to move according to A Star Pathfinding, attack other units, and die.
@@ -235,7 +235,7 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable, IBuyable
         }
     }
 
-    /*
+    /**
      * OnDeath deselects the unit, removes it from its owner's unit list, and destroys the game object.
      */
     public virtual void OnDeath()

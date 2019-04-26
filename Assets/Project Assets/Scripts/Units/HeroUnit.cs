@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
+/**
  *  The hero units class is a child class of the Unit class that has a respawn time 
  *  and calls its owning player to respawn it once it dies.
  */

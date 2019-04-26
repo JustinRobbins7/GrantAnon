@@ -3,20 +3,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * Class that does the pathfinding for A*
+ */
 public class Pathfinding : MonoBehaviour
 {
     AStarGrid grid;
     PathRequestManager requestManager;
 
+    /**
+     * First lifecycle hook and sets up A* grid
+     */
     void Awake() {
         grid = GetComponent<AStarGrid>();
         requestManager = GetComponent<PathRequestManager>();
     }
 
+    /**
+     * Starts a coroutine to find the path between two points
+     */
     public void StartFindPath(Vector2 startPos, Vector2 targetPos) {
         StartCoroutine(FindPath(startPos, targetPos));
     }
 
+    /**
+     * A* algorithm that returns a list of waypoints between two points
+     */
     IEnumerator FindPath(Vector2 startPos, Vector2 endPos) {
         Vector2[] waypoints = new Vector2[0];
         bool success = false;
@@ -67,6 +79,9 @@ public class Pathfinding : MonoBehaviour
         requestManager.FinishedProcessingPath(waypoints, success);
     }
 
+    /**
+     * Reverses the list of waypoints (as they are passed in reverse order) and returns them
+     */
     Vector2[] RetracePath(Node startNode, Node endNode) {
         List<Node> path = new List<Node>();
         Node currentNode = endNode;
@@ -81,6 +96,9 @@ public class Pathfinding : MonoBehaviour
         return waypoints;
     }
 
+    /**
+     * Removes and duplicate points in the path
+     */
     Vector2[] SimplifyPath(List<Node> path) {
         List<Vector2> waypoints = new List<Vector2>();
         Vector2 directionOld = Vector2.zero;
@@ -96,6 +114,9 @@ public class Pathfinding : MonoBehaviour
         return waypoints.ToArray();
     }
 
+    /**
+     * Gets the distance between two points using the a* algorithm
+     */
     int GetDistance(Node nodeA, Node nodeB) {
         int dstCol = Mathf.Abs(nodeA.gridCol - nodeB.gridCol);
         int dstRow = Mathf.Abs(nodeA.gridRow - nodeB.gridRow);

@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+/**
+ * The InstructManager is in charge of controlling the Instruction Menu.
+ */
 public class InstructManager : MonoBehaviour
 {
     public GameObject[] menuGameObjs = new GameObject[3];
@@ -57,6 +60,9 @@ public class InstructManager : MonoBehaviour
 
     // Start is called before the first frame update
 
+    /**
+     * Start sets up the canvas space, indicator buttons, and controller.
+     */
     void Start()
     {
         timer = waitTime;
@@ -93,6 +99,10 @@ public class InstructManager : MonoBehaviour
         rgdbdy2 = GetComponent<Rigidbody2D>();
     }
 
+    /**
+     * On FixedUpdate, the instruction menu should check for controller input.
+     * Input will either return the player to the Menu scene or change which canvas is displayed.
+     */
     void FixedUpdate()
     {
 
@@ -159,6 +169,9 @@ public class InstructManager : MonoBehaviour
 
     }
 
+    /**
+     * Set which Controller can operate the instruction menu.
+     */
     public void SetControllerNumber(int ControllerNum)
     {
         controllerNum = ControllerNum;
@@ -183,6 +196,10 @@ public class InstructManager : MonoBehaviour
         PS = "P" + ControllerNum.ToString() + "_PS";
         Pad = "P" + ControllerNum.ToString() + "_Pad";
     }
+
+    /**
+     * Set the selected canvas to active, and deactivate the previous canvas.
+     */
     public void setCanvas(int deselect)
     {
         //deselect the old button
@@ -194,6 +211,10 @@ public class InstructManager : MonoBehaviour
         //select the new button
         menuGameObjs[canvasSelector].SetActive(true);
     }
+
+    /**
+     * Determine which canvas (if any) should be selected from the given input. Then use setCanvas and setIndicators to activate the proper items.
+     */
     public void selectCanvas(int i)
     {
         //for moving right or left
@@ -218,6 +239,10 @@ public class InstructManager : MonoBehaviour
             }
         }
     }
+
+    /**
+     * Set the indicator icons (arrows on the instruction screen) based on if the user can move the menu that way.
+     */
     public void setIndicators()
     {
          //set left indicator

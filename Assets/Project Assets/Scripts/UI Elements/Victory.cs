@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+/**
+ * The controller of the Victory screen.
+ */
 public class Victory : MonoBehaviour
 {
     public Text VictoryText;
@@ -13,6 +16,9 @@ public class Victory : MonoBehaviour
         
     }
 
+    /**
+     * Return the players to the menu if they are done with the victory screen
+     */
     // Update is called once per frame
     void Update()
     {
@@ -25,6 +31,9 @@ public class Victory : MonoBehaviour
         }
     }
     
+    /**
+     * Set which player has won
+     */
     public void setText(int player)
     {
         VictoryText.text = "Congratulations Player " + player + "!";

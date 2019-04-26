@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/**
+ * The Menu Button is the parent class of all menu buttons types.
+ * It allows buttons to show when they have been selected and unselected.
+ */
 public abstract class MenuButton : MonoBehaviour
 {
     // Start is called before the first frame update

@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+/**
+ * This script controls when the pause menu is visible or not.
+ */
 public class PauseMenu : MonoBehaviour
 {
     public GameObject menu;
@@ -11,6 +14,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject timer;
     bool visibility;
     bool check;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +22,11 @@ public class PauseMenu : MonoBehaviour
         check = false;
     }
 
-    // Update is called once per frame
+    /**
+     * Check to see what player input has occurred.
+     * If the pause menu is already active, it might be deactivated, or the player could signal loading into the main menu.
+     * Else, the pause menu might be activated.
+     */
     void Update()
     {
         if (!check)
@@ -54,6 +62,9 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    /**
+     * toggle() changes the visibility of the pause screen and will alter flow of time such that the game is paused or unpaused.
+     */
     public void toggle()
     {
         visibility = !menu.activeSelf;

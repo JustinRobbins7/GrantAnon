@@ -32,8 +32,10 @@ public class IncomeBuilding : Building
 
     // Update is called once per frame
     /**
-     * Counts down the interval timer, adding funds to the owning player when the timer hits 0.
-     */
+    *  Update method called every frame, counts both a timer whose length is determined by 
+    *  IncomeInterval. When it reaches zeero, the building's owning player is 
+    *  given an amount of money equal to the IncomePerInterval.
+    */
     void FixedUpdate()
     {
         IncomeTimer -= Time.deltaTime;
@@ -45,6 +47,10 @@ public class IncomeBuilding : Building
         }
     }
 
+    /**
+     *  OnDeath method that overrides the original Building OnDeath method.
+     *  Destroys the building and removes itself from its owner's income building list.
+     */
     public override void OnDeath()
     {
         if (owner != null)

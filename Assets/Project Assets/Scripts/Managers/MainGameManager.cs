@@ -4,12 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
 
+/**
+  * MainGameManager for the project, handles players and the flow of the game, most notably the spawning of grants.
+  */
 public class MainGameManager : GameManager
 {
-    /**
-     * MainGameManager for the project, handles players and the flow of the game.
-     */
-
     [SerializeField] float grantInterval;
     [SerializeField] GameObject grantPrefab;
     [SerializeField] Vector2 grantSpawnLocation;
@@ -29,9 +28,9 @@ public class MainGameManager : GameManager
     public AudioSource grantSpawn;
 
     /**
-     * Ensures the GameManager is unique and accessible from code anywhere
+     * The awake method initialized a static instance of the MainGameManager.
+     * This ensures the GameManager is unique and accessible from code anywhere
      */
-
     void Awake()
     {
         if (instance == null)

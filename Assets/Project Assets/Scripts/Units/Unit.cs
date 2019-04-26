@@ -3,6 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Unit class, details the behavior of the players' units, implements IMovable, ISelectable, IDamageable, IBuyable, and ISpawnable
+ * 
+ * Allows the players' units to move according to A Star Pathfinding, attack other units, and die.
+ */
 public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable, IBuyable, ISpawnable
 {
     int owningPlayerNum = 0;
@@ -29,6 +34,9 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable, IBuyable
 
     protected float currentHealth;
 
+    /**
+     * Start method, initializes Unit's starting values
+     */
     protected virtual void Start()
     {
         currentHealth = maxHealth;
@@ -37,12 +45,18 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable, IBuyable
         aStarGrid = FindObjectOfType<AStarGrid>();
     }
 
+    /**
+     * Update is called every frame, and moves the selection circle around this units if it's selected. 
+     */
     protected virtual void Update() {
         if (selected && targetIndex > 0) {
             gameObject.UpdateCircleDraw(radius);
         }
     }
 
+    /**
+     * Starts the attack coroutine against the given gameobject.
+     */
     public void SetAttackTarget(GameObject attackTarget) {
         this.attackTarget = attackTarget;
         if (attackTarget != null) {
@@ -52,6 +66,9 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable, IBuyable
         }
     }
 
+    /**
+     * Coroutine that trigger the attack animation and deal damage to the attacked IDamageable implementor.
+     */
     IEnumerator Attack() {
         anim.SetTrigger("Attack");
         while (true) {
@@ -64,10 +81,17 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable, IBuyable
         }
     }
 
+    /**
+     * Calls the PathRequestManager to provide a path from the unit's position to the target destination
+     */
     public void Move(Vector2 target) {
         PathRequestManager.RequestPath(GetComponent<Rigidbody2D>().position, target, OnPathFound);
     }
 
+    /**
+     * When a path is found by the PathRequestManager, this method will be called, giving this unit a path to the requested destination.
+     * The method itself calls FollowPath to get to each step of the path.
+     */
     private void OnPathFound(Vector2[] path, bool success) {
         if (this != null)
         {
@@ -80,6 +104,9 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable, IBuyable
         }
     }
 
+    /**
+     * Coroutine that moves the unit to the next waypoint of the path based on the A Star Pathfinding algorithm and the level grid.
+     */
     IEnumerator FollowPath() {
         if (currentLocation == null) {
             currentLocation = aStarGrid.NodeFromWorldPoint(GetComponent<Rigidbody2D>().position);
@@ -146,6 +173,11 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable, IBuyable
         }
     }
 
+    /**
+     * Sets selected to true, drawing a circle when newly selected and destroying it if being deselected
+     * 
+     * Implementation Required by ISelectable
+     */
     public void SetSelected(bool selected) {
         // If no change then don't update
         if (this.selected == selected) {
@@ -164,14 +196,30 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable, IBuyable
         }
     }
 
+    /**
+     * Returns the selected boolean
+     * 
+     * Implementation Required by ISelectable
+     */
     public bool IsSelected() {
         return selected;
     }
 
+    /**
+     * Returns boolean signifying if the units is moving or not
+     * 
+     * Implementation required by IMoveable
+     */
     public bool IsMoving() {
         return moving;
     }
 
+    /**
+     * OnDamageTaken method that decrements health by the given float, then calls OnDeath if 
+     * the resulting health value is equal to or less than zero.
+     * 
+     * Implementation required by IDamageable
+     */
     public virtual void OnDamageTaken(float damageTaken)
     {
         currentHealth -= damageTaken;
@@ -187,6 +235,9 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable, IBuyable
         }
     }
 
+    /*
+     * OnDeath deselects the unit, removes it from its owner's unit list, and destroys the game object.
+     */
     public virtual void OnDeath()
     {
         selected = false;
@@ -198,15 +249,30 @@ public class Unit : MonoBehaviour, IMoveable, ISelectable, IDamageable, IBuyable
         Destroy(gameObject);
     }
 
+    /**
+     * GetCost returns the monetary cost of buildign this unit.
+     * 
+     * Implementation required by IBuyable
+     */
     public int GetCost()
     {
         return buildCost;
     }
 
+    /**
+     * SetOwningPlayerNum sets the owning player id of this unit.
+     * 
+     * Implementation required by ISpawnable
+     */
     public void SetOwningPlayerNum(int owningPlayerNum) {
         this.owningPlayerNum = owningPlayerNum;
     }
 
+    /**
+     * GetOwningPlayerNum returns the owning player id of this unit.
+     * 
+     * Implementation required by ISpawnable
+     */
     public int GetOwningPlayerNum() {
         return owningPlayerNum;
     }

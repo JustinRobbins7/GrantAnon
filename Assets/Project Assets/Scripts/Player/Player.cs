@@ -5,6 +5,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * Player class that maintains the units and buildings of each player,
+ * including prefabs of the units they create and lists of these units.
+ * Also maintains the money and grants gained by the player.
+ * Also respawns their hero units when necessary.
+ */
 public class Player : MonoBehaviour
 {
     [SerializeField] public int PlayerNumber = 0;
@@ -30,6 +36,9 @@ public class Player : MonoBehaviour
 
     //AStarGrid grid = null;
 
+    /**
+     * The Start method initializes the values and lists of the Player class
+     */
     // Start is called before the first frame update
     void Start()
     {
@@ -53,6 +62,9 @@ public class Player : MonoBehaviour
         }
     }
 
+    /**
+     * If the hero is dead, counts down the timer until he needs to be spawned, then calls SpawnHeroUnit.
+     */
     void FixedUpdate()
     {
         if (heroRespawnTimer >= 0)
@@ -67,10 +79,16 @@ public class Player : MonoBehaviour
         }
     }
 
+    /**
+     * Sets the player number associated with this instance of Player.
+     */
     public void SetPlayerNumber(int PlayerNumber) {
         this.PlayerNumber = PlayerNumber;
     }
 
+    /**
+     * Spawns an income building at the specificed location, adds it to the income building list, then decrements its cost from the player's money.
+     */
     public void SpawnBuilding(Vector2 location) {
         if (BuildingRoot != null && IncomeBuildingPrefab != null && money >= IncomeBuildingPrefab.GetComponent<IncomeBuilding>().GetCost()) {
             GameObject SpawnedBuilding = Instantiate(IncomeBuildingPrefab);
@@ -84,6 +102,9 @@ public class Player : MonoBehaviour
         }
     }
 
+    /**
+     * Spawns an unit at the specified location, adds it to the unit list, then decrements its cost from the player's money.
+     */
     public void SpawnUnit(Vector2 location) {
         if (UnitRoot != null && MeleeUnitPrefab != null && money >= MeleeUnitPrefab.GetComponent<Unit>().GetCost()) {
             Debug.Log("Pre Spawn Unit Count: " + units.Count.ToString());
@@ -117,6 +138,9 @@ public class Player : MonoBehaviour
         }
     }
 
+    /**
+     * Spawns a hero unit at the specified location and adds it to the unit list.
+     */
     public void SpawnHeroUnit(Vector2 location)
     {
         if (SpawnedHeroUnit == null)
@@ -133,15 +157,24 @@ public class Player : MonoBehaviour
         }
     }
 
+    /**
+     * Spawns a unit at this player's central building
+     */
     public void SpawnUnitAtBase()
     {
         SpawnUnit(baseLocation);
     }
 
+    /**
+     * Searches the scene for every unit owned by this player and return them in an array
+     */
     public Unit[] GetUnits() {
         return Array.FindAll(FindObjectsOfType<Unit>(), selectableObject => selectableObject.GetOwningPlayerNum() == PlayerNumber);
     }
 
+    /**
+     * Searches the scene for every unit and building not owned by this player and return them in an array
+     */
     public GameObject[] GetEnemyObjects() {
         
         GameObject[] units = Array.FindAll(FindObjectsOfType<Unit>(), selectableObject => selectableObject.GetOwningPlayerNum() != PlayerNumber).Select(unit => unit.gameObject).ToArray();
@@ -155,12 +188,18 @@ public class Player : MonoBehaviour
         return gameObjects;
     }
 
+    /**
+     * Sets the location for the central building, then spawns it and a hero unit.
+     */
     public void SetBaseLocation(Vector2 baseLocation) {
         this.baseLocation = baseLocation;
         SpawnMainBase();
         SpawnHeroUnit(baseLocation);
     }
 
+    /**
+     * Spawns the central building at the location specified by the baseLocation variable
+     */
     public void SpawnMainBase() {
         // Method that will spawn the main base once that is ready
         if (CentralBuildingPrefab != null)
@@ -171,6 +210,9 @@ public class Player : MonoBehaviour
         }
     }
 
+    /**
+     * Resets the timer that respawns this player's hero
+     */
     public void SetHeroRespawn(float timeToRespawn)
     {
         heroRespawnTimer = timeToRespawn;

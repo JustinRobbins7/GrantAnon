@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/**
+  * Class that manages the player sign in menu, assigns player numbers, spawns them, and begins the level.
+  */
 public class PlayerControllerAssigner : MonoBehaviour
 {
-    /**
-     * Manages the player signin menu, assigns player numbers, spawns them, and begins the level.
-     */
+    
     public int MaxPlayers = 4;
     public GameObject ReadyScreen;
 

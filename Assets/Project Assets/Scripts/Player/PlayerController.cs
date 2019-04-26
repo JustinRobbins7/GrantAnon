@@ -125,6 +125,9 @@ public class PlayerController : MonoBehaviour
                 isSelecting = !isSelecting;
             }
 
+            /**
+            * Instructs the currently selected units to move the current location of the camera.
+            */
             if (Input.GetButtonDown(circleButton))
             {
                 /*
@@ -220,7 +223,7 @@ public class PlayerController : MonoBehaviour
     }
 
     /**
-     * Moves camerabased on this gameobject's location.
+     * Moves camera based on this gameobject's location.
      */
     private void updateCameraLocation()
     {
@@ -303,6 +306,10 @@ public class PlayerController : MonoBehaviour
         return Vector3.Distance(gameObject.transform.position, adjustedCameraPos) < radius;
     }
 
+    /**
+     * Sets the names of the axes this controller is listening for based on the given player number 
+     * as well as setting this player controller's player number to the given number.
+     */
     public void SetControllerNumber(int ControllerNum)
     {
         controllerNum = ControllerNum;

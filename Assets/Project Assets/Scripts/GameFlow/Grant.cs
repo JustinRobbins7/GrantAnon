@@ -10,14 +10,15 @@ public class Grant : MonoBehaviour
     int CurrentTimerOwner;
     float Countdown;
 
+    /**
+     * Start method that initializes the Grant's variables
+     */
     // Start is called before the first frame update
     void Start()
     {
         CapturingTeams = new int[MainGameManager.instance.PlayerCount];
         Countdown = CaptureTime;
         CurrentTimerOwner = 0;
-
-        
     }
 
     // Update is called once per frame
@@ -97,7 +98,7 @@ public class Grant : MonoBehaviour
     }
 
     /**
-     * When a Unit comes within range of the grant's collision box, it is added to that players' unit count.
+     * When a Unit comes within range of the grant's collision box, it is added to that player's capturing unit count.
      */
     //When Unit collides with grant, add it to the unit counts for its owning player
     void OnTriggerEnter2D(Collider2D other)
@@ -114,7 +115,7 @@ public class Grant : MonoBehaviour
     }
 
     /**
-     * When a Unit leaves the range of the grant's collision box, it is subtracted from that players' unit count.
+     * When a Unit leaves the range of the grant's collision box, it is subtracted from that player's capturing unit count.
      */
     //When Unit leaves grant's collision box, remove it from its player's unit count
     void OnTriggerExit2D(Collider2D other)

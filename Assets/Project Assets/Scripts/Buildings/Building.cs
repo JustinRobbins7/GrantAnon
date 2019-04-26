@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * Building parent class, implements IDamageable, IBuyable, and ISpawnable
+ */
 public class Building : MonoBehaviour, IDamageable, IBuyable, ISpawnable
 {
     [SerializeField] float maxHealth;
@@ -15,6 +18,9 @@ public class Building : MonoBehaviour, IDamageable, IBuyable, ISpawnable
         currentHealth = maxHealth;
     }
 
+    /**
+     * Implemented OnDamageTaken method from IDamageable
+     */
     public void OnDamageTaken(float damageTaken)
     {
         damageTaken -= currentHealth;
@@ -30,19 +36,33 @@ public class Building : MonoBehaviour, IDamageable, IBuyable, ISpawnable
         }
     }
 
+    /**
+     * Implemented GetCost method from IBuyable
+     */
     public int GetCost()
     {
         return buildCost;
     }
 
+    /**
+     * Implemented ISpawnable method SetOwningPlayerNum
+     */
     public void SetOwningPlayerNum(int owningPlayerNum) {
         this.owningPlayerNum = owningPlayerNum;
     }
 
+    /**
+     * Implemented ISpawnable method GetOwningPlayerNum
+     */
     public int GetOwningPlayerNum() {
         return owningPlayerNum;
     }
 
+    /**
+     * Overridable method OnDeath, used when the building's health drops to zero.
+     * 
+     * By default it destroys the gameobject when health equals zero.
+     */
     public virtual void OnDeath()
     {
         FindObjectOfType<UnitController>().RemoveDamageable(gameObject);

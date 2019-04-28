@@ -43,13 +43,23 @@ public class HonorsGameManager : MainGameManager
         minigameStarters = FindObjectsOfType<MinigameStarter>();
     }
 
-    void FixedUpdate()
+    protected override void FixedUpdate()
     {
+        /*
         if (runLevel)
         {
             if (!spawnedGrant)
             {
                 grantTimer += Time.deltaTime;
+                int time = (int)(grantInterval - grantTimer);
+                if (time == 0)
+                {
+                    Timer.text = "Grant has Spawned!";
+                }
+                else
+                {
+                    Timer.text = "Grant Spawns in " + time;
+                }
             }
 
             if (grantTimer >= grantInterval)
@@ -57,21 +67,9 @@ public class HonorsGameManager : MainGameManager
                 SpawnGrant();
                 grantTimer = 0.0f;
             }
-
-            /*
-            if (!minigameRunning)
-            {
-                minigameTimer += Time.deltaTime;
-            }
-
-            if (minigameTimer >= minigameInterval)
-            {
-                minigameRunning = true;
-                minigameTimer = 0.0f;
-                StartMinigame();
-            }
-            */
         }
+        */
+        base.FixedUpdate();
     }
 
     public void StartMinigame()

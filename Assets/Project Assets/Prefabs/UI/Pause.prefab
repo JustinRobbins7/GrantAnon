@@ -1742,7 +1742,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7584556826950512109
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1888,6 +1888,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: {fileID: 0}
   start: {fileID: 0}
+  timer: {fileID: 0}
 --- !u!1 &7584556826975777585
 GameObject:
   m_ObjectHideFlags: 0

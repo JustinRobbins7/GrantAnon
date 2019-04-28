@@ -27,7 +27,6 @@ public class Player : MonoBehaviour
     [SerializeField] public GameObject BuildingOne = null;
     [HideInInspector] public GameObject BuildingRoot = null;
 
-    List<GameObject> incomeBuildings = null;
     [HideInInspector] public GameObject UnitRoot = null;
     [HideInInspector] public Vector2 baseLocation;
     [HideInInspector] public int money;
@@ -45,13 +44,11 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        units = new List<GameObject>();
-        incomeBuildings = new List<GameObject>();
-
         money = 0;
         grant = 0;
         heroRespawnTimer = 0;
 
+        
         if (units == null)
         {
             units = new List<GameObject>();
@@ -66,6 +63,7 @@ public class Player : MonoBehaviour
         {
             enemyUnits = new List<GameObject>();
         }
+        
     }
 
     /**

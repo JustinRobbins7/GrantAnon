@@ -208,11 +208,11 @@ public class PlayerControllerAssigner : MonoBehaviour
             PlayerBuildingRoot.name = "Player " + (i + 1) + " Buildings";
             SpawnedPlayer.GetComponent<Player>().BuildingRoot = PlayerBuildingRoot;
 
-            /*
+            
             SpawnedPlayer.transform.position = PlayerSpawns[i];
             SpawnedPlayer.GetComponent<Player>().SetBaseLocation(PlayerSpawns[i]);
-            */
-            SpawnedPlayer.GetComponent<Player>().SetBaseLocation(ConvertSpawnTileToCoords(spawnTiles[i]));
+            
+            //SpawnedPlayer.GetComponent<Player>().SetBaseLocation(ConvertSpawnTileToCoords(spawnTiles[i]));
 
             MainGameManager.instance.InsertPlayer(i, SpawnedPlayer.GetComponent<Player>());
 

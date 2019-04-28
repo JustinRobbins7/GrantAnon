@@ -9,6 +9,7 @@ public class CleanUpGame_UIManager : MonoBehaviour
     [SerializeField] GameObject endScreen;
 
     CleanUpGameManager owner;
+    PauseMenu pause = null;
 
     enum Mode{
         Inactive,
@@ -23,6 +24,7 @@ public class CleanUpGame_UIManager : MonoBehaviour
     {
         owner = FindObjectOfType<CleanUpGameManager>();
         Deactivate();
+        pause = FindObjectOfType<PauseMenu>();
     }
 
     // Update is called once per frame
@@ -34,7 +36,7 @@ public class CleanUpGame_UIManager : MonoBehaviour
         }
         else if (currentMode == Mode.Start)
         {
-            if (Input.GetButtonDown("PAll_Start"))
+            if (Input.GetButtonDown("PAll_Pad"))
             {
                 Debug.Log("Start Minigame!");
 
@@ -52,9 +54,14 @@ public class CleanUpGame_UIManager : MonoBehaviour
         }
         else if (currentMode == Mode.End)
         {
-            if (Input.GetButtonDown("PAll_Start"))
+            if (Input.GetButtonDown("PAll_Pad"))
             {
                 Debug.Log("End Minigame!");
+
+                if (pause != null)
+                {
+                    pause.toggleTimer();
+                }
 
                 owner.EndMinigame();
 
@@ -68,6 +75,11 @@ public class CleanUpGame_UIManager : MonoBehaviour
         currentMode = Mode.Start;
 
         startScreen.SetActive(true);
+
+        if(pause != null)
+        {
+            pause.toggleTimer();
+        }
     }
 
     public void LoadCleanUpEnd()

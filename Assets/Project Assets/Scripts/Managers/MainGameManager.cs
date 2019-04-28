@@ -9,18 +9,19 @@ using UnityEngine.Audio;
   */
 public class MainGameManager : GameManager
 {
-    [SerializeField] float grantInterval;
-    [SerializeField] GameObject grantPrefab;
-    [SerializeField] Vector2 grantSpawnLocation;
+    [SerializeField] protected float grantInterval;
+    [SerializeField] protected GameObject grantPrefab;
+    [SerializeField] protected Vector2 grantSpawnLocation;
 
     public static MainGameManager instance = null;
 
     public Player[] Players = null;
-    int[] PlayerScores;
-    float grantTimer;
-    bool runLevel;
-    bool spawnedGrant;
+    protected int[] PlayerScores;
+    protected float grantTimer;
+    protected bool runLevel;
+    protected bool spawnedGrant;
     public int winningCondition = 3;
+    protected Dictionary<int, int> zeroBasedPlayerToController;
 
     public GameObject Victory;
     public Text Timer;
@@ -43,6 +44,7 @@ public class MainGameManager : GameManager
         }
 
         runLevel = false;
+        zeroBasedPlayerToController = new Dictionary<int, int>();
     }
 
     // Update is called once per frame
@@ -50,7 +52,7 @@ public class MainGameManager : GameManager
      * If the level is active, counts down the grant timer, once it reaches zero, it spawns a grant 
      * and waits for it to be collected before beginning a new timer.
      */
-    void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         if (runLevel)
         {
@@ -154,5 +156,24 @@ public class MainGameManager : GameManager
             Players[earningPlayer].money += moneyEarned;
         }
     }
-    
+
+    public void ResumeLevel()
+    {
+        runLevel = true;
+    }
+
+    public void AddPlayerControllerPair(int playerNum, int controllerNum)
+    {
+        zeroBasedPlayerToController.Add(playerNum, controllerNum);
+    }
+
+    public int GetPlayerControllerZeroBased(int PlayerNum)
+    {
+        return zeroBasedPlayerToController[PlayerNum];
+    }
+
+    public int GetNumPlayers()
+    {
+        return Players.Length;
+    }
 }

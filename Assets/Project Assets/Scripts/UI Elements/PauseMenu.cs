@@ -79,4 +79,16 @@ public class PauseMenu : MonoBehaviour
             Time.timeScale = 1;
         }
     }
+
+    public void toggleTimer()
+    {
+        if (timer.active)
+        {
+            timer.SetActive(false);
+        }
+        else
+        {
+            timer.SetActive(true);
+        }
+    }
 }

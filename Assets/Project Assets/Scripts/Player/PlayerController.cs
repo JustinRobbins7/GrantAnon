@@ -159,63 +159,11 @@ public class PlayerController : MonoBehaviour
                 player.SpawnUnitAtBase();
             }
 
-            if (Input.GetButtonDown(L1))
-            {
-            }
-
-            if (Input.GetButtonDown(R1))
-            {
-            }
-
-            if (Input.GetAxis(L2) != -1)
-            {
-            }
-
-            if (Input.GetAxis(R2) != -1)
-            {
-            }
-
-            if (Input.GetAxis(rHorizontalAxis) != 0)
-            {
-            }
-
-            if (Input.GetAxis(rVerticalAxis) != 0)
-            {
-            }
-
-            if (Input.GetAxis(DPadX) != 0)
-            {
-            }
-
-            if (Input.GetAxis(DPadY) != 0)
-            {
-            }
-
-            if (Input.GetButtonDown(L3))
-            {
-            }
-
-            if (Input.GetButtonDown(R3))
-            {
-            }
-
-            if (Input.GetButtonDown(Share))
-            {
-            }
-
             if (Input.GetButtonDown(Options))
             {
                 //here's where we add the pause button
                 //Debug.LogError("Options Button Pressed!");
                 this.GetComponent<PauseMenu>().toggle();
-            }
-
-            if (Input.GetButtonDown(PS))
-            {
-            }
-
-            if (Input.GetButtonDown(Pad))
-            {
             }
 
             UpdateSelectionCircle();

@@ -7,9 +7,9 @@ AnimatorOverrideController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: RedPotion
-  m_Controller: {fileID: 9100000, guid: 72208d949f02fea4e88f1d8e2f5679e4, type: 2}
+  m_Controller: {fileID: 9100000, guid: 45dc9559d7c904e4bb795e1231e6b346, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: 7400000, guid: aa14d78220426a44cbb784739e2b0ea5, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: bd181d36917220149b18954dac4b76e2, type: 2}
-  - m_OriginalClip: {fileID: 7400000, guid: 5f7fe01304b6a1547876e21ebf9cbfc6, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: c474980af7536604b96cbbfddaca9573, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 2a0fd8456d586e9409e7e767aa1b8e90, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 8fb1b1e962903cd41967f8f5cf9ea154, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 05680fd9ddbdda045b7ae429997a9ca7, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: b2d70b010c0dc0d4b944281ec01ea59a, type: 2}

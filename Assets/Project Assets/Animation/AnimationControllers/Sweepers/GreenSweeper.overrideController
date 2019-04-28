@@ -7,9 +7,7 @@ AnimatorOverrideController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: GreenSweeper
-  m_Controller: {fileID: 9100000, guid: 71b49478544e83e4f9bf42f223ab7bb6, type: 2}
+  m_Controller: {fileID: 9100000, guid: 48a9ba455385ce243bee57ec38b35c5c, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: 7400000, guid: 33869ee7136829948b05299b929e8116, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 865f0f42a76217441b9f3a801feea32a, type: 2}
-  - m_OriginalClip: {fileID: 7400000, guid: 9343b38df3952d2499d47c9240c465bc, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: a14d359e08898ea46b821ffbeac44e44, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 63ba7c3c6913954439c39b78cc2e908e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 4ec23a1f6c2bd0a40ade29690f22472f, type: 2}

@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 514911991996231601}
   - component: {fileID: 7948523926889557873}
-  - component: {fileID: 6040731799013534716}
   - component: {fileID: 9182459855822476397}
   - component: {fileID: 8816078098826494126}
+  - component: {fileID: 3114805673544050727}
   m_Layer: 0
   m_Name: BrownPotion
   m_TagString: Untagged
@@ -82,25 +82,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &6040731799013534716
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6802309746459228612}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: bfdafd659037c3c4a84fa486274b590d, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &9182459855822476397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de01fbb55c317bb4882b2daad23f11f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 6040731799013534716}
+  anim: {fileID: 3114805673544050727}
   arcHeight: 0.5
 --- !u!61 &8816078098826494126
 BoxCollider2D:
@@ -141,3 +122,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.25}
   m_EdgeRadius: 0
+--- !u!95 &3114805673544050727
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6802309746459228612}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: 25163ea84e4ff354aa31c169249b7032, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

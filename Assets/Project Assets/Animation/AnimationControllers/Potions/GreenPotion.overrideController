@@ -7,9 +7,9 @@ AnimatorOverrideController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: GreenPotion
-  m_Controller: {fileID: 9100000, guid: 72208d949f02fea4e88f1d8e2f5679e4, type: 2}
+  m_Controller: {fileID: 9100000, guid: 45dc9559d7c904e4bb795e1231e6b346, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: 7400000, guid: aa14d78220426a44cbb784739e2b0ea5, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 0d079bba066066d4fa037ac60cfe6d87, type: 2}
-  - m_OriginalClip: {fileID: 7400000, guid: 5f7fe01304b6a1547876e21ebf9cbfc6, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 80c8b3919e84b804f825296ee64e0bb5, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 2a0fd8456d586e9409e7e767aa1b8e90, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 33291a18a7b42654e903e6d43faeac08, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 05680fd9ddbdda045b7ae429997a9ca7, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 7ad6dd1c1b686824d8ebf7b83bb79eb1, type: 2}

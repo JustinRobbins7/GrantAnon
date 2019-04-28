@@ -20,10 +20,10 @@ public class Grant : MonoBehaviour
         CapturingTeams = new int[MainGameManager.instance.PlayerCount];
         Countdown = CaptureTime;
         CurrentTimerOwner = 0;
-        /*
-        gameObject.GetComponent<CircleCollider2D>().enabled = true;
+        
+        //gameObject.GetComponent<CircleCollider2D>().enabled = true;
         capturable = true;
-        */
+        
     }
 
     // Update is called once per frame

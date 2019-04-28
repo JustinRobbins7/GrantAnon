@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1053254763216222323}
   - component: {fileID: 91358416602643742}
-  - component: {fileID: 1253859202028672562}
+  - component: {fileID: 8290483691805437863}
   - component: {fileID: 4975943800325947587}
   m_Layer: 0
   m_Name: Monster
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &1253859202028672562
+--- !u!95 &8290483691805437863
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -91,7 +91,7 @@ Animator:
   m_GameObject: {fileID: 769865458631736966}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: aaf55cc79b5e200488c472124bf145e2, type: 2}
+  m_Controller: {fileID: 9100000, guid: c7197dcb6e9bf8a4e8b285dd450a1552, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

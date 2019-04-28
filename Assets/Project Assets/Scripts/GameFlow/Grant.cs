@@ -7,8 +7,8 @@ public class Grant : MonoBehaviour
     [SerializeField] float CaptureTime = 10.0f;
 
     int[] CapturingTeams;
-    int CurrentTimerOwner;
-    float Countdown;
+    [SerializeField] int CurrentTimerOwner;
+    [SerializeField] float Countdown;
     bool capturable = false;
 
     /**

@@ -8,13 +8,16 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 0
+  - enabled: 1
     path: Assets/Project Assets/Scenes/Menu.unity
     guid: 3f071a8fa0b668349a5fdbcdffc4a69e
-  - enabled: 0
-    path: Assets/Project Assets/Scenes/SampleScene.unity
-    guid: 71e048ba49ef34342bc4ae34180bc31c
+  - enabled: 1
+    path: Assets/Project Assets/Scenes/InstructionMenu.unity
+    guid: f7f762c12bed11e4784e5a6ff4901775
   - enabled: 1
     path: Assets/Project Assets/Scenes/Justin Honors Minigame Test.unity
     guid: ede1173dfb5e8914fa45bd0254f1ae81
+  - enabled: 0
+    path: Assets/Project Assets/Scenes/SampleScene.unity
+    guid: 71e048ba49ef34342bc4ae34180bc31c
   m_configObjects: {}

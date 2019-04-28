@@ -319,4 +319,4 @@ MonoBehaviour:
   buildCost: 10
   IncomeInterval: 5
   IncomePerInterval: 1
-  OwningPlayerNum: 0
+  owner: {fileID: 0}

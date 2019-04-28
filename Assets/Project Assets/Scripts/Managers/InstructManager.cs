@@ -4,9 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+/**
+ * The InstructManager is in charge of controlling the Instruction Menu.
+ */
 public class InstructManager : MonoBehaviour
 {
-    public Canvas[] menuGameObjs = new Canvas[3];
+    public GameObject[] menuGameObjs = new GameObject[3];
     public Image[] buttonObj = new Image[2];
     private IndicatorButton[] indicatorScripts;
     public int controllerNum = 0;
@@ -57,6 +60,9 @@ public class InstructManager : MonoBehaviour
 
     // Start is called before the first frame update
 
+    /**
+     * Start sets up the canvas space, indicator buttons, and controller.
+     */
     void Start()
     {
         timer = waitTime;
@@ -67,11 +73,11 @@ public class InstructManager : MonoBehaviour
         {
             if (i == canvasSelector)
             {
-                menuGameObjs[i].GetComponent<Canvas>().enabled = true;
+                menuGameObjs[i].SetActive(true);
             }
             else
             {
-                menuGameObjs[i].GetComponent<Canvas>().enabled = false;
+                menuGameObjs[i].SetActive(false);
             }
         }
 
@@ -93,6 +99,10 @@ public class InstructManager : MonoBehaviour
         rgdbdy2 = GetComponent<Rigidbody2D>();
     }
 
+    /**
+     * On FixedUpdate, the instruction menu should check for controller input.
+     * Input will either return the player to the Menu scene or change which canvas is displayed.
+     */
     void FixedUpdate()
     {
 
@@ -109,25 +119,29 @@ public class InstructManager : MonoBehaviour
             }
             if (Input.GetAxis(rHorizontalAxis) != 0)
             {
-                Debug.Log("R horiz Button Pressed: " + rHorizontalAxis);
                 if (timer <= 0)
                 {
-
                     timer = waitTime;
-                    if (Input.GetAxis(rHorizontalAxis) > 0)
+                    //Debug.Log("R horiz Button Pressed: " + rHorizontalAxis);
+                    if (timer <= 0)
                     {
-                        selectCanvas(1);
-                    }
-                    else if (Input.GetAxis(rHorizontalAxis) < 0)
-                    {
-                        selectCanvas(-1);
+
+                        timer = waitTime;
+                        if (Input.GetAxis(rHorizontalAxis) > 0)
+                        {
+                            selectCanvas(1);
+                        }
+                        else if (Input.GetAxis(rHorizontalAxis) < 0)
+                        {
+                            selectCanvas(-1);
+                        }
                     }
                 }
 
             }
             if (Input.GetAxis(horizontalAxis) != 0)
             {
-                Debug.Log("horiz Button Pressed: " + horizontalAxis);
+                //Debug.Log("horiz Button Pressed: " + horizontalAxis);
                 if (timer <= 0)
                 {
                     timer = waitTime;
@@ -143,18 +157,21 @@ public class InstructManager : MonoBehaviour
             }
             if (Input.GetAxis(DPadX) != 0)
             {
-                Debug.Log("DPAD Button Pressed: " + Input.GetAxis(DPadX));
-                if (timer <= 0)
-                {
-                    timer = waitTime;
-                    selectCanvas((int)Input.GetAxis(DPadX));
-                }
-
+               //Debug.Log("DPAD Button Pressed: " + Input.GetAxis(DPadX));
+               if (timer <= 0)
+               {
+                   timer = waitTime;
+                   selectCanvas((int)Input.GetAxis(DPadX));
+               }
+                
             }
         }
 
     }
 
+    /**
+     * Set which Controller can operate the instruction menu.
+     */
     public void SetControllerNumber(int ControllerNum)
     {
         controllerNum = ControllerNum;
@@ -179,17 +196,25 @@ public class InstructManager : MonoBehaviour
         PS = "P" + ControllerNum.ToString() + "_PS";
         Pad = "P" + ControllerNum.ToString() + "_Pad";
     }
+
+    /**
+     * Set the selected canvas to active, and deactivate the previous canvas.
+     */
     public void setCanvas(int deselect)
     {
         //deselect the old button
         //if deselect =-1 it means it doesn't need to be 
         if (deselect != -1)
         {
-            menuGameObjs[deselect].GetComponent<Canvas>().enabled = false;
+            menuGameObjs[deselect].SetActive(false);
         }
         //select the new button
-        menuGameObjs[canvasSelector].GetComponent<Canvas>().enabled = true;
+        menuGameObjs[canvasSelector].SetActive(true);
     }
+
+    /**
+     * Determine which canvas (if any) should be selected from the given input. Then use setCanvas and setIndicators to activate the proper items.
+     */
     public void selectCanvas(int i)
     {
         //for moving right or left
@@ -214,6 +239,10 @@ public class InstructManager : MonoBehaviour
             }
         }
     }
+
+    /**
+     * Set the indicator icons (arrows on the instruction screen) based on if the user can move the menu that way.
+     */
     public void setIndicators()
     {
          //set left indicator

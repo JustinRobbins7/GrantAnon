@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
      */
     [SerializeField] float cameraSpeed = 10f;
     public int controllerNum;
+    public Vector2 bottomLeftLimit;
+    public Vector2 topRightLimit;
 
     private Player player;
 
@@ -60,8 +62,9 @@ public class PlayerController : MonoBehaviour
      * Sets initial information for circle draw radius and sets unusable controller num to avoid crashes.
      * Actual number set in PlayerControllerAssigner
      */
-    
-    void Awake() {
+
+    void Awake()
+    {
         player = GetComponent<Player>();
     }
 
@@ -75,7 +78,8 @@ public class PlayerController : MonoBehaviour
             /**
              * Moves camera
              */
-            if (Input.GetAxis(horizontalAxis) != 0 || Input.GetAxis(verticalAxis) != 0) {
+            if (Input.GetAxis(horizontalAxis) != 0 || Input.GetAxis(verticalAxis) != 0)
+            {
                 updateCameraLocation();
             }
 
@@ -96,9 +100,19 @@ public class PlayerController : MonoBehaviour
                 // If you are not currently in the selection phase (and want to switch to it), then deactivate all selectable gameObjects for the player first
                 if (!isSelecting)
                 {
+                    /*
                     foreach (var unit in player.GetUnits())
                     {
                         unit.SetSelected(false);
+                    }
+                    */
+
+                    for (int i = 0; i < player.units.Count; i++)
+                    {
+                        if (player.units[i] != null)
+                        {
+                            player.units[i].GetComponent<Unit>().SetSelected(false);
+                        }
                     }
 
                     // Initialize the line renderer
@@ -111,11 +125,29 @@ public class PlayerController : MonoBehaviour
                 isSelecting = !isSelecting;
             }
 
+            /**
+            * Instructs the currently selected units to move the current location of the camera.
+            */
             if (Input.GetButtonDown(circleButton))
             {
+                /*
                 Unit[] selectedUnits = Array.FindAll(player.GetUnits(), unit => unit.IsSelected());
-                foreach (var unit in selectedUnits) {
+                foreach (var unit in selectedUnits)
+                {
                     unit.Move(transform.position);
+                }
+                */
+
+                for (int i = 0; i < player.units.Count; i++)
+                {
+                    if (player.units[i] != null)
+                    {
+                        Unit unit = player.units[i].GetComponent<Unit>();
+                        if (unit.IsSelected())
+                        {
+                            unit.Move(transform.position);
+                        }
+                    }
                 }
             }
             /**
@@ -191,13 +223,34 @@ public class PlayerController : MonoBehaviour
     }
 
     /**
-     * Moves camerabased on this gameobject's location.
+     * Moves camera based on this gameobject's location.
      */
     private void updateCameraLocation()
     {
         Vector3 position = transform.position;
         position.x += Input.GetAxis(horizontalAxis) * cameraSpeed * Time.deltaTime;
         position.y += Input.GetAxis(verticalAxis) * cameraSpeed * Time.deltaTime;
+
+        if (position.x > topRightLimit.x)
+        {
+            position.x = topRightLimit.x;
+        }
+
+        if (position.x < bottomLeftLimit.x)
+        {
+            position.x = bottomLeftLimit.x;
+        }
+
+        if (position.y > topRightLimit.y)
+        {
+            position.y = topRightLimit.y;
+        }
+
+        if (position.y < bottomLeftLimit.y)
+        {
+            position.y = bottomLeftLimit.y;
+        }
+
         transform.position = position;
 
         gameObject.UpdateCircleDraw(radius);
@@ -206,22 +259,43 @@ public class PlayerController : MonoBehaviour
     /**
      * Moves drawn circle on this gameobject's location.
      */
-    private void UpdateSelectionCircle() {
-        if (isSelecting) {
-            foreach (var selectableObject in FindObjectsOfType<Unit>()) {
+    private void UpdateSelectionCircle()
+    {
+        if (isSelecting)
+        {
+            /*
+            foreach (var selectableObject in FindObjectsOfType<Unit>())
+            {
                 Unit[] unitsInBounds = Array.FindAll(player.GetUnits(), unit => IsWithinBounds(unit.gameObject));
-                foreach (var unit in unitsInBounds) {
+                foreach (var unit in unitsInBounds)
+                {
                     unit.SetSelected(true);
                 }
             }
+            */
+            
+            for (int i = 0; i < player.units.Count; i++)
+            {
+                if (player.units[i] != null)
+                {
+                    Unit unit = player.units[i].GetComponent<Unit>();
+                    if (IsWithinBounds(unit.gameObject))
+                    {
+                        unit.SetSelected(true);
+                    }
+                }
+            }
+            
         }
     }
 
     /**
      * Checks if selectable object is within bounds of the drawn circle
      */
-    private bool IsWithinBounds(GameObject gameObject) {
-        if (!isSelecting) {
+    private bool IsWithinBounds(GameObject gameObject)
+    {
+        if (!isSelecting)
+        {
             return false;
         }
 
@@ -232,6 +306,10 @@ public class PlayerController : MonoBehaviour
         return Vector3.Distance(gameObject.transform.position, adjustedCameraPos) < radius;
     }
 
+    /**
+     * Sets the names of the axes this controller is listening for based on the given player number 
+     * as well as setting this player controller's player number to the given number.
+     */
     public void SetControllerNumber(int ControllerNum)
     {
         controllerNum = ControllerNum;

@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * Exit Button is a kind of Menu Button that will exit the game when clicked.
+ */
 public class ExitButton : MenuButton
 {
     // Start is called before the first frame update

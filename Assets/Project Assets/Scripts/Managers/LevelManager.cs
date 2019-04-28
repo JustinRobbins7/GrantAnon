@@ -1,23 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
+
+/**
+ * Class used to load scenes in levels
+ */
 public class LevelManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    /**
+     * Loads a scene given a scene name
+     */
+    public void LoadLevel(string SceneName)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void LoadLevel()
-    {
-
+        SceneManager.LoadScene(SceneName);
     }
 }

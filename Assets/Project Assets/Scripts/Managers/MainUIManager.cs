@@ -12,6 +12,13 @@ public class MainUIManager : MonoBehaviour
     [SerializeField] Player OwningPlayer = null;
 
     public Text MoneyDisplay = null;
+    public Text GrantDisplay = null;
+    public Text PlayerName = null;
+
+    private void Start()
+    {
+        PlayerName.text = "Player " + (OwningPlayer.PlayerNumber+1);
+    }
 
     void FixedUpdate()
     {
@@ -23,9 +30,13 @@ public class MainUIManager : MonoBehaviour
 
     void UpdateUI()
     {
-        if (MoneyDisplay != null)
+         if (MoneyDisplay != null)
         {
             MoneyDisplay.text = OwningPlayer.money.ToString();
+        }
+         if (GrantDisplay != null)
+        {
+            GrantDisplay.text = OwningPlayer.grant.ToString() + " / 3";
         }
     }
 }

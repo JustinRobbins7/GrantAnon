@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/**
+  * Class that manages the player sign in menu, assigns player numbers, spawns them, and begins the level.
+  */
 public class PlayerControllerAssigner : MonoBehaviour
 {
-    /**
-     * Manages the player signin menu, assigns player numbers, spawns them, and begins the level.
-     */
+    
     public int MaxPlayers = 4;
     public GameObject ReadyScreen;
 
@@ -31,10 +32,10 @@ public class PlayerControllerAssigner : MonoBehaviour
 
     AStarGrid grid;
     Vector2Int[] spawnTiles = {
-        new Vector2Int(3, -3),
+        new Vector2Int(2, -3),
+        new Vector2Int(-3, 3),
         new Vector2Int(-3, -3),
-        new Vector2Int(3, 3),
-        new Vector2Int(-3, 3)};
+        new Vector2Int(3, 3),};
 
     private int RealPlayers;
     private int AiPlayers;
@@ -192,6 +193,7 @@ public class PlayerControllerAssigner : MonoBehaviour
                 SpawnedPlayer.GetComponent<Player>().IncomeBuildingPrefab = IncomeBuildings[i];
                 SpawnedPlayer.GetComponent<Player>().HeroUnitPrefab = HeroUnits[i];
                 SpawnedPlayer.GetComponent<Player>().MeleeUnitPrefab = MeleeUnits[i];
+                SpawnedPlayer.gameObject.transform.position = PlayerSpawns[i];
             } else { /* Spawn AI player */
                 SpawnedPlayer = Instantiate(aiPlayer);
             }
@@ -207,18 +209,10 @@ public class PlayerControllerAssigner : MonoBehaviour
             SpawnedPlayer.GetComponent<Player>().BuildingRoot = PlayerBuildingRoot;
 
             /*
-            //NEEDS TO BE RESOLVED (PROBABLY)
-            if (MainGameManager.instance != null)
-            {
-                MainGameManager.instance.InsertPlayer(i - 1, SpawnedPlayer);
-                MainGameManager.instance.AddPlayerControllerPair(i - 1, ControllerNums[i - 1]);
-            }
-            */
-
-            //SpawnedPlayer.GetComponent<Player>().SetBaseLocation(ConvertSpawnTileToCoords(spawnTiles[i]));
-
             SpawnedPlayer.transform.position = PlayerSpawns[i];
             SpawnedPlayer.GetComponent<Player>().SetBaseLocation(PlayerSpawns[i]);
+            */
+            SpawnedPlayer.GetComponent<Player>().SetBaseLocation(ConvertSpawnTileToCoords(spawnTiles[i]));
 
             MainGameManager.instance.InsertPlayer(i, SpawnedPlayer.GetComponent<Player>());
 

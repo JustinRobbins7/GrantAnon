@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/**
+ * The Instruction Button takes the player from the main menu to the instruction menu.
+ */
 public class InstructionButton : MenuButton
 {
     // Start is called before the first frame update

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/**
+ * The StartButton will load the game.
+ */
 public class StartButton : MenuButton
 {
     // Start is called before the first frame update

@@ -1,29 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Audio;
 
+/**
+  * MainGameManager for the project, handles players and the flow of the game, most notably the spawning of grants.
+  */
 public class MainGameManager : GameManager
 {
-    /**
-     * MainGameManager for the project, handles players and the flow of the game.
-     */
-    [SerializeField] protected float grantInterval;
-    [SerializeField] protected GameObject grantPrefab;
-    [SerializeField] protected Vector2 grantSpawnLocation;
+    [SerializeField] float grantInterval;
+    [SerializeField] GameObject grantPrefab;
+    [SerializeField] Vector2 grantSpawnLocation;
 
     public static MainGameManager instance = null;
 
-    protected Player[] Players = null;
-    protected int[] PlayerScores;
-    protected float grantTimer;
-    protected bool runLevel;
-    protected bool spawnedGrant;
-    protected Dictionary<int, int> zeroBasedPlayerToController;
+    public Player[] Players = null;
+    int[] PlayerScores;
+    float grantTimer;
+    bool runLevel;
+    bool spawnedGrant;
+    public int winningCondition = 3;
+
+    public GameObject Victory;
+    public Text Timer;
+    public AudioSource grantAcquired;
+    public AudioSource grantSpawn;
 
     /**
-     * Ensures the GameManager is unique and accessible from code anywhere
+     * The awake method initialized a static instance of the MainGameManager.
+     * This ensures the GameManager is unique and accessible from code anywhere
      */
-
     void Awake()
     {
         if (instance == null)
@@ -36,7 +43,6 @@ public class MainGameManager : GameManager
         }
 
         runLevel = false;
-        zeroBasedPlayerToController = new Dictionary<int, int>();
     }
 
     // Update is called once per frame
@@ -51,22 +57,32 @@ public class MainGameManager : GameManager
             if (!spawnedGrant)
             {
                 grantTimer += Time.deltaTime;
+                int time = (int)(grantInterval - grantTimer);
+                if (time == 0)
+                {
+                    Timer.text = "Grant has Spawned!";
+                }
+                else
+                {
+                    Timer.text = "Grant Spawns in " + time;
+                }
             }
 
             if (grantTimer >= grantInterval)
             {
                 SpawnGrant();
-                grantTimer = 0.0f;
+                grantTimer = 0.0f;               
             }
         }
     }
 
     /**
-     * Spawns a grant at a specificed position
+     * Spawns a grant at a specified position
      */
     public void SpawnGrant()
     {
         Debug.Log("Spawning grant!");
+        grantSpawn.Play(0);
         GameObject grantObject = Instantiate(grantPrefab);
         grantObject.transform.position = grantSpawnLocation;
         grantObject.layer = SortingLayer.GetLayerValueFromName("Foreground");
@@ -80,10 +96,18 @@ public class MainGameManager : GameManager
     public void ScoreGrant(int scoringPlayer)
     {
         int playerIndex = scoringPlayer;
-        Debug.Log(scoringPlayer.ToString());
-        if (0 >= playerIndex && playerIndex < PlayerScores.Length)
+        Debug.Log("scoring index: " + scoringPlayer.ToString());
+        if (playerIndex >= 0 && playerIndex < PlayerScores.Length)
         {
             PlayerScores[playerIndex]++;
+            Players[playerIndex].grant++;
+            //if the score has increased above the winning conditions this means we need to go to the victory screen
+            if(PlayerScores[playerIndex] >= winningCondition)
+            {
+                Victory.GetComponent<Victory>().setText(playerIndex+1);
+                Victory.SetActive(true);
+            }
+            grantAcquired.Play(0);
         }
 
         spawnedGrant = false;
@@ -116,7 +140,6 @@ public class MainGameManager : GameManager
      */
     public void InsertPlayer(int playerIndex, Player newPlayer)
     {
-        Debug.Log(playerIndex.ToString());
         Players[playerIndex] = newPlayer;
     }
 
@@ -131,24 +154,5 @@ public class MainGameManager : GameManager
             Players[earningPlayer].money += moneyEarned;
         }
     }
-
-    public void ResumeLevel()
-    {
-        runLevel = true;
-    }
-
-    public void AddPlayerControllerPair(int playerNum, int controllerNum)
-    {
-        zeroBasedPlayerToController.Add(playerNum, controllerNum);
-    }
-
-    public int GetPlayerControllerZeroBased(int PlayerNum)
-    {
-        return zeroBasedPlayerToController[PlayerNum];
-    }
-
-    public int GetNumPlayers()
-    {
-        return Players.Length;
-    }
+    
 }

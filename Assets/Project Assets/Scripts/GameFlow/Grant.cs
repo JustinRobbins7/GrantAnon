@@ -11,15 +11,19 @@ public class Grant : MonoBehaviour
     float Countdown;
     bool capturable = false;
 
+    /**
+     * Start method that initializes the Grant's variables
+     */
     // Start is called before the first frame update
     void Start()
     {
         CapturingTeams = new int[MainGameManager.instance.PlayerCount];
         Countdown = CaptureTime;
         CurrentTimerOwner = 0;
-
+        /*
         gameObject.GetComponent<CircleCollider2D>().enabled = true;
         capturable = true;
+        */
     }
 
     // Update is called once per frame
@@ -92,10 +96,15 @@ public class Grant : MonoBehaviour
                 }
             }
         }
+
+        if (!(gameObject.GetComponent<CircleCollider2D>().enabled))
+        {
+            gameObject.GetComponent<CircleCollider2D>().enabled = true;
+        }
     }
 
     /**
-     * When a Unit comes within range of the grant's collision box, it is added to that players' unit count.
+     * When a Unit comes within range of the grant's collision box, it is added to that player's capturing unit count.
      */
     //When Unit collides with grant, add it to the unit counts for its owning player
     void OnTriggerEnter2D(Collider2D other)
@@ -103,14 +112,17 @@ public class Grant : MonoBehaviour
         Unit unit = other.gameObject.GetComponent<Unit>();
         if (unit != null)
         {
-            Debug.Log(unit.OwningPlayerNum.ToString());
-            CapturingTeams[unit.OwningPlayerNum]++;
+            Debug.Log("Unit owning player num: " + unit.GetOwningPlayerNum().ToString());
+            if(CapturingTeams != null)
+            {
+                CapturingTeams[unit.GetOwningPlayerNum()]++;
+            }
         }
     }
 
 
     /**
-     * When a Unit leaves the range of the grant's collision box, it is subtracted from that players' unit count.
+     * When a Unit leaves the range of the grant's collision box, it is subtracted from that player's capturing unit count.
      */
     //When Unit leaves grant's collision box, remove it from its player's unit count
     void OnTriggerExit2D(Collider2D other)
@@ -118,7 +130,10 @@ public class Grant : MonoBehaviour
         Unit unit = other.gameObject.GetComponent<Unit>();
         if (unit != null)
         {
-            CapturingTeams[unit.OwningPlayerNum]--;
+            if(CapturingTeams != null && CapturingTeams[unit.GetOwningPlayerNum()] > 0)
+            {
+                CapturingTeams[unit.GetOwningPlayerNum()]--;
+            }
         }
     }
 }

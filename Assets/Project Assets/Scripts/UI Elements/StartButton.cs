@@ -26,6 +26,6 @@ public class StartButton : MenuButton
     override public void onClick()
     {
         //replace sample scene with the game
-        SceneManager.LoadScene("Justin Honors Minigame Test", LoadSceneMode.Single);
+        SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
     }
 }
